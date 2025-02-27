@@ -4,6 +4,11 @@
 }
 
 @theme {
-  --color-primary: #1da1f2;
+  /* colors */
+  --color-primary: #ff0000;
+  --color-secondary: #ff0000;
+  --color-accent: #ff0000;
+  /* font family */
   --font-heading: "Helvetica Neue", sans-serif;
+  --font-text: "Helvetica Neue", sans-serif;
 }
