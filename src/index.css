@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
-:root {
+:root,
+html,
+body {
+  padding: 0;
+  margin: 0;
 }
 
 @theme {
