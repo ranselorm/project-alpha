@@ -20,7 +20,7 @@ const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
           <span className="text-sm">Welcome,</span>
           <p className="font-semibold">Randy Selorm</p>
         </div> */}
-        <h3 className="font-bold text-2xl font-text">{title}</h3>
+        <h3 className="text-2xl font-text">{title}</h3>
         <div className="flex gap-x-6">
           <div className="w-full bg-grey rounded-full relative flex items-center px-4">
             <Icon

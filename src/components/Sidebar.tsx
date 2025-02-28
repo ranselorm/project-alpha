@@ -8,9 +8,14 @@ const navLinks = [
     icon: "material-symbols:dashboard-outline-rounded",
   },
   {
-    title: "Accounts",
-    path: "/accounts",
-    icon: "ic:round-account-box",
+    title: "Users",
+    path: "/users",
+    icon: "mdi:users-outline",
+  },
+  {
+    title: "Reports",
+    path: "/reports",
+    icon: "mage:chart-up",
   },
   {
     title: "Transactions",

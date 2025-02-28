@@ -11,7 +11,8 @@ const App = () => {
 
   const pageTitles: { [key: string]: string } = {
     "/": "Overview",
-    "/accounts": "Accounts",
+    "/users": "Users",
+    "/reports": "Reports",
     "/transactions": "Transactions",
     "/settings": "Settings",
   };
