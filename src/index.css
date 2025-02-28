@@ -16,6 +16,7 @@ body {
   --color-primary: #ff0000;
   --color-secondary: #ff0000;
   --color-accent: #ff0000;
+  --color-grey: #e8ecf1;
   /* font family */
   --font-heading: "Helvetica Neue", sans-serif;
   --font-text: "Helvetica Neue", sans-serif;

@@ -1,5 +1,4 @@
 import { Icon } from "@iconify/react";
-import { Input } from "./ui/input";
 
 type NavbarProps = {
   toggleSidebar: () => void;
@@ -8,7 +7,7 @@ type NavbarProps = {
 
 const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
   return (
-    <nav className="bg-red-100 shadow-md p-4 flex items-center">
+    <nav className="bg-white border-b p-4 flex items-center">
       {/* Only show menu button on smaller screens */}
       <button
         onClick={toggleSidebar}
@@ -23,15 +22,28 @@ const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
         </div> */}
         <h3 className="font-bold text-2xl">{title}</h3>
         <div className="flex gap-x-6">
-          <div className="w-[400px]">
-            <Input className="bg-white border-none outline-none focus:ring-none" />
+          <div className="w-full bg-grey rounded-full relative flex items-center px-4">
+            <Icon
+              icon="material-symbols-light:search-rounded"
+              className="absolute right-3 cursor-pointer size-5"
+            />
+            <input
+              className="h-full focus:ring-0 focus:outline-none text-xs w-[300px]"
+              placeholder="Search"
+            />
           </div>
-          <div className="flex gap-x-3">
-            <div className="bg-white text-black p-2 flex items-center justify-center rounded-full cursor-pointer">
-              <Icon icon="stash:question-light" className="size-4" />
-            </div>
-            <div className="bg-white text-black p-2 flex items-center justify-center rounded-full cursor-pointer">
+          <div className="flex gap-x-6 items-center">
+            {/* <div className="bg-grey text-black p-3 flex items-center justify-center rounded-full cursor-pointer">
+              <Icon
+                icon="material-symbols-light:settings-outline"
+                className="size-4"
+              />
+            </div> */}
+            <div className="bg-grey text-black p-3 flex items-center justify-center rounded-full cursor-pointer">
               <Icon icon="iconamoon:notification-thin" className="size-4" />
+            </div>
+            <div className="text-black w-10 h-10 flex items-center justify-center rounded-full cursor-pointer overflow-hidden">
+              <img src="/profile.jpg" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
