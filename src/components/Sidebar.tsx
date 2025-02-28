@@ -21,21 +21,20 @@ const Sidebar = ({ isOpen, toggle }: SidebarProps) => {
       <div className="w-[130px] mb-6">
         <img src="/berth.png" alt="" className="w-full" />
       </div>
-      <nav className="flex flex-col space-y-4 py-4 px-2">
+      <nav className="flex flex-col space-y-4 px-2 py-4">
         <NavLink
           to="/"
-          //   className="flex items-center space-x-2 p-2 hover:bg-teal-500 hover:text-white transition-all duration-150 rounded-md"
           className={({ isActive }) =>
             `${
-              isActive ? "bg-red-400" : "bg-yellow-400"
-            } flex items-center space-x-2 p-2 hover:bg-teal-500 hover:text-white transition-all duration-150 rounded-md`
+              isActive ? "bg-grey" : "hover:bg-grey text-gray-600"
+            } flex items-center space-x-2 p-2 transition-all duration-150 rounded-md`
           }
         >
           <Icon
             icon="material-symbols-light:dashboard-outline"
             className="text-xl"
           />
-          <span className="hidden lg:block">Dashboard</span>
+          <span className="">Dashboard</span>
         </NavLink>
         <Link
           to="/settings"
