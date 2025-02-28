@@ -9,21 +9,27 @@ type SidebarProps = {
 const Sidebar = ({ isOpen, toggle }: SidebarProps) => {
   return (
     <aside
-      className={`h-screen fixed top-0 left-0 bg-gray-900 text-white transition-all ${
+      className={`h-screen fixed top-0 left-0 bg-white text-black transition-all border border-grey ${
         isOpen ? "w-64" : "w-0"
-      } lg:w-64 flex flex-col`}
+      } lg:w-64 flex flex-col p-4`}
     >
-      <div className="p-4">
-        <button onClick={toggle} className="text-white p-2 lg:hidden">
+      <div className="lg:hidden">
+        <button onClick={toggle} className="text-white p-2">
           <Icon icon="hugeicons:menu-03" />
         </button>
       </div>
-      <nav className="mt-8 flex flex-col space-y-4">
+      <div className="w-[130px] mb-6">
+        <img src="/berth.png" alt="" className="w-full" />
+      </div>
+      <nav className="flex flex-col space-y-4 py-4 px-2">
         <Link
           to="/"
-          className="flex items-center space-x-2 p-2 hover:bg-gray-700"
+          className="flex items-center space-x-2 p-2 hover:bg-teal-500 hover:text-white transition-all duration-150 rounded-md"
         >
-          <Icon icon="mdi:home" className="text-xl" />
+          <Icon
+            icon="material-symbols-light:dashboard-outline"
+            className="text-xl"
+          />
           <span className="hidden lg:block">Dashboard</span>
         </Link>
         <Link
