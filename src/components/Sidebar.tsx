@@ -63,7 +63,10 @@ const Sidebar = ({ isOpen, toggle }: SidebarProps) => {
             </NavLink>
           ))}
         </nav>
-        <div className="p-4">Logout</div>
+        <div className="px-4 py-1 rounded-md flex gap-x-3 text-gray-600 items-center border border-gray-400">
+          <Icon icon="material-symbols:logout" className="size-5" />
+          Logout
+        </div>
       </div>
     </aside>
   );
