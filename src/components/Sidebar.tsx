@@ -44,24 +44,27 @@ const Sidebar = ({ isOpen, toggle }: SidebarProps) => {
       <div className="w-[130px] mb-6">
         <img src="/berth.png" alt="" className="w-full" />
       </div>
-      <nav className="flex flex-col space-y-4 px-2 py-4">
-        {navLinks.map((link, index) => (
-          <NavLink
-            key={index}
-            to={link.path}
-            className={({ isActive }) =>
-              `${
-                isActive
-                  ? "bg-teal-600 text-white"
-                  : "hover:bg-grey text-gray-600 hover:text-black"
-              } flex items-center space-x-2 p-2 transition-all duration-150 rounded-md font-text`
-            }
-          >
-            <Icon icon={`${link.icon}`} className="text-xl" />
-            <span className="">{link.title}</span>
-          </NavLink>
-        ))}
-      </nav>
+      <div className="flex flex-col justify-between h-full">
+        <nav className="flex flex-col space-y-4 px-2 py-4">
+          {navLinks.map((link, index) => (
+            <NavLink
+              key={index}
+              to={link.path}
+              className={({ isActive }) =>
+                `${
+                  isActive
+                    ? "bg-teal-600 text-white"
+                    : "hover:bg-grey text-gray-600 hover:text-black"
+                } flex items-center space-x-2 p-2 transition-all duration-150 rounded-md font-text`
+              }
+            >
+              <Icon icon={`${link.icon}`} className="text-xl" />
+              <span className="">{link.title}</span>
+            </NavLink>
+          ))}
+        </nav>
+        <div className="p-4">Logout</div>
+      </div>
     </aside>
   );
 };
