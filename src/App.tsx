@@ -10,7 +10,9 @@ const App = () => {
   const location = useLocation();
 
   const pageTitles: { [key: string]: string } = {
-    "/": "Dashboard",
+    "/": "Overview",
+    "/accounts": "Accounts",
+    "/transactions": "Transactions",
     "/settings": "Settings",
   };
 
