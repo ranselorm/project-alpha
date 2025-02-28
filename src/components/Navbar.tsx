@@ -1,12 +1,12 @@
 import { Icon } from "@iconify/react";
-import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
 type NavbarProps = {
   toggleSidebar: () => void;
+  title: string;
 };
 
-const Navbar = ({ toggleSidebar }: NavbarProps) => {
+const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
   return (
     <nav className="bg-red-100 shadow-md p-4 flex items-center">
       {/* Only show menu button on smaller screens */}
@@ -21,7 +21,7 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
           <span className="text-sm">Welcome,</span>
           <p className="font-semibold">Randy Selorm</p>
         </div> */}
-        <h3 className="font-bold text-2xl">Home</h3>
+        <h3 className="font-bold text-2xl">{title}</h3>
         <div className="flex gap-x-6">
           <div className="w-[400px]">
             <Input className="bg-white border-none outline-none focus:ring-none" />
