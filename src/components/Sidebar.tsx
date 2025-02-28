@@ -5,14 +5,22 @@ const navLinks = [
   {
     title: "Overview",
     path: "/",
+    icon: "material-symbols:dashboard-outline-rounded",
   },
   {
     title: "Accounts",
     path: "/accounts",
+    icon: "ic:round-account-box",
   },
   {
     title: "Transactions",
     path: "/transactions",
+    icon: "grommet-icons:transaction",
+  },
+  {
+    title: "Settings",
+    path: "/settings",
+    icon: "mdi:cog",
   },
 ];
 
@@ -44,26 +52,15 @@ const Sidebar = ({ isOpen, toggle }: SidebarProps) => {
             className={({ isActive }) =>
               `${
                 isActive
-                  ? "bg-grey"
+                  ? "bg-teal-600 text-white"
                   : "hover:bg-grey text-gray-600 hover:text-black"
               } flex items-center space-x-2 p-2 transition-all duration-150 rounded-md`
             }
           >
-            <Icon
-              icon="material-symbols-light:dashboard-outline"
-              className="text-xl"
-            />
+            <Icon icon={`${link.icon}`} className="text-xl" />
             <span className="">{link.title}</span>
           </NavLink>
         ))}
-
-        <Link
-          to="/settings"
-          className="flex items-center space-x-2 p-2 hover:bg-gray-700"
-        >
-          <Icon icon="mdi:cog" className="text-xl" />
-          <span className="hidden lg:block">Settings</span>
-        </Link>
       </nav>
     </aside>
   );
