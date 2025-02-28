@@ -1,10 +1,8 @@
-import React from "react";
-
 const Dashboard = () => {
   return (
     <div>
       <h3>Dashboard</h3>
-      <p>
+      <p className="font-text">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam rerum
         labore amet nulla sapiente, voluptates unde maiores expedita dolor quod
         necessitatibus doloribus optio corrupti hic provident incidunt natus
