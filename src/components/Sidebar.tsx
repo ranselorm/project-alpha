@@ -1,6 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
+const navLinks = [
+  {
+    title: "Overview",
+    path: "/",
+  },
+  {
+    title: "Accounts",
+    path: "/accounts",
+  },
+  {
+    title: "Transactions",
+    path: "/transactions",
+  },
+];
+
 type SidebarProps = {
   isOpen: boolean;
   toggle: () => void;
@@ -22,20 +37,26 @@ const Sidebar = ({ isOpen, toggle }: SidebarProps) => {
         <img src="/berth.png" alt="" className="w-full" />
       </div>
       <nav className="flex flex-col space-y-4 px-2 py-4">
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `${
-              isActive ? "bg-grey" : "hover:bg-grey text-gray-600"
-            } flex items-center space-x-2 p-2 transition-all duration-150 rounded-md`
-          }
-        >
-          <Icon
-            icon="material-symbols-light:dashboard-outline"
-            className="text-xl"
-          />
-          <span className="">Dashboard</span>
-        </NavLink>
+        {navLinks.map((link, index) => (
+          <NavLink
+            key={index}
+            to={link.path}
+            className={({ isActive }) =>
+              `${
+                isActive
+                  ? "bg-grey"
+                  : "hover:bg-grey text-gray-600 hover:text-black"
+              } flex items-center space-x-2 p-2 transition-all duration-150 rounded-md`
+            }
+          >
+            <Icon
+              icon="material-symbols-light:dashboard-outline"
+              className="text-xl"
+            />
+            <span className="">{link.title}</span>
+          </NavLink>
+        ))}
+
         <Link
           to="/settings"
           className="flex items-center space-x-2 p-2 hover:bg-gray-700"
