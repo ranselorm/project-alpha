@@ -40,7 +40,7 @@ const App = () => {
         </div>
 
         {/* Content - Only this section should scroll */}
-        <main className="p-4 overflow-y-auto flex-1 bg-[#f5f7fa]">
+        <main className="overflow-y-auto flex-1 bg-[#f5f7fa]">
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/settings" element={<Settings />} />
