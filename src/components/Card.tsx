@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 interface CardProps {
   title: string;
   value: number;
-  bgColor: string;
+  bgColor?: string;
 }
 
 const Card = () => {
