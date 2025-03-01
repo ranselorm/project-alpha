@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
 const navLinks = [
@@ -64,7 +64,7 @@ const Sidebar = ({ isOpen, toggle }: SidebarProps) => {
               }
             >
               <Icon icon={`${link.icon}`} className="text-xl" />
-              <span className="">{link.title}</span>
+              <span>{link.title}</span>
             </NavLink>
           ))}
         </nav>
