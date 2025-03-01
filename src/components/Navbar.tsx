@@ -8,7 +8,6 @@ type NavbarProps = {
 const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
   return (
     <nav className="bg-white border-b p-4 flex items-center">
-      {/* Only show menu button on smaller screens */}
       <button
         onClick={toggleSidebar}
         className="text-xl p-2 focus:outline-none lg:hidden"
@@ -16,10 +15,6 @@ const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
         <Icon icon="hugeicons:menu-03" className="size-6" />
       </button>
       <div className="flex justify-between w-full items-center gap-x-20">
-        {/* <div className="flex items-start flex-col">
-          <span className="text-sm">Welcome,</span>
-          <p className="font-semibold">Randy Selorm</p>
-        </div> */}
         <h3 className="text-2xl font-text">{title}</h3>
         <div className="flex gap-x-6">
           <div className="w-full bg-grey rounded-full relative flex items-center px-4">
