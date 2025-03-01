@@ -31,7 +31,6 @@ const App = () => {
           isSidebarOpen ? "lg:ml-64" : "lg:ml-20"
         } w-full`}
       >
-        {/* Navbar - Inside the main content only */}
         <div className="bg-white z-10">
           <Navbar
             toggleSidebar={() => setSidebarOpen(!isSidebarOpen)}
@@ -39,7 +38,6 @@ const App = () => {
           />
         </div>
 
-        {/* Content - Only this section should scroll */}
         <main className="overflow-y-auto flex-1 bg-[#f5f7fa]">
           <Routes>
             <Route path="/" element={<Dashboard />} />
