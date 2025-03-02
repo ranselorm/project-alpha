@@ -31,8 +31,13 @@ const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
             <div className="bg-grey text-black p-3 flex items-center justify-center rounded-full cursor-pointer">
               <Icon icon="iconamoon:notification-thin" className="size-4" />
             </div>
-            <div className="text-black w-10 h-10 flex items-center justify-center rounded-full cursor-pointer overflow-hidden">
-              <img src="/profile.jpg" className="w-full h-full object-cover" />
+            <div className="bg-red-200">
+              <div className="text-black w-10 h-10 flex items-center justify-center rounded-full cursor-pointer overflow-hidden">
+                <img
+                  src="/profile.jpg"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
