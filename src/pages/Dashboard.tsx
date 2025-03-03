@@ -34,12 +34,22 @@ const Dashboard = () => {
             />
           </div>
         </section>
-        <section className="flex gap-x-4 items-center justify-center">
-          <LineChart
-            labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
-            data={[10, 30, 20, 40, 60, 50, 90]}
-          />
-          <PieChart data={[30, 25, 20, 15, 10]} />
+        <section className="flex gap-x-4 items-center justify-center bg-red-400">
+          <div className="md:w-4/6 h-full">
+            <p>Weekly New Users</p>
+            <div className="bg-white shadow-md rounded-lg p-4 h-96">
+              <LineChart
+                labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
+                data={[10, 30, 20, 40, 60, 50, 90]}
+              />
+            </div>
+          </div>
+          <div className="md:w-2/6 h-full">
+            <p>Weekly New Users</p>
+            <div className="bg-white h-96 shadow-md rounded-lg p-4 flex items-center justify-center">
+              <PieChart data={[30, 25, 20, 15, 10]} />
+            </div>
+          </div>
         </section>
       </div>
     </main>
