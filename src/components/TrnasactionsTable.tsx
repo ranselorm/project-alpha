@@ -68,9 +68,12 @@ const TransactionsTable = () => {
               <TableHead>Receipt</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="">
             {transactions.map((tx, index) => (
-              <TableRow key={index}>
+              <TableRow
+                key={index}
+                className="cursor-pointer transition-all duration-150"
+              >
                 <TableCell className="flex items-center space-x-2">
                   <Icon
                     icon="mdi:arrow-down-circle-outline"
