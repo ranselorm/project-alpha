@@ -54,56 +54,62 @@ const transactions = [
 
 const TransactionsTable = () => {
   return (
-    <div className="p-4 bg-white shadow-md rounded-lg">
-      <h2 className="text-lg font-semibold mb-4">Recent Transactions</h2>
-
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Description</TableHead>
-            <TableHead>Transaction ID</TableHead>
-            <TableHead>Type</TableHead>
-            <TableHead>Card</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead>Amount</TableHead>
-            <TableHead>Receipt</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {transactions.map((tx, index) => (
-            <TableRow key={index}>
-              <TableCell className="flex items-center space-x-2">
-                <Icon
-                  icon="mdi:arrow-down-circle-outline"
-                  className="text-xl text-gray-500"
-                />
-                <span>{tx.description}</span>
-              </TableCell>
-              <TableCell>{tx.id}</TableCell>
-              <TableCell>{tx.type}</TableCell>
-              <TableCell>{tx.card}</TableCell>
-              <TableCell>{tx.date}</TableCell>
-              <TableCell
-                className={tx.amount < 0 ? "text-red-500" : "text-green-500"}
-              >
-                {tx.amount < 0 ? `-$${Math.abs(tx.amount)}` : `+$${tx.amount}`}
-              </TableCell>
-              <TableCell>
-                <Button variant="outline" size="sm">
-                  Download
-                </Button>
-              </TableCell>
+    <div>
+      <div className="p-4 bg-white shadow-md rounded-lg">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Description</TableHead>
+              <TableHead>Transaction ID</TableHead>
+              <TableHead>Type</TableHead>
+              <TableHead>Card</TableHead>
+              <TableHead>Date</TableHead>
+              <TableHead>Amount</TableHead>
+              <TableHead>Receipt</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {transactions.map((tx, index) => (
+              <TableRow key={index}>
+                <TableCell className="flex items-center space-x-2">
+                  <Icon
+                    icon="mdi:arrow-down-circle-outline"
+                    className="text-xl text-gray-500"
+                  />
+                  <span>{tx.description}</span>
+                </TableCell>
+                <TableCell>{tx.id}</TableCell>
+                <TableCell>{tx.type}</TableCell>
+                <TableCell>{tx.card}</TableCell>
+                <TableCell>{tx.date}</TableCell>
+                <TableCell
+                  className={tx.amount < 0 ? "text-red-500" : "text-teal-600"}
+                >
+                  {tx.amount < 0
+                    ? `-$${Math.abs(tx.amount)}`
+                    : `+$${tx.amount}`}
+                </TableCell>
+                <TableCell>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full text-xs font-normal border border-teal-600"
+                  >
+                    Download
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
 
-      {/* Pagination */}
+        {/* Pagination */}
+      </div>
       <div className="flex justify-end items-center mt-4 space-x-2">
         <Button variant="ghost" size="sm">
           Previous
         </Button>
-        <Button size="sm" className="bg-blue-500 text-white">
+        <Button size="sm" className="bg-teal-600 text-white">
           1
         </Button>
         <Button variant="ghost" size="sm">

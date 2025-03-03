@@ -1,6 +1,7 @@
 import Card from "@/components/Card";
 import LineChart from "@/components/LineChart";
 import PieChart from "@/components/PieChart";
+import TransactionsTable from "@/components/TrnasactionsTable";
 
 const Dashboard = () => {
   return (
@@ -51,6 +52,10 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
+        <div>
+          <p className="mb-4">Recent Transactions</p>
+          <TransactionsTable />
+        </div>
       </div>
     </main>
   );
