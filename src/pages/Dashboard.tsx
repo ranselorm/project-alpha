@@ -33,10 +33,14 @@ const Dashboard = () => {
             />
           </div>
         </section>
-        <section>
+        <section className="flex gap-x-4">
           <LineChart
             labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
-            data={[10, 40, 30, 60, 50, 90]}
+            data={[10, 30, 20, 40, 60, 50, 90]}
+          />
+          <LineChart
+            labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
+            data={[10, 30, 20, 40, 60, 50, 90]}
           />
         </section>
       </div>
