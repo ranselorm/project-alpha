@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import LineChart from "@/components/LineChart";
+import PieChart from "@/components/PieChart";
 
 const Dashboard = () => {
   return (
@@ -38,9 +39,15 @@ const Dashboard = () => {
             labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
             data={[10, 30, 20, 40, 60, 50, 90]}
           />
-          <LineChart
-            labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
-            data={[10, 30, 20, 40, 60, 50, 90]}
+          <PieChart
+            labels={[
+              "Electronics",
+              "Clothing",
+              "Home & Garden",
+              "Books",
+              "Toys",
+            ]}
+            data={[30, 25, 20, 15, 10]}
           />
         </section>
       </div>
