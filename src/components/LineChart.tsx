@@ -28,7 +28,7 @@ const LineChart = ({ data, labels }: LineChartProps) => {
     labels,
     datasets: [
       {
-        label: "Weekly New Users",
+        label: "Male",
         data,
         borderColor: "rgb(59, 130, 246)", // Tailwind Blue-500
         backgroundColor: "rgba(59, 130, 246, 0.2)", // Light fill color
