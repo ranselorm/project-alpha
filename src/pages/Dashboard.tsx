@@ -35,7 +35,7 @@ const Dashboard = () => {
         </section>
         <section>
           <LineChart
-            labels={["Jan", "Feb", "Mar", "Apr", "May", "Jun"]}
+            labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
             data={[10, 40, 30, 60, 50, 90]}
           />
         </section>
