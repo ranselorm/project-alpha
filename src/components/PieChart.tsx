@@ -38,7 +38,7 @@ const PieChart = ({ data }: PieChartProps) => {
   //   };
 
   return (
-    <div className="w-full h-80 p-4 flex items-center justify-center bg-white shadow-md rounded-lg">
+    <div className="w-2/6 h-80 p-4 flex items-center justify-center bg-white shadow-md rounded-lg">
       <Doughnut data={chartData} />
     </div>
   );
