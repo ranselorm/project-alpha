@@ -52,7 +52,7 @@ const LineChart = ({ data, labels }: LineChartProps) => {
   //   };
 
   return (
-    <div className="w-full h-full p-4 bg-white shadow-md rounded-lg my-12">
+    <div className="w-full h-80 p-4 bg-white shadow-md rounded-lg my-12">
       <Line data={chartData} />
     </div>
   );

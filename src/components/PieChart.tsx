@@ -5,13 +5,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 type PieChartProps = {
-  labels: string[];
+  //   labels: string[];
   data: number[];
 };
 
-const PieChart = ({ labels, data }: PieChartProps) => {
+const PieChart = ({ data }: PieChartProps) => {
   const chartData = {
-    labels,
+    // labels,
     datasets: [
       {
         label: "Dataset",
@@ -38,7 +38,7 @@ const PieChart = ({ labels, data }: PieChartProps) => {
   //   };
 
   return (
-    <div className="w-full h-64 p-4 bg-white shadow-md rounded-lg">
+    <div className="w-full h-80 p-4 flex items-center justify-center bg-white shadow-md rounded-lg">
       <Doughnut data={chartData} />
     </div>
   );

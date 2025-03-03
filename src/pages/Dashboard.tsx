@@ -34,21 +34,12 @@ const Dashboard = () => {
             />
           </div>
         </section>
-        <section className="flex gap-x-4">
+        <section className="flex gap-x-4 items-center justify-center">
           <LineChart
             labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
             data={[10, 30, 20, 40, 60, 50, 90]}
           />
-          <PieChart
-            labels={[
-              "Electronics",
-              "Clothing",
-              "Home & Garden",
-              "Books",
-              "Toys",
-            ]}
-            data={[30, 25, 20, 15, 10]}
-          />
+          <PieChart data={[30, 25, 20, 15, 10]} />
         </section>
       </div>
     </main>
