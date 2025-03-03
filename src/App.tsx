@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import Users from "./pages/Users";
 
 const App = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -41,6 +42,7 @@ const App = () => {
         <main className="overflow-y-auto flex-1 bg-[#f5f7fa]">
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/users" element={<Users />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>
         </main>

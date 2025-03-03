@@ -75,10 +75,10 @@ const TransactionsTable = () => {
                 className="cursor-pointer transition-all duration-150"
               >
                 <TableCell className="flex items-center space-x-2">
-                  <Icon
+                  {/* <Icon
                     icon="mdi:arrow-down-circle-outline"
                     className="text-xl text-gray-500"
-                  />
+                  /> */}
                   <span>{tx.description}</span>
                 </TableCell>
                 <TableCell>{tx.id}</TableCell>

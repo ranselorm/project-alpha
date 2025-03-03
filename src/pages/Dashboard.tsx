@@ -6,7 +6,7 @@ import TransactionsTable from "@/components/TrnasactionsTable";
 const Dashboard = () => {
   return (
     <main>
-      <div className="container mx-container p-4">
+      <div className="container mx-auto p-4">
         <section>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-x-6 bg-white p-4 rounded-b-md">
             <Card
