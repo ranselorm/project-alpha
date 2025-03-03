@@ -1,4 +1,5 @@
 import Card from "@/components/Card";
+import LineChart from "@/components/LineChart";
 
 const Dashboard = () => {
   return (
@@ -32,7 +33,12 @@ const Dashboard = () => {
             />
           </div>
         </section>
-        <section></section>
+        <section>
+          <LineChart
+            labels={["Jan", "Feb", "Mar", "Apr", "May", "Jun"]}
+            data={[10, 40, 30, 60, 50, 90]}
+          />
+        </section>
       </div>
     </main>
   );
