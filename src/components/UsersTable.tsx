@@ -16,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Icon } from "@iconify/react";
 
-// Dummy user data
 const users = [
   {
     id: 1,
@@ -42,6 +41,62 @@ const users = [
     email: "michael.j@example.com",
     profilePic: "https://randomuser.me/api/portraits/men/3.jpg",
   },
+  {
+    id: 4,
+    name: "Emily Watson",
+    age: 29,
+    phone: "+1 (555) 654-3210",
+    email: "emily.w@example.com",
+    profilePic: "https://randomuser.me/api/portraits/women/4.jpg",
+  },
+  {
+    id: 5,
+    name: "David Lee",
+    age: 35,
+    phone: "+1 (555) 321-7890",
+    email: "david.lee@example.com",
+    profilePic: "https://randomuser.me/api/portraits/men/5.jpg",
+  },
+  {
+    id: 6,
+    name: "Sarah Connor",
+    age: 27,
+    phone: "+1 (555) 876-5432",
+    email: "sarah.c@example.com",
+    profilePic: "https://randomuser.me/api/portraits/women/6.jpg",
+  },
+  {
+    id: 7,
+    name: "James Brown",
+    age: 40,
+    phone: "+1 (555) 234-5678",
+    email: "james.b@example.com",
+    profilePic: "https://randomuser.me/api/portraits/men/7.jpg",
+  },
+  {
+    id: 8,
+    name: "Sophia Martinez",
+    age: 30,
+    phone: "+1 (555) 789-0123",
+    email: "sophia.m@example.com",
+    profilePic: "https://randomuser.me/api/portraits/women/8.jpg",
+  },
+  {
+    id: 9,
+    name: "Daniel White",
+    age: 33,
+    phone: "+1 (555) 567-8901",
+    email: "daniel.w@example.com",
+    profilePic: "https://randomuser.me/api/portraits/men/9.jpg",
+  },
+  {
+    id: 10,
+    name: "Olivia Taylor",
+    age: 26,
+    phone: "+1 (555) 098-7654",
+    email: "olivia.t@example.com",
+    profilePic: "https://randomuser.me/api/portraits/women/10.jpg",
+  },
 ];
 
 const UsersTable = () => {
@@ -52,7 +107,6 @@ const UsersTable = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Profile</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Age</TableHead>
             <TableHead>Phone</TableHead>
@@ -63,13 +117,13 @@ const UsersTable = () => {
         <TableBody>
           {users.map((user) => (
             <TableRow key={user.id}>
-              <TableCell>
-                <Avatar>
+              <TableCell className="flex items-center space-x-3">
+                <Avatar className="w-8 h-8">
                   <AvatarImage src={user.profilePic} />
                   <AvatarFallback>{user.name[0]}</AvatarFallback>
                 </Avatar>
+                <span className="font-medium">{user.name}</span>
               </TableCell>
-              <TableCell>{user.name}</TableCell>
               <TableCell>{user.age}</TableCell>
               <TableCell>{user.phone}</TableCell>
               <TableCell>{user.email}</TableCell>
