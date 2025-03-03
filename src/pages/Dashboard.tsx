@@ -5,7 +5,7 @@ const Dashboard = () => {
     <main>
       <div className="container mx-container p-4">
         <section>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-x-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-x-6 bg-white p-4 rounded-b-md">
             <Card
               title="Earnings"
               value={4700}
@@ -32,6 +32,7 @@ const Dashboard = () => {
             />
           </div>
         </section>
+        <section></section>
       </div>
     </main>
   );
