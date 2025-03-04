@@ -11,9 +11,12 @@ import { Icon } from "@iconify/react";
 
 const UserFilter = () => {
   return (
-    <div className="flex flex-wrap gap-4 p-4 bg-white shadow-md rounded-lg">
+    <div className="flex flex-wrap gap-4 p-4 bg-white rounded-md mb-4">
       <div className="flex-1">
-        <Input placeholder="Search by name, phone, or email..." />
+        <input
+          className="h-full focus:ring-0 focus:outline-none text-sm border border-gray-300 w-full px-4 rounded-md"
+          placeholder="Search by name, email, phone"
+        />
       </div>
 
       <Select>
@@ -38,7 +41,7 @@ const UserFilter = () => {
         </SelectContent>
       </Select>
 
-      <Button variant="outline">
+      <Button variant="outline" className="font-normal">
         <Icon icon="mdi:refresh" className="mr-2" />
         Reset
       </Button>
