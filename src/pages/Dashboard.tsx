@@ -1,7 +1,7 @@
 import Card from "@/components/Card";
 import LineChart from "@/components/LineChart";
 import PieChart from "@/components/PieChart";
-import TransactionsTable from "@/components/TrnasactionsTable";
+import TransactionsTable from "@/components/TransactionsTable";
 
 const Dashboard = () => {
   return (

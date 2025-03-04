@@ -7,7 +7,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Icon } from "@iconify/react";
 
 const transactions = [
   {
@@ -34,22 +33,22 @@ const transactions = [
     date: "20 Jan, 10:40 PM",
     amount: -150,
   },
-  {
-    description: "Wilson",
-    id: "#12548796",
-    type: "Transfer",
-    card: "1234 ****",
-    date: "15 Jan, 03:29 PM",
-    amount: -1050,
-  },
-  {
-    description: "Emilly",
-    id: "#12548796",
-    type: "Transfer",
-    card: "1234 ****",
-    date: "14 Jan, 10:40 PM",
-    amount: 840,
-  },
+  // {
+  //   description: "Wilson",
+  //   id: "#12548796",
+  //   type: "Transfer",
+  //   card: "1234 ****",
+  //   date: "15 Jan, 03:29 PM",
+  //   amount: -1050,
+  // },
+  // {
+  //   description: "Emilly",
+  //   id: "#12548796",
+  //   type: "Transfer",
+  //   card: "1234 ****",
+  //   date: "14 Jan, 10:40 PM",
+  //   amount: 840,
+  // },
 ];
 
 const TransactionsTable = () => {
