@@ -52,6 +52,54 @@ const users = [
     email: "emily.w@example.com",
     profilePic: "https://randomuser.me/api/portraits/women/4.jpg",
   },
+  {
+    id: 5,
+    name: "David Lee",
+    age: 35,
+    phone: "+233 27 321 7890",
+    email: "david.lee@example.com",
+    profilePic: "https://randomuser.me/api/portraits/men/5.jpg",
+  },
+  {
+    id: 6,
+    name: "Sarah Connor",
+    age: 27,
+    phone: "+233 26 876 5432",
+    email: "sarah.c@example.com",
+    profilePic: "https://randomuser.me/api/portraits/women/6.jpg",
+  },
+  {
+    id: 7,
+    name: "James Brown",
+    age: 40,
+    phone: "+233 23 234 5678",
+    email: "james.b@example.com",
+    profilePic: "https://randomuser.me/api/portraits/men/7.jpg",
+  },
+  {
+    id: 8,
+    name: "Sophia Martinez",
+    age: 30,
+    phone: "+233 56 789 0123",
+    email: "sophia.m@example.com",
+    profilePic: "https://randomuser.me/api/portraits/women/8.jpg",
+  },
+  {
+    id: 9,
+    name: "Daniel White",
+    age: 33,
+    phone: "+233 54 567 8901",
+    email: "daniel.w@example.com",
+    profilePic: "https://randomuser.me/api/portraits/men/9.jpg",
+  },
+  {
+    id: 10,
+    name: "Olivia Taylor",
+    age: 26,
+    phone: "+233 25 098 7654",
+    email: "olivia.t@example.com",
+    profilePic: "https://randomuser.me/api/portraits/women/10.jpg",
+  },
 ];
 
 const UsersTable = () => {
@@ -144,18 +192,27 @@ const UsersTable = () => {
                   <p className="text-sm text-gray-500">{selectedUser.email}</p>
                 </div>
               </div>
-              <Tabs defaultValue="account" className="w-[400px]">
-                <TabsList>
-                  <TabsTrigger value="overview" className="bg-none border-none">
-                    Overview
+              <Tabs defaultValue="tab1" className="w-full">
+                <TabsList className="flex space-x-2 bg-transparent shadow-none">
+                  <TabsTrigger
+                    value="tab1"
+                    className="p-2 text-gray-600 hover:text-black shadow-0"
+                  >
+                    Tab 1
                   </TabsTrigger>
-                  <TabsTrigger value="password">Password</TabsTrigger>
+                  <TabsTrigger
+                    value="tab2"
+                    className="p-2 text-gray-600 hover:text-black"
+                  >
+                    Tab 2
+                  </TabsTrigger>
                 </TabsList>
-                <TabsContent value="account">
-                  Make changes to your account here.
+
+                <TabsContent value="tab1" className="p-4">
+                  Content for Tab 1
                 </TabsContent>
-                <TabsContent value="password">
-                  Change your password here.
+                <TabsContent value="tab2" className="p-4">
+                  Content for Tab 2
                 </TabsContent>
               </Tabs>
             </div>
