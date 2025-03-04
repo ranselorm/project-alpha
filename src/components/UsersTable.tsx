@@ -15,7 +15,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Icon } from "@iconify/react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { useState } from "react";
 
+// Dummy Users Data
 const users = [
   {
     id: 1,
@@ -49,57 +58,12 @@ const users = [
     email: "emily.w@example.com",
     profilePic: "https://randomuser.me/api/portraits/women/4.jpg",
   },
-  {
-    id: 5,
-    name: "David Lee",
-    age: 35,
-    phone: "+233 27 321 7890",
-    email: "david.lee@example.com",
-    profilePic: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    id: 6,
-    name: "Sarah Connor",
-    age: 27,
-    phone: "+233 26 876 5432",
-    email: "sarah.c@example.com",
-    profilePic: "https://randomuser.me/api/portraits/women/6.jpg",
-  },
-  {
-    id: 7,
-    name: "James Brown",
-    age: 40,
-    phone: "+233 23 234 5678",
-    email: "james.b@example.com",
-    profilePic: "https://randomuser.me/api/portraits/men/7.jpg",
-  },
-  {
-    id: 8,
-    name: "Sophia Martinez",
-    age: 30,
-    phone: "+233 56 789 0123",
-    email: "sophia.m@example.com",
-    profilePic: "https://randomuser.me/api/portraits/women/8.jpg",
-  },
-  {
-    id: 9,
-    name: "Daniel White",
-    age: 33,
-    phone: "+233 54 567 8901",
-    email: "daniel.w@example.com",
-    profilePic: "https://randomuser.me/api/portraits/men/9.jpg",
-  },
-  {
-    id: 10,
-    name: "Olivia Taylor",
-    age: 26,
-    phone: "+233 25 098 7654",
-    email: "olivia.t@example.com",
-    profilePic: "https://randomuser.me/api/portraits/women/10.jpg",
-  },
 ];
 
 const UsersTable = () => {
+  const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div>
       <div className="p-4 bg-white shadow-md rounded-lg">
@@ -142,7 +106,12 @@ const UsersTable = () => {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                      <DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => {
+                          setSelectedUser(user);
+                          setIsModalOpen(true);
+                        }}
+                      >
                         <Icon icon="mdi:eye" className="mr-2" />
                         Details
                       </DropdownMenuItem>
@@ -166,20 +135,37 @@ const UsersTable = () => {
           </TableBody>
         </Table>
       </div>
-      <div className="flex justify-end items-center mt-4 space-x-2">
-        <Button size="sm" className="bg-teal-600 text-white">
-          1
-        </Button>
-        <Button variant="ghost" size="sm">
-          2
-        </Button>
-        <Button variant="ghost" size="sm">
-          3
-        </Button>
-        <Button variant="ghost" size="sm">
-          4
-        </Button>
-      </div>
+
+      {/* MODAL (Outside the Table to Prevent Flashing Issues) */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>User Details</DialogTitle>
+          </DialogHeader>
+          {selectedUser && (
+            <div className="flex flex-col space-y-4">
+              <div className="flex items-center space-x-4">
+                <Avatar className="w-12 h-12">
+                  <AvatarImage src={selectedUser.profilePic} />
+                  <AvatarFallback>{selectedUser.name[0]}</AvatarFallback>
+                </Avatar>
+                <div>
+                  <h3 className="text-lg font-semibold">{selectedUser.name}</h3>
+                  <p className="text-sm text-gray-500">{selectedUser.email}</p>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <p>
+                  <strong>Age:</strong> {selectedUser.age}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {selectedUser.phone}
+                </p>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
