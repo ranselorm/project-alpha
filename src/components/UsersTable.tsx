@@ -15,14 +15,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Icon } from "@iconify/react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const users = [
   {
@@ -135,12 +130,8 @@ const UsersTable = () => {
         </Table>
       </div>
 
-      {/* MODAL (Outside the Table to Prevent Flashing Issues) */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="">
-          {/* <DialogHeader>
-            <DialogTitle>User Details</DialogTitle>
-          </DialogHeader> */}
+        <DialogContent className="sm:max-w-3xl">
           {selectedUser && (
             <div className="flex flex-col space-y-4">
               <div className="flex items-center space-x-4">
@@ -153,14 +144,20 @@ const UsersTable = () => {
                   <p className="text-sm text-gray-500">{selectedUser.email}</p>
                 </div>
               </div>
-              <div className="space-y-2">
-                <p>
-                  <strong>Age:</strong> {selectedUser.age}
-                </p>
-                <p>
-                  <strong>Phone:</strong> {selectedUser.phone}
-                </p>
-              </div>
+              <Tabs defaultValue="account" className="w-[400px]">
+                <TabsList>
+                  <TabsTrigger value="overview" className="bg-none border-none">
+                    Overview
+                  </TabsTrigger>
+                  <TabsTrigger value="password">Password</TabsTrigger>
+                </TabsList>
+                <TabsContent value="account">
+                  Make changes to your account here.
+                </TabsContent>
+                <TabsContent value="password">
+                  Change your password here.
+                </TabsContent>
+              </Tabs>
             </div>
           )}
         </DialogContent>
