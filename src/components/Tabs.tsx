@@ -6,12 +6,12 @@ const Tabs = () => {
   return (
     <div className="w-full">
       <div className="flex space-x-4 border-b border-gray-300">
-        {["tab1", "tab2", "tab3"].map((tab) => (
+        {["Overview", "Members"].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`p-2 text-gray-600 hover:text-black transition ${
-              activeTab === tab ? "border-b-2 border-black font-medium" : ""
+            className={`p-2 cursor-pointer hover:text-black transition ${
+              activeTab === tab ? "border-b border-teal-600" : "text-gray-600"
             }`}
           >
             {tab.replace("tab", "Tab ")}
