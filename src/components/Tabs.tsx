@@ -4,7 +4,7 @@ const Tabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-8">
       <div className="flex space-x-4 border-b border-gray-300">
         {["Overview", "Members"].map((tab) => (
           <button
@@ -19,11 +19,9 @@ const Tabs = () => {
         ))}
       </div>
 
-      {/* Tabs Content */}
-      <div className="p-4">
-        {activeTab === "tab1" && <p>Content for Tab 1</p>}
-        {activeTab === "tab2" && <p>Content for Tab 2</p>}
-        {activeTab === "tab3" && <p>Content for Tab 3</p>}
+      <div className="px-2 py-6">
+        {activeTab === "Overview" && <p>Content for Tab 1</p>}
+        {activeTab === "Members" && <p>Content for Tab 2</p>}
       </div>
     </div>
   );
