@@ -4,10 +4,8 @@ const Users = () => {
   return (
     <div className="p-4">
       <div className="container mx-auto">
-        <p>All users</p>
-        <div className="bg-white">
-          <UsersTable />
-        </div>
+        <p className="mb-4">All users</p>
+        <UsersTable />
       </div>
     </div>
   );

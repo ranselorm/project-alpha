@@ -101,63 +101,85 @@ const users = [
 
 const UsersTable = () => {
   return (
-    <div className="p-4 bg-white shadow-md rounded-lg">
-      <h2 className="text-lg font-semibold mb-4">Users</h2>
-
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>Age</TableHead>
-            <TableHead>Phone</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {users.map((user) => (
-            <TableRow key={user.id}>
-              <TableCell className="flex items-center space-x-3">
-                <Avatar className="w-8 h-8">
-                  <AvatarImage src={user.profilePic} />
-                  <AvatarFallback>{user.name[0]}</AvatarFallback>
-                </Avatar>
-                <span className="font-medium">{user.name}</span>
-              </TableCell>
-              <TableCell>{user.age}</TableCell>
-              <TableCell>{user.phone}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm">
-                      Actions <Icon icon="mdi:chevron-down" className="ml-1" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem>
-                      <Icon icon="mdi:eye" className="mr-2" />
-                      Details
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Icon icon="mdi:account-off" className="mr-2" />
-                      Suspend
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Icon icon="mdi:message" className="mr-2" />
-                      Send Message
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Icon icon="mdi:phone" className="mr-2" />
-                      Send Airtime
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
+    <div>
+      <div className="p-4 bg-white shadow-md rounded-lg">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Age</TableHead>
+              <TableHead>Phone</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {users.map((user) => (
+              <TableRow key={user.id}>
+                <TableCell className="flex items-center space-x-3">
+                  <Avatar className="w-8 h-8">
+                    <AvatarImage src={user.profilePic} />
+                    <AvatarFallback>{user.name[0]}</AvatarFallback>
+                  </Avatar>
+                  <span className="font-medium">{user.name}</span>
+                </TableCell>
+                <TableCell>{user.age}</TableCell>
+                <TableCell>{user.phone}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full"
+                      >
+                        Actions{" "}
+                        <Icon
+                          icon="mdi:chevron-down"
+                          className="ml-1 cursor-pointer"
+                        />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem>
+                        <Icon icon="mdi:eye" className="mr-2" />
+                        Details
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Icon icon="mdi:account-off" className="mr-2" />
+                        Suspend
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Icon icon="mdi:message" className="mr-2" />
+                        Send Message
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Icon icon="mdi:phone" className="mr-2" />
+                        Send Airtime
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+      <div className="flex justify-end items-center mt-4 space-x-2">
+        <Button size="sm" className="bg-teal-600 text-white">
+          1
+        </Button>
+        <Button variant="ghost" size="sm">
+          2
+        </Button>
+        <Button variant="ghost" size="sm">
+          3
+        </Button>
+        <Button variant="ghost" size="sm">
+          4
+        </Button>
+      </div>
     </div>
   );
 };
