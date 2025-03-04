@@ -17,7 +17,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Icon } from "@iconify/react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Tabs from "./Tabs";
 
 const users = [
   {
@@ -192,29 +192,7 @@ const UsersTable = () => {
                   <p className="text-sm text-gray-500">{selectedUser.email}</p>
                 </div>
               </div>
-              <Tabs defaultValue="tab1" className="w-full">
-                <TabsList className="flex space-x-2 bg-transparent shadow-none">
-                  <TabsTrigger
-                    value="tab1"
-                    className="p-2 text-gray-600 hover:text-black shadow-0"
-                  >
-                    Tab 1
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="tab2"
-                    className="p-2 text-gray-600 hover:text-black"
-                  >
-                    Tab 2
-                  </TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="tab1" className="p-4">
-                  Content for Tab 1
-                </TabsContent>
-                <TabsContent value="tab2" className="p-4">
-                  Content for Tab 2
-                </TabsContent>
-              </Tabs>
+              <Tabs />
             </div>
           )}
         </DialogContent>
