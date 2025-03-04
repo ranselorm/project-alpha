@@ -22,10 +22,8 @@ const UserFilter = () => {
         <SelectTrigger className="w-40 h-auto text-black cursor-pointer">
           <SelectValue placeholder="Sort By" className="text-black" />
         </SelectTrigger>
-        <SelectContent className="text-gray-500">
-          <SelectItem value="name" className="">
-            Name
-          </SelectItem>
+        <SelectContent>
+          <SelectItem value="name">Name</SelectItem>
           <SelectItem value="age">Age</SelectItem>
         </SelectContent>
       </Select>

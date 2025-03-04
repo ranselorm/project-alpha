@@ -112,7 +112,7 @@ const UsersTable = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Name</TableHead>
+              <TableHead className="">Name</TableHead>
               <TableHead>Age</TableHead>
               <TableHead>Phone</TableHead>
               <TableHead>Email</TableHead>

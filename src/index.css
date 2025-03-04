@@ -16,14 +16,9 @@ body {
 }
 
 @theme {
-  /* colors */
-  --color-primary: #009689;
-  --color-secondary: #ff0000;
-  --color-accent: #ff0000;
-  --color-grey: #e8ecf1;
-  /* font family */
-  --font-heading: "Helvetica Neue", sans-serif;
-  /* --font-text: "Montserrat", sans-serif; */
+  --color-primary: #1e40af; /* Custom primary */
+  --color-secondary: #10b981; /* Custom secondary */
+  --color-accent: #eab308; /* Custom accent */
 }
 
 :root {
