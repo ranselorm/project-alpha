@@ -24,7 +24,6 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 
-// Dummy Users Data
 const users = [
   {
     id: 1,
@@ -138,10 +137,10 @@ const UsersTable = () => {
 
       {/* MODAL (Outside the Table to Prevent Flashing Issues) */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent>
-          <DialogHeader>
+        <DialogContent className="">
+          {/* <DialogHeader>
             <DialogTitle>User Details</DialogTitle>
-          </DialogHeader>
+          </DialogHeader> */}
           {selectedUser && (
             <div className="flex flex-col space-y-4">
               <div className="flex items-center space-x-4">
