@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Tabs = () => {
-  const [activeTab, setActiveTab] = useState("tab1");
+  const [activeTab, setActiveTab] = useState("Overview");
 
   return (
     <div className="w-full mt-8">

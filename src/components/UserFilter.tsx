@@ -13,39 +13,29 @@ const UserFilter = () => {
     <div className="flex flex-wrap justify-between gap-4 px-4 py-6 bg-white rounded-md mb-4">
       <div className="flex-1">
         <input
-          className="h-full focus:ring-0 focus:outline-none border border-gray-300 w-full px-4 rounded-full bg-grey text-xs py-3"
+          className="h-full focus:ring-0 focus:outline-none border border-gray-300 w-full px-4 rounded-full bg-grey text-sm py-3"
           placeholder="Search by name, email, phone"
         />
       </div>
 
-      {/* <Select>
-        <SelectTrigger className="w-40">
-          <SelectValue placeholder="Filter by Age" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="18-25">18-25</SelectItem>
-          <SelectItem value="26-35">26-35</SelectItem>
-          <SelectItem value="36-45">36-45</SelectItem>
-          <SelectItem value="46+">46+</SelectItem>
-        </SelectContent>
-      </Select> */}
-
       <Select>
-        <SelectTrigger className="w-56 rounded-full bg-grey text-xs h-auto">
-          <SelectValue placeholder="Sort By" />
+        <SelectTrigger className="w-40 h-auto text-black cursor-pointer">
+          <SelectValue placeholder="Sort By" className="text-black" />
         </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="name">Name</SelectItem>
+        <SelectContent className="text-gray-500">
+          <SelectItem value="name" className="">
+            Name
+          </SelectItem>
           <SelectItem value="age">Age</SelectItem>
         </SelectContent>
       </Select>
 
-      <Button variant="outline" className="font-normal h-auto rounded-full">
-        <Icon
-          icon="material-symbols-light:search-rounded"
-          className="cursor-pointer mr-2"
-        />
-        Search
+      <Button
+        variant="outline"
+        className="font-normal h-auto rounded cursor-pointer text-gray-500"
+      >
+        <Icon icon="carbon:reset" className="cursor-pointer mr-2" />
+        Reset
       </Button>
     </div>
   );
