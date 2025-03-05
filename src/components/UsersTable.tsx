@@ -38,7 +38,7 @@ const UsersTable = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {users.map((user) => (
+            {users?.map((user) => (
               <TableRow key={user.id}>
                 <TableCell className="flex items-center space-x-3">
                   <Avatar className="w-8 h-8">
