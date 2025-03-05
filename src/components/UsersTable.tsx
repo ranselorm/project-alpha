@@ -138,7 +138,7 @@ const UsersTable = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="rounded-full border border-main text-xs"
                       >
                         Actions{" "}
                         <Icon
