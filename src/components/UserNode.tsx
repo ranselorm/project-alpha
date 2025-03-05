@@ -1,29 +1,31 @@
 const UserNode = ({ user }: { user: any }) => {
   return (
     <div className="flex flex-col items-center">
-      {/* User Card */}
-      <div className="flex flex-col items-center bg-white shadow-md p-1 rounded-lg w-24 text-center border">
+      {/* Parent User */}
+      <div className="flex flex-col items-center bg-white shadow-md p-2 rounded-lg w-28 text-center border">
         <img
           src={user.profilePic}
           alt={user.name}
-          className="w-8 h-8 rounded-full border"
+          className="w-12 h-12 rounded-full border"
         />
-        <p className="text-xs font-medium mt-1">{user.name.split(" ")[0]}</p>
+        <p className="text-xs font-medium mt-1">{user.name}</p>
       </div>
 
-      {/* Invitees (Rendered Below) */}
+      {/* Invitees - Displayed in a Row Below */}
       {user.invitees && user.invitees.length > 0 && (
-        <div className="flex justify-center space-x-4 mt-2 relative">
-          {/* Connector Line */}
-          <div className="absolute top-0 left-1/2 w-0.5 bg-gray-400 h-3"></div>
+        <div className="relative flex justify-center mt-3">
+          {/* Connecting Line from Parent */}
+          <div className="absolute top-0 left-1/2 w-0.5 bg-gray-400 h-4"></div>
 
-          {user.invitees.map((invitee: any) => (
-            <div key={invitee.id} className="flex flex-col items-center">
-              <div className="w-0.5 bg-gray-400 h-3"></div>{" "}
-              {/* Vertical Connector */}
-              <UserNode user={invitee} />
-            </div>
-          ))}
+          <div className="flex space-x-6">
+            {user.invitees.map((invitee: any) => (
+              <div key={invitee.id} className="flex flex-col items-center">
+                {/* Connecting Line */}
+                <div className="w-0.5 bg-gray-400 h-4"></div>
+                <UserNode user={invitee} />
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

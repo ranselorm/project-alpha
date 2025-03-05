@@ -1,8 +1,11 @@
 import { useState } from "react";
 import UserNode from "./UserNode";
-import { users } from "../data";
 
-const Tabs = () => {
+interface TabsProps {
+  user: any; // User object passed from UsersTable
+}
+
+const Tabs: React.FC<TabsProps> = ({ user }) => {
   const [activeTab, setActiveTab] = useState("Overview");
 
   return (
@@ -13,7 +16,7 @@ const Tabs = () => {
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`p-2 cursor-pointer hover:text-black transition ${
-              activeTab === tab ? "border-b border-main" : "text-gray-600"
+              activeTab === tab ? "border-b-2 border-main" : "text-gray-600"
             }`}
           >
             {tab}
@@ -24,15 +27,9 @@ const Tabs = () => {
       <div className="px-2 py-6">
         {activeTab === "Overview" && <p>Content for Overview</p>}
 
-        {/* Members Tab - Render Genealogy Tree */}
         {activeTab === "Members" && (
           <div className="flex flex-col items-center">
-            <h2 className="text-lg font-bold mb-4">Genealogy Tree</h2>
-            <div className="grid grid-cols-4 gap-4">
-              {users.map((user) => (
-                <UserNode key={user.id} user={user} />
-              ))}
-            </div>
+            <UserNode user={user} />
           </div>
         )}
       </div>

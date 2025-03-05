@@ -24,6 +24,8 @@ const UsersTable = () => {
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  console.log(selectedUser);
+
   return (
     <div>
       <div className="p-4 bg-white shadow-md rounded-lg">
@@ -110,7 +112,7 @@ const UsersTable = () => {
                   <p className="text-sm text-gray-500">{selectedUser.email}</p>
                 </div>
               </div>
-              <Tabs />
+              <Tabs user={selectedUser} />
             </div>
           )}
         </DialogContent>
