@@ -55,12 +55,16 @@ const Users = () => {
                 placeholder="+233 55 123 4567"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                className="mt-3"
+                className="mt-3 focus-visible:ring-0"
               />
 
               <DialogFooter>
                 <DialogClose asChild>
-                  <Button onClick={handleInvite} disabled={!phoneNumber}>
+                  <Button
+                    onClick={handleInvite}
+                    disabled={!phoneNumber}
+                    className="bg-main cursor-pointer hover:bg-teal-700 text-white mt-4"
+                  >
                     Send Invitation
                   </Button>
                 </DialogClose>
