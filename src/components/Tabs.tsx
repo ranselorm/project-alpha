@@ -11,7 +11,7 @@ const Tabs = () => {
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`p-2 cursor-pointer hover:text-black transition ${
-              activeTab === tab ? "border-b border-teal-600" : "text-gray-600"
+              activeTab === tab ? "border-b border-main" : "text-gray-600"
             }`}
           >
             {tab.replace("tab", "Tab ")}

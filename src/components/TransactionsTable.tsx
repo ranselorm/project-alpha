@@ -85,7 +85,7 @@ const TransactionsTable = () => {
                 <TableCell>{tx.card}</TableCell>
                 <TableCell>{tx.date}</TableCell>
                 <TableCell
-                  className={tx.amount < 0 ? "text-red-500" : "text-teal-600"}
+                  className={tx.amount < 0 ? "text-red-500" : "text-main"}
                 >
                   {tx.amount < 0
                     ? `-$${Math.abs(tx.amount)}`
@@ -95,7 +95,7 @@ const TransactionsTable = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="rounded-full text-xs font-normal border border-teal-600"
+                    className="rounded-full text-xs font-normal border border-main"
                   >
                     Download
                   </Button>
@@ -111,7 +111,7 @@ const TransactionsTable = () => {
         <Button variant="ghost" size="sm">
           Previous
         </Button>
-        <Button size="sm" className="bg-teal-600 text-white">
+        <Button size="sm" className="bg-main text-white">
           1
         </Button>
         <Button variant="ghost" size="sm">

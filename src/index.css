@@ -16,9 +16,10 @@ body {
 }
 
 @theme {
-  --color-primary: #1e40af; /* Custom primary */
-  --color-secondary: #10b981; /* Custom secondary */
-  --color-accent: #eab308; /* Custom accent */
+  --color-main: #00897b;
+  --color-secondary: #10b981;
+  --color-accent: #eab308;
+  --color-grey: #d8e0da;
 }
 
 :root {

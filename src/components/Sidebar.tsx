@@ -58,7 +58,7 @@ const Sidebar = ({ isOpen, toggle }: SidebarProps) => {
               className={({ isActive }) =>
                 `${
                   isActive
-                    ? "bg-teal-600 text-white"
+                    ? "bg-main text-white"
                     : "hover:bg-grey text-gray-600 hover:text-black"
                 } flex items-center space-x-2 p-2 transition-all duration-150 rounded-md font-text`
               }
