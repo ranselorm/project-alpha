@@ -99,7 +99,7 @@ const UsersTable = () => {
       </div>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="sm:max-w-6xl">
+        <DialogContent className="sm:max-w-4xl h-[500px]">
           {selectedUser && (
             <div className="flex flex-col space-y-4">
               <div className="flex items-center space-x-4">

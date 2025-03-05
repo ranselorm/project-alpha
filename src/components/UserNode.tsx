@@ -14,13 +14,10 @@ const UserNode = ({ user }: { user: any }) => {
       {/* Invitees - Displayed in a Row Below */}
       {user.invitees && user.invitees.length > 0 && (
         <div className="relative flex flex-col items-center mt-3">
-          {/* Vertical Line - Stops Before the Box */}
-          <div className="absolute top-[-8px] left-1/2 w-0.5 bg-gray-400 h-4"></div>
-
-          {/* Horizontal Connector Line (Above the Nodes) */}
+          {/* Horizontal Connector Line */}
           <div className="relative flex justify-center items-center">
             {user.invitees.length > 1 && (
-              <div className="absolute top-[-4px] left-0 right-0 h-0.5 bg-gray-400"></div>
+              <div className="absolute top-[-4px] left-0 right-0 h-0.5 bg-gray-300"></div>
             )}
 
             <div className="flex space-x-6">
@@ -29,8 +26,10 @@ const UserNode = ({ user }: { user: any }) => {
                   key={invitee.id}
                   className="flex flex-col items-center relative"
                 >
-                  {/* Vertical Connector Stopping Short of the Box */}
-                  <div className="w-0.5 bg-gray-400 h-4 mb-1"></div>
+                  {/* Single vertical connector only for multiple children */}
+                  {user.invitees.length > 1 && (
+                    <div className="w-0.5 bg-gray-400 h-4 mb-1"></div>
+                  )}
 
                   {/* Recursive Render of Invitees */}
                   <UserNode user={invitee} />
