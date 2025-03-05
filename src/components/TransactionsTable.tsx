@@ -7,49 +7,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-
-const transactions = [
-  {
-    description: "Spotify Subscription",
-    id: "#12548796",
-    type: "Shopping",
-    card: "1234 ****",
-    date: "28 Jan, 12:30 AM",
-    amount: -2500,
-  },
-  {
-    description: "Freepik Sales",
-    id: "#12548796",
-    type: "Transfer",
-    card: "1234 ****",
-    date: "25 Jan, 10:40 PM",
-    amount: 750,
-  },
-  {
-    description: "Mobile Service",
-    id: "#12548796",
-    type: "Service",
-    card: "1234 ****",
-    date: "20 Jan, 10:40 PM",
-    amount: -150,
-  },
-  // {
-  //   description: "Wilson",
-  //   id: "#12548796",
-  //   type: "Transfer",
-  //   card: "1234 ****",
-  //   date: "15 Jan, 03:29 PM",
-  //   amount: -1050,
-  // },
-  // {
-  //   description: "Emilly",
-  //   id: "#12548796",
-  //   type: "Transfer",
-  //   card: "1234 ****",
-  //   date: "14 Jan, 10:40 PM",
-  //   amount: 840,
-  // },
-];
+import { transactions } from "@/data";
 
 const TransactionsTable = () => {
   return (
@@ -67,7 +25,7 @@ const TransactionsTable = () => {
               <TableHead>Receipt</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody className="">
+          <TableBody>
             {transactions.map((tx, index) => (
               <TableRow
                 key={index}

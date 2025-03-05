@@ -21,12 +21,10 @@ const Users = () => {
   const handleInvite = () => {
     if (!phoneNumber) return;
 
-    // Show success toast
     toast.success("Invitation sent successfully!", {
       duration: 3000,
     });
 
-    // Close dialog
     setIsDialogOpen(false);
   };
 
@@ -36,7 +34,6 @@ const Users = () => {
         <div className="flex justify-between items-center my-5">
           <p className="text-lg font-semibold">All users</p>
 
-          {/* Invite User Button - Opens Dialog */}
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
               <Button className="cursor-pointer bg-main text-white flex items-center gap-x-2 rounded-md hover:bg-teal-700 transition">
@@ -73,7 +70,6 @@ const Users = () => {
           </Dialog>
         </div>
 
-        {/* User Filter and Table */}
         <UserFilter />
         <UsersTable />
       </div>

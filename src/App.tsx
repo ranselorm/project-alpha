@@ -5,6 +5,7 @@ import Settings from "./pages/Settings";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Users from "./pages/Users";
+import Transactions from "./pages/Transactions";
 
 const App = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -43,6 +44,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/transactions" element={<Transactions />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>
         </main>
