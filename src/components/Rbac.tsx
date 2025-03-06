@@ -64,7 +64,10 @@ const RBACForm = () => {
         </Select>
       </div>
 
-      <Button className="w-full bg-main text-white" onClick={handleAssignRole}>
+      <Button
+        className="w-full bg-main transition-all duration-150 text-white cursor-pointer"
+        onClick={handleAssignRole}
+      >
         Assign Role
       </Button>
     </div>

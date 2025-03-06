@@ -54,32 +54,51 @@ const SettingsPage = () => {
               <div className="grid grid-cols-2 gap-8 mt-6">
                 <div>
                   <label className="block text-sm">Your Name</label>
-                  <Input placeholder="Charlene Reed" />
+                  <Input
+                    placeholder="Charlene Reed"
+                    className="focus-visible:ring-0"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm">User Name</label>
-                  <Input placeholder="Charlene Randy" />
+                  <Input
+                    placeholder="Charlene Randy"
+                    className="focus-visible:ring-0"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm">Email</label>
-                  <Input placeholder="charlenerandy@gmail.com" />
+                  <Input
+                    placeholder="charlenerandy@gmail.com"
+                    className="focus-visible:ring-0"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm">Password</label>
-                  <Input type="password" placeholder="********" />
+                  <Input
+                    type="password"
+                    placeholder="********"
+                    className="focus-visible:ring-0"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm">Date of Birth</label>
-                  <Input placeholder="25 January 1990" />
+                  <Input
+                    placeholder="25 January 1990"
+                    className="focus-visible:ring-0"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm">Present Address</label>
-                  <Input placeholder="American St. USA" />
+                  <Input
+                    placeholder="American St. USA"
+                    className="focus-visible:ring-0"
+                  />
                 </div>
               </div>
 
               <div className="mt-6 flex justify-end">
-                <Button className="w-max bg-main hover:bg-main text-white cursor-pointer px-12">
+                <Button className="w-max bg-main transition-all duration-150 text-white cursor-pointer px-12">
                   Save
                 </Button>
               </div>
