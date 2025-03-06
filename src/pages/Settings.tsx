@@ -25,12 +25,9 @@ const SettingsPage = () => {
           ))}
         </div>
 
-        {/* Tabs Content */}
         <div className="px-4 py-6">
-          {/* Edit Profile Tab */}
           {activeTab === "Edit Profile" && (
             <div>
-              {/* Profile Image Section */}
               <div className="flex items-center space-x-4">
                 <div className="relative">
                   <img
@@ -38,7 +35,7 @@ const SettingsPage = () => {
                     alt="Profile"
                     className="w-24 h-24 rounded-full object-cover"
                   />
-                  <button className="absolute bottom-1 right-1 bg-blue-500 text-white p-1 rounded-full text-xs">
+                  <button className="absolute bottom-1 right-1 bg-blue-500 text-white p-1 h-4 w-4 rounded-full text-[10px] flex items-center justify-center">
                     ✎
                   </button>
                 </div>
