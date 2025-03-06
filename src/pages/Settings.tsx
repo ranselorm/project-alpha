@@ -52,7 +52,7 @@ const SettingsPage = () => {
                 <div>
                   <label className="block text-sm">Your Name</label>
                   <Input
-                    placeholder="Charlene Reed"
+                    placeholder="Charlene Randy"
                     className="focus-visible:ring-0"
                   />
                 </div>
