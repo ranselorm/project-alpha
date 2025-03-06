@@ -21,15 +21,13 @@ const RBACForm = () => {
       return;
     }
 
-    // Simulate role assignment
     toast.success(`Role "${role}" assigned to ${email} successfully!`);
   };
 
   return (
-    <div className="p-6 bg-white shadow-md rounded-lg max-w-md mx-auto">
-      <h2 className="text-lg font-semibold mb-4">Assign Role</h2>
+    <div className="p-6 bg-white rounded-lg max-w-md mx-auto border border-gray-300">
+      <h2 className="text-lg mb-4">Assign Role</h2>
 
-      {/* Email Input */}
       <div className="mb-4">
         <label className="block text-sm font-medium">Email</label>
         <Input
@@ -37,10 +35,10 @@ const RBACForm = () => {
           placeholder="user@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="focus-visible:ring-0"
         />
       </div>
 
-      {/* Password Input */}
       <div className="mb-4">
         <label className="block text-sm font-medium">Password</label>
         <Input
@@ -48,10 +46,10 @@ const RBACForm = () => {
           placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="focus-visible:ring-0"
         />
       </div>
 
-      {/* Role Selection */}
       <div className="mb-4">
         <label className="block text-sm font-medium">Select Role</label>
         <Select onValueChange={(value) => setRole(value)}>
@@ -66,11 +64,7 @@ const RBACForm = () => {
         </Select>
       </div>
 
-      {/* Assign Role Button */}
-      <Button
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-        onClick={handleAssignRole}
-      >
+      <Button className="w-full bg-main text-white" onClick={handleAssignRole}>
         Assign Role
       </Button>
     </div>
