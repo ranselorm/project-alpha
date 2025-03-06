@@ -237,20 +237,20 @@ export const users = [
 
 export const transactions = [
   {
-    description: "Spotify Subscription",
+    description: "Airtime Purchase",
     id: "#12548796",
-    type: "Shopping",
+    type: "Airtime",
     card: "1234 ****",
     date: "28 Jan, 12:30 AM",
-    amount: -2500,
+    amount: +60,
   },
   {
-    description: "Freepik Sales",
+    description: "Withdrawal",
     id: "#12548796",
     type: "Transfer",
     card: "1234 ****",
     date: "25 Jan, 10:40 PM",
-    amount: 750,
+    amount: -750,
   },
   {
     description: "Mobile Service",

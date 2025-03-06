@@ -46,8 +46,8 @@ const TransactionsTable = () => {
                   className={tx.amount < 0 ? "text-red-500" : "text-main"}
                 >
                   {tx.amount < 0
-                    ? `-$${Math.abs(tx.amount)}`
-                    : `+$${tx.amount}`}
+                    ? `- ₵${Math.abs(tx.amount)}`
+                    : `+ ₵${tx.amount}`}
                 </TableCell>
                 <TableCell>
                   <Button

@@ -13,14 +13,14 @@ const navLinks = [
     icon: "mdi:users-outline",
   },
   {
-    title: "Reports",
-    path: "/reports",
-    icon: "mage:chart-up",
-  },
-  {
     title: "Transactions",
     path: "/transactions",
     icon: "grommet-icons:transaction",
+  },
+  {
+    title: "Reports",
+    path: "/reports",
+    icon: "mage:chart-up",
   },
   {
     title: "Settings",
