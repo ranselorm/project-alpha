@@ -1,11 +1,9 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-// Register required Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 type PieChartProps = {
-  //   labels: string[];
   data: number[];
 };
 
@@ -28,20 +26,7 @@ const PieChart = ({ data }: PieChartProps) => {
     ],
   };
 
-  //   const options = {
-  //     responsive: true,
-  //     maintainAspectRatio: false,
-  //     plugins: {
-  //       legend: { position: "top" },
-  //       tooltip: { enabled: true },
-  //     },
-  //   };
-
-  return (
-    // <div className="w-2/6 h-80 p-4 flex items-center justify-center bg-white shadow-md rounded-lg">
-    <Doughnut data={chartData} />
-    // </div>
-  );
+  return <Doughnut data={chartData} />;
 };
 
 export default PieChart;
