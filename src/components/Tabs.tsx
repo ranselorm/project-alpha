@@ -2,7 +2,7 @@ import { useState } from "react";
 import UserNode from "./UserNode";
 
 interface TabsProps {
-  user: any; // User object passed from UsersTable
+  user: any;
 }
 
 const Tabs: React.FC<TabsProps> = ({ user }) => {
