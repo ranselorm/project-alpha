@@ -47,7 +47,6 @@ const SettingsPage = () => {
                 </div>
               </div>
 
-              {/* Form Fields */}
               <div className="grid grid-cols-2 gap-8 mt-6">
                 <div>
                   <label className="block text-sm">Your Name</label>
@@ -102,10 +101,8 @@ const SettingsPage = () => {
             </div>
           )}
 
-          {/* Preferences Tab */}
           {activeTab === "Preferences" && <RBACForm />}
 
-          {/* Security Tab */}
           {activeTab === "Security" && (
             <div>
               <h2 className="text-lg font-semibold mb-3">Security Settings</h2>
