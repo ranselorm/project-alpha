@@ -11,13 +11,11 @@ const AdminLogin = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ email, password, rememberMe });
-    // Implement login logic here
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg flex w-full max-w-4xl overflow-hidden">
-        {/* Left Side - Login Form */}
         <div className="w-1/2 p-8 flex flex-col justify-center">
           <h2 className="text-2xl font-semibold text-gray-900">
             Login to your account
