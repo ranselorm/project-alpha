@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -16,9 +17,9 @@ const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
 
   return (
     <section className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white shadow-lg rounded-lg flex w-full max-w-4xl overflow-hidden">
+      <div className="bg-white shadow-lg rounded-lg flex w-full max-w-xl overflow-hidden">
         {/* Left Side - Form */}
-        <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
+        <div className="w-full md:w-1/2 p-8 flex flex-col justify-center mx-auto">
           <div className="flex items-center justify-center mb-6">
             <span className="text-3xl font-bold text-indigo-600">&#9733;</span>
           </div>
@@ -31,7 +32,7 @@ const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="text-sm font-medium text-gray-700">Email</label>
+              <Label className="text-sm font-medium text-gray-700">Email</Label>
               <Input
                 type="email"
                 placeholder="Enter your email"
@@ -41,9 +42,9 @@ const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-700">
+              <Label className="text-sm font-medium text-gray-700">
                 Password
-              </label>
+              </Label>
               <Input
                 type="password"
                 placeholder="Enter your password"
@@ -53,13 +54,13 @@ const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
               />
             </div>
             <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center text-gray-700">
+              <Label className="flex items-center text-gray-700">
                 <Checkbox
                   checked={rememberMe}
                   onCheckedChange={(value) => setRememberMe(value as boolean)}
                 />
                 <span className="ml-2">Remember me</span>
-              </label>
+              </Label>
               <a href="#" className="text-indigo-600 hover:underline">
                 Forgot password?
               </a>
@@ -71,24 +72,6 @@ const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
               Log In
             </Button>
           </form>
-          <div className="my-4 text-center text-gray-500">Or, login with</div>
-          {/* <Button className="w-full flex items-center justify-center bg-white border text-gray-700 hover:bg-gray-100">
-            <FcGoogle className="mr-2 text-lg" /> Sign in with Google
-          </Button> */}
-          <div className="mt-4 text-center text-sm">
-            Don't have an account?{" "}
-            <a href="#" className="text-indigo-600 hover:underline">
-              Register here
-            </a>
-          </div>
-        </div>
-        {/* Right Side - Abstract Image */}
-        <div className="hidden md:block md:w-1/2 bg-indigo-700 relative">
-          <img
-            src="https://source.unsplash.com/600x600/?abstract"
-            alt="Login Background"
-            className="w-full h-full object-cover"
-          />
         </div>
       </div>
     </section>
