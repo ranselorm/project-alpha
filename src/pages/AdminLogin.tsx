@@ -17,34 +17,35 @@ const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
 
   return (
     <section className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white shadow-lg rounded-lg flex w-full max-w-xl overflow-hidden">
+      <div className="bg-white shadow-lg rounded-lg flex w-full max-w-md">
         {/* Left Side - Form */}
-        <div className="w-full md:w-1/2 p-8 flex flex-col justify-center mx-auto">
-          <div className="flex items-center justify-center mb-6">
-            <span className="text-3xl font-bold text-indigo-600">&#9733;</span>
+        <div className="w-full p-8 flex flex-col justify-center mx-auto">
+          <div className="flex items-center justify-center mb-6 w-10 h-10 mx-auto">
+            <img src="/icon.png" alt="Logo" />
           </div>
-          <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-            Welcome back!
-          </h2>
-          <p className="text-gray-500 text-sm mb-6">
-            Enter your details to access your account.
-          </p>
+          <div className="text-center">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+              Welcome back!
+            </h2>
+            <p className="text-gray-500 text-sm mb-6">
+              Enter your details to access your account.
+            </p>
+          </div>
 
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleLogin} className="space-y-6">
             <div>
-              <Label className="text-sm font-medium text-gray-700">Email</Label>
+              <Label className="text-sm mb-2 text-gray-500">Email</Label>
               <Input
                 type="email"
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="rounded border border-gray-300"
               />
             </div>
             <div>
-              <Label className="text-sm font-medium text-gray-700">
-                Password
-              </Label>
+              <Label className="text-sm text-gray-500 mb-2">Password</Label>
               <Input
                 type="password"
                 placeholder="Enter your password"
@@ -61,13 +62,13 @@ const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
                 />
                 <span className="ml-2">Remember me</span>
               </Label>
-              <a href="#" className="text-indigo-600 hover:underline">
+              <a href="#" className="text-main hover:underline">
                 Forgot password?
               </a>
             </div>
             <Button
               type="submit"
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white"
+              className="w-full bg-main text-white hover:bg-main cursor-pointer mt-4"
             >
               Log In
             </Button>
