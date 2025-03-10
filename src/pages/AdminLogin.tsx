@@ -41,7 +41,7 @@ const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="rounded border border-gray-300"
+                className="rounded border border-gray-300 focus-visible:ring-0"
               />
             </div>
             <div>
@@ -52,16 +52,10 @@ const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="focus-visible:ring-0 rounded border border-gray-300"
               />
             </div>
-            <div className="flex items-center justify-between text-sm">
-              <Label className="flex items-center text-gray-700">
-                <Checkbox
-                  checked={rememberMe}
-                  onCheckedChange={(value) => setRememberMe(value as boolean)}
-                />
-                <span className="ml-2">Remember me</span>
-              </Label>
+            <div className="flex items-center justify-end text-sm">
               <a href="#" className="text-main hover:underline">
                 Forgot password?
               </a>
