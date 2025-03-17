@@ -1,11 +1,16 @@
+import { RootState } from "@/store/store";
 import { Icon } from "@iconify/react";
+import { useSelector } from "react-redux";
 
 type NavbarProps = {
-  toggleSidebar: () => void;
-  title: string;
+  toggleSidebar?: () => void;
+  title?: string;
 };
 
 const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
+  const user = useSelector((state: RootState) => state.user.user);
+  console.log(user);
+
   return (
     <nav className="bg-white border-b flex items-center">
       <div className="container mx-auto p-4">
@@ -39,7 +44,7 @@ const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p>Randy</p>
+                <p>{user?.email}</p>
               </div>
             </div>
           </div>

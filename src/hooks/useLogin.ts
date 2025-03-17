@@ -1,5 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { login } from "@/store/userSlice";
+import { useNavigate } from "react-router-dom";
 
 interface LoginCredentials {
   email: string;
@@ -7,12 +11,15 @@ interface LoginCredentials {
 }
 
 interface LoginResponse {
-  token: string;
-  user: {
-    id: string;
-    email: string;
-    role: string;
-  };
+  data: any;
+}
+
+interface DecodedToken {
+  id: string;
+  name: string;
+  nickname: string;
+  email: string;
+  picture: string;
 }
 
 const loginUser = async (
@@ -26,11 +33,35 @@ const loginUser = async (
 };
 
 export const useLogin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      const { access_token } = data.data;
+      console.log(access_token, "TOKEN");
+      try {
+        const decoded: DecodedToken = jwtDecode(data?.data?.id_token);
+        console.log(decoded, "DECODED");
+        dispatch(
+          login({
+            user: {
+              email: decoded.email,
+              //   name: decoded.name,
+              //   nickname: decoded.name,
+              //   picture: decoded.picture,
+              role: decoded.name,
+            },
+            token: access_token,
+          })
+        );
+        localStorage.setItem("user", JSON.stringify({ email: decoded.email }));
+        localStorage.setItem("token", access_token);
+        navigate("/");
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
     },
     onError: (error) => {
       console.error("Login failed:", error);

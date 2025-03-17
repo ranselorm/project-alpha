@@ -1,17 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useLogin } from "@/hooks/useLogin";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
-// import { Checkbox } from "@/components/ui/checkbox";
-
-const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
+const LoginForm = () => {
   const [email, setEmail] = useState("admin@yahwe-eita.com");
   const [password, setPassword] = useState("p@ssw0rd123");
-  let navigate = useNavigate();
-  // const [rememberMe, setRememberMe] = useState(false);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/", { replace: true });
+    }
+  }, [isLoggedIn]);
 
   const loginMutation = useLogin();
 
@@ -23,8 +29,7 @@ const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
         onSuccess: (data) => {
           // setUser(data.user);
           console.log(data);
-          setUser(true);
-          navigate("/");
+          navigate("/", { replace: true });
           console.log("Login success");
         },
       }
