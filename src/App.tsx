@@ -12,6 +12,7 @@ const App = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [user, setUser] = useState(null); // Store authenticated user state
   const location = useLocation();
+  console.log(user);
 
   const pageTitles: { [key: string]: string } = {
     "/": "Overview",

@@ -2,17 +2,33 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { useLogin } from "@/hooks/useLogin";
+import { useNavigate } from "react-router";
+
 // import { Checkbox } from "@/components/ui/checkbox";
 
 const LoginForm = ({ setUser }: { setUser: (user: any) => void }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@yahwe-eita.com");
+  const [password, setPassword] = useState("p@ssw0rd123");
+  let navigate = useNavigate();
   // const [rememberMe, setRememberMe] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const loginMutation = useLogin();
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setUser(true);
-    console.log({ email, password });
+    loginMutation.mutate(
+      { email, password },
+      {
+        onSuccess: (data) => {
+          // setUser(data.user);
+          console.log(data);
+          setUser(true);
+          navigate("/");
+          console.log("Login success");
+        },
+      }
+    );
   };
 
   return (
