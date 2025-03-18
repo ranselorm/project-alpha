@@ -31,7 +31,7 @@ const UsersTable = () => {
   const { data: users, isLoading, error } = useUsers();
   const {
     data: genealogy,
-    isLoading: isPending,
+    // isLoading: isPending,
     isError,
   } = useGenealogy(selectedUser?.userId);
   console.log(genealogy && genealogy);

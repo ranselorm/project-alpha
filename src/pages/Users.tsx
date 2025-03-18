@@ -51,7 +51,7 @@ const Users = () => {
         <div className="flex justify-between items-center">
           <div className="flex space-x-4 border-b">
             <button
-              className={`px-4 py-2 ${
+              className={`px-4 py-2 cursor-pointer ${
                 activeTab === "current"
                   ? "border-b-2 border-main "
                   : "text-gray-500"
@@ -61,7 +61,7 @@ const Users = () => {
               Current Users
             </button>
             <button
-              className={`px-4 py-2 ${
+              className={`px-4 py-2 cursor-pointer ${
                 activeTab === "invited"
                   ? "border-b-2 border-main"
                   : "text-gray-500"
