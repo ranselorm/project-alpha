@@ -9,7 +9,9 @@ type NavbarProps = {
 
 const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
   const user = useSelector((state: RootState) => state.user.user);
-  console.log(user);
+  const users = useSelector((state: RootState) => state.user.users);
+
+  console.log("IN NAVBAR", users);
 
   return (
     <nav className="bg-white border-b flex items-center">

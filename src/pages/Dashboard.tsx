@@ -2,8 +2,13 @@ import Card from "@/components/Card";
 import LineChart from "@/components/LineChart";
 import PieChart from "@/components/PieChart";
 import TransactionsTable from "@/components/TransactionsTable";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 const Dashboard = () => {
+  const users = useSelector((state: RootState) => state.user.users);
+  console.log(users);
+
   return (
     <main>
       <div className="container mx-auto p-4">
@@ -17,7 +22,7 @@ const Dashboard = () => {
             />
             <Card
               title="Users"
-              value={1200}
+              value={users.length}
               bgColor="blue-100"
               icon="mdi:users-outline"
             />

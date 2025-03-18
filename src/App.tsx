@@ -1,6 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { Routes, Route } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import { RootState } from "@/store/store";
 import AdminLogin from "@/pages/AdminLogin";
 import Dashboard from "@/pages/Dashboard";
 import Settings from "@/pages/Settings";
@@ -9,7 +9,7 @@ import Users from "@/pages/Users";
 import MainPage from "@/layouts/MainPage";
 
 const App = () => {
-  const user = useSelector((state: RootState) => state.user.user);
+  // const user = useSelector((state: RootState) => state.user.user);
 
   return (
     <Routes>

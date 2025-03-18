@@ -18,11 +18,17 @@ import { Icon } from "@iconify/react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
 import Tabs from "./Tabs";
-import { users } from "@/data";
+import { useUsers } from "@/hooks/useUsers";
+// import { users } from "@/data";
 
 const UsersTable = () => {
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { data: users, isLoading, error } = useUsers();
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading users</p>;
 
   console.log(selectedUser);
 
@@ -40,7 +46,7 @@ const UsersTable = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {users?.map((user) => (
+            {users?.map((user: any) => (
               <TableRow key={user.id}>
                 <TableCell className="flex items-center space-x-3">
                   <Avatar className="w-8 h-8">
@@ -49,7 +55,7 @@ const UsersTable = () => {
                   </Avatar>
                   <span className="font-medium">{user.name}</span>
                 </TableCell>
-                <TableCell>{user.age}</TableCell>
+                <TableCell>{user.age || "25"}</TableCell>
                 <TableCell>{user.phone}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>

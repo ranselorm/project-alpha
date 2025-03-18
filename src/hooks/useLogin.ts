@@ -47,10 +47,11 @@ export const useLogin = () => {
         dispatch(
           login({
             user: {
+              id: decoded.id,
               email: decoded.email,
-              //   name: decoded.name,
-              //   nickname: decoded.name,
-              //   picture: decoded.picture,
+              name: decoded.name,
+              nickname: decoded.name,
+              picture: decoded.picture,
               role: decoded.name,
             },
             token: access_token,

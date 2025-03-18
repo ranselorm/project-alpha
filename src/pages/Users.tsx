@@ -18,6 +18,8 @@ const Users = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  // const token = useSelector((state: RootState) => state.user.token);
+
   const handleInvite = () => {
     if (!phoneNumber) return;
 

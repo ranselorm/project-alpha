@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import Sidebar from "@/components/Sidebar"; // ✅ Import Sidebar
+import Sidebar from "@/components/Sidebar";
 import { Outlet } from "react-router-dom";
+import { useUsers } from "@/hooks/useUsers";
 
 const MainPage = () => {
   const globalState = useSelector((state: RootState) => state.user);
-  //   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useUsers();
 
   useEffect(() => {
     const currentDate = new Date();
@@ -31,16 +32,13 @@ const MainPage = () => {
   }, [globalState.isLoggedIn, navigate]);
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {" "}
-      {/* ✅ Ensures full-screen layout */}
+    <div className="flex h-screen overflow-hidden bg-gray-100">
       {globalState.isLoggedIn && <Sidebar />}{" "}
-      {/* ✅ Show sidebar only if logged in */}
       <div className="flex-1 flex flex-col overflow-y-auto">
         <Navbar />
 
         <main className="flex-grow p-4">
-          <Outlet /> {/* Render nested routes here */}
+          <Outlet />
         </main>
 
         <Footer />

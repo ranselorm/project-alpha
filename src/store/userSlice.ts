@@ -1,15 +1,34 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+interface Admin {
+  id: string;
+  name: string;
+  email: string;
+  nickname: string;
+  picture: string;
+  role: string;
+}
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  sponsorId?: string;
+}
+
 interface UserState {
-  user: { email: string; role: string } | null;
+  user: Admin | null;
   token: string | null;
   isLoggedIn: boolean;
+  users: User[]; // ✅ Store multiple users globally
 }
 
 const initialState: UserState = {
   user: JSON.parse(localStorage.getItem("user") || "null"),
   token: localStorage.getItem("token") || null,
-  isLoggedIn: !!localStorage.getItem("token"), // ✅ Ensures state persists
+  isLoggedIn: !!localStorage.getItem("token"),
+  users: [], // ✅ Initialize empty users array
 };
 
 const userSlice = createSlice({
@@ -30,11 +49,15 @@ const userSlice = createSlice({
       state.user = null;
       state.token = null;
       state.isLoggedIn = false;
+      state.users = []; // ✅ Clear users on logout
       localStorage.removeItem("user");
       localStorage.removeItem("token");
+    },
+    setUsers: (state, action: PayloadAction<User[]>) => {
+      state.users = action.payload; // ✅ Store users globally
     },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, setUsers } = userSlice.actions;
 export default userSlice.reducer;
