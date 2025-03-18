@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const UserNode = ({ user }: { user: any }) => {
-  console.log(user, "NODE");
+  console.log(user?.recruits, "NODE");
   return (
     <div className="flex flex-col items-center relative">
       <div className="flex flex-col items-center bg-white shadow-md p-2 rounded-lg w-16 h-16 text-center border relative z-10">
