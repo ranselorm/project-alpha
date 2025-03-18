@@ -19,6 +19,9 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
 import Tabs from "./Tabs";
 import { useUsers } from "@/hooks/useUsers";
+import { DialogTitle } from "@radix-ui/react-dialog";
+import { useGenealogy } from "@/hooks/useGenealogy";
+
 // import { users } from "@/data";
 
 const UsersTable = () => {
@@ -26,11 +29,22 @@ const UsersTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: users, isLoading, error } = useUsers();
+  const {
+    data: genealogy,
+    isLoading: isPending,
+    isError,
+  } = useGenealogy(selectedUser?.userId);
+  console.log(genealogy && genealogy);
 
+  //user states
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading users</p>;
 
-  console.log(selectedUser);
+  //genealogy state states
+  if (isPending) return <p>Pending...</p>;
+  if (isError) return <p>Error fetching genealogy</p>;
+
+  // console.log(selectedUser?.userId, "SELECTED");
 
   return (
     <div>
@@ -105,6 +119,7 @@ const UsersTable = () => {
       </div>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogTitle className="hidden"></DialogTitle>
         <DialogContent className="sm:max-w-4xl h-[500px]">
           {selectedUser && (
             <div className="flex flex-col space-y-4">
@@ -118,7 +133,7 @@ const UsersTable = () => {
                   <p className="text-sm text-gray-500">{selectedUser.email}</p>
                 </div>
               </div>
-              <Tabs user={selectedUser} />
+              <Tabs user={genealogy} />
             </div>
           )}
         </DialogContent>

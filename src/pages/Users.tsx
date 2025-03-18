@@ -15,12 +15,11 @@ import { toast } from "sonner";
 import { useInvite } from "@/hooks/useInvite";
 import { useInvitedUsers } from "@/hooks/useInvitedUsers";
 import InvitedUsersTable from "@/components/InvitedUsersTable";
-// import { useInvitedUsers } from "@/hooks/useInvitedUsers"; // ✅ Fetch invited users
 
 const Users = () => {
   const [phone, setPhone] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("current"); // ✅ Manage active tab
+  const [activeTab, setActiveTab] = useState("current");
 
   const inviteMutation = useInvite();
   const { data: invitedUsers, isLoading: loadingInvitedUsers } =
@@ -54,7 +53,7 @@ const Users = () => {
             <button
               className={`px-4 py-2 ${
                 activeTab === "current"
-                  ? "border-b-2 border-main font-bold"
+                  ? "border-b-2 border-main "
                   : "text-gray-500"
               }`}
               onClick={() => setActiveTab("current")}
@@ -64,7 +63,7 @@ const Users = () => {
             <button
               className={`px-4 py-2 ${
                 activeTab === "invited"
-                  ? "border-b-2 border-main font-bold"
+                  ? "border-b-2 border-main"
                   : "text-gray-500"
               }`}
               onClick={() => setActiveTab("invited")}

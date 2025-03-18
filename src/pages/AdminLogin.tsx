@@ -84,8 +84,9 @@ const LoginForm = () => {
             <Button
               type="submit"
               className="w-full bg-main text-white hover:bg-main cursor-pointer mt-4"
+              disabled={loginMutation.isPending}
             >
-              Log In
+              {loginMutation.isPending ? "Please wait" : "Login"}
             </Button>
           </form>
         </div>

@@ -8,6 +8,9 @@ interface TabsProps {
 const Tabs: React.FC<TabsProps> = ({ user }) => {
   const [activeTab, setActiveTab] = useState("Overview");
 
+  const { data: userData } = user;
+  // console.log(data, "IN TABS");
+
   return (
     <div className="w-full mt-8">
       <div className="flex space-x-4 border-b border-gray-300">
@@ -29,7 +32,7 @@ const Tabs: React.FC<TabsProps> = ({ user }) => {
 
         {activeTab === "Members" && (
           <div className="flex flex-col items-center">
-            <UserNode user={user} />
+            <UserNode user={userData} />
           </div>
         )}
       </div>
