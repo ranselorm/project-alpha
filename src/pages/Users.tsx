@@ -13,21 +13,31 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { useInvite } from "@/hooks/useInvite";
 
 const Users = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phone, setPhone] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  // const token = useSelector((state: RootState) => state.user.token);
+  const inviteMutation = useInvite();
 
   const handleInvite = () => {
-    if (!phoneNumber) return;
+    if (!phone) return;
 
-    toast.success("Invitation sent successfully!", {
-      duration: 3000,
-    });
-
-    setIsDialogOpen(false);
+    inviteMutation.mutate(
+      { phone },
+      {
+        onSuccess: () => {
+          toast.success("Invitation sent successfully!", {
+            duration: 3000,
+          });
+          setIsDialogOpen(false); // ✅ Close only after success
+        },
+        onError: (error) => {
+          console.error("Error sending invite:", error);
+          toast.error("Failed to send invite. Try again.");
+        },
+      }
+    );
   };
 
   return (
@@ -52,21 +62,21 @@ const Users = () => {
               <Input
                 type="tel"
                 placeholder="+233 55 123 4567"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 className="mt-3 focus-visible:ring-0"
               />
 
               <DialogFooter>
-                <DialogClose asChild>
-                  <Button
-                    onClick={handleInvite}
-                    disabled={!phoneNumber}
-                    className="bg-main cursor-pointer hover:bg-teal-700 text-white mt-4"
-                  >
-                    Send Invitation
-                  </Button>
-                </DialogClose>
+                {/* <DialogClose asChild> */}
+                <Button
+                  onClick={handleInvite}
+                  disabled={!phone}
+                  className="bg-main cursor-pointer hover:bg-teal-700 text-white mt-4"
+                >
+                  {inviteMutation.isPending ? "Please wait" : "Send Invitation"}
+                </Button>
+                {/* </DialogClose> */}
               </DialogFooter>
             </DialogContent>
           </Dialog>
