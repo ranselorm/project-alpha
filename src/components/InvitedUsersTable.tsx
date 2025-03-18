@@ -39,11 +39,11 @@ const InvitedUsersTable = ({ invitedUsers }: InvitedUsersTableProps) => {
               </TableCell>
               <TableCell className={`py-2 px-4`}>
                 <p
-                  className={`px-6 py-2 ${
+                  className={`${
                     user?.status === "ACCEPTED"
-                      ? "bg-main text-white"
-                      : "bg-amber-200"
-                  } rounded-full w-[40%] flex items-center justify-center`}
+                      ? "border-main"
+                      : "border-yellow-500"
+                  } rounded-full w-[40%] flex items-center justify-center px-6 py-2 text-xs border`}
                 >
                   {user.status}
                 </p>

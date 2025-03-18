@@ -108,12 +108,11 @@ const Users = () => {
           </Dialog>
         </div>
 
-        {/* Tab Content */}
         {activeTab === "current" ? (
-          <>
+          <div className="mt-5">
             <UserFilter />
             <UsersTable />
-          </>
+          </div>
         ) : (
           <div className="mt-5">
             {loadingInvitedUsers ? (
