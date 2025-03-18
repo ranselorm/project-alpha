@@ -8,7 +8,7 @@ interface TabsProps {
 const Tabs: React.FC<TabsProps> = ({ user }) => {
   const [activeTab, setActiveTab] = useState("Overview");
 
-  const { data: userData } = user;
+  const { data: userData } = user ?? [];
   // console.log(data, "IN TABS");
 
   return (

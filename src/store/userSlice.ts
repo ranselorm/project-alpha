@@ -21,14 +21,14 @@ interface UserState {
   user: Admin | null;
   token: string | null;
   isLoggedIn: boolean;
-  users: User[]; // ✅ Store multiple users globally
+  users: User[];
 }
 
 const initialState: UserState = {
   user: JSON.parse(localStorage.getItem("user") || "null"),
   token: localStorage.getItem("token") || null,
   isLoggedIn: !!localStorage.getItem("token"),
-  users: [], // ✅ Initialize empty users array
+  users: [],
 };
 
 const userSlice = createSlice({
@@ -49,12 +49,12 @@ const userSlice = createSlice({
       state.user = null;
       state.token = null;
       state.isLoggedIn = false;
-      state.users = []; // ✅ Clear users on logout
+      state.users = [];
       localStorage.removeItem("user");
       localStorage.removeItem("token");
     },
     setUsers: (state, action: PayloadAction<User[]>) => {
-      state.users = action.payload; // ✅ Store users globally
+      state.users = action.payload;
     },
   },
 });

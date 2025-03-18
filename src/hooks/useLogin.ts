@@ -15,7 +15,7 @@ interface LoginResponse {
 }
 
 interface DecodedToken {
-  id: string;
+  user_id: string;
   name: string;
   nickname: string;
   email: string;
@@ -39,25 +39,30 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      const { access_token } = data.data;
-      console.log(access_token, "TOKEN");
+      const { access_token } = data?.data;
       try {
         const decoded: DecodedToken = jwtDecode(data?.data?.id_token);
-        console.log(decoded, "DECODED");
         dispatch(
           login({
             user: {
-              userId: decoded.id,
+              userId: decoded.user_id,
               email: decoded.email,
               name: decoded.name,
               nickname: decoded.name,
               picture: decoded.picture,
-              role: decoded.name,
+              role: decoded.nickname,
             },
             token: access_token,
           })
         );
-        localStorage.setItem("user", JSON.stringify({ email: decoded.email }));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            email: decoded.email,
+            role: decoded.nickname,
+            picture: decoded.picture,
+          })
+        );
         localStorage.setItem("token", access_token);
         navigate("/");
       } catch (error) {

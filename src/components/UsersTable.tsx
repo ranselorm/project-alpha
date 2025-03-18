@@ -41,7 +41,7 @@ const UsersTable = () => {
   if (error) return <p>Error loading users</p>;
 
   //genealogy state states
-  if (isPending) return <p>Pending...</p>;
+  // if (isPending) return <p>Pending...</p>;
   if (isError) return <p>Error fetching genealogy</p>;
 
   // console.log(selectedUser?.userId, "SELECTED");

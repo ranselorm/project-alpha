@@ -9,10 +9,7 @@ type NavbarProps = {
 
 const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
   const user = useSelector((state: RootState) => state.user.user);
-  const users = useSelector((state: RootState) => state.user.users);
-
-  console.log("IN NAVBAR", users);
-
+  console.log(user);
   return (
     <nav className="bg-white border-b flex items-center">
       <div className="container mx-auto p-4">
@@ -36,17 +33,17 @@ const Navbar = ({ toggleSidebar, title }: NavbarProps) => {
               />
             </div>
             <div className="flex gap-x-6 items-center">
-              <div className="bg-grey text-black p-3 flex items-center justify-center rounded-full cursor-pointer">
+              <div className="bg-grey text-black flex items-center justify-center rounded-full cursor-pointer h-10 w-10">
                 <Icon icon="iconamoon:notification-thin" className="size-4" />
               </div>
               <div className="flex items-center gap-x-3">
                 <div className="text-black w-10 h-10 flex items-center justify-center rounded-full cursor-pointer overflow-hidden">
                   <img
-                    src="/profile.jpg"
+                    src={user?.picture}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p>{user?.email}</p>
+                <p>{user?.role}</p>
               </div>
             </div>
           </div>
