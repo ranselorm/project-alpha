@@ -9,16 +9,22 @@ import {
   DialogTrigger,
   DialogTitle,
   DialogFooter,
-  DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useInvite } from "@/hooks/useInvite";
+import { useInvitedUsers } from "@/hooks/useInvitedUsers";
+import InvitedUsersTable from "@/components/InvitedUsersTable";
+// import { useInvitedUsers } from "@/hooks/useInvitedUsers"; // ✅ Fetch invited users
 
 const Users = () => {
   const [phone, setPhone] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("current"); // ✅ Manage active tab
+
   const inviteMutation = useInvite();
+  const { data: invitedUsers, isLoading: loadingInvitedUsers } =
+    useInvitedUsers();
 
   const handleInvite = () => {
     if (!phone) return;
@@ -30,7 +36,7 @@ const Users = () => {
           toast.success("Invitation sent successfully!", {
             duration: 3000,
           });
-          setIsDialogOpen(false); // ✅ Close only after success
+          setTimeout(() => setIsDialogOpen(false), 500); // ✅ Close only after success
         },
         onError: (error) => {
           console.error("Error sending invite:", error);
@@ -43,6 +49,31 @@ const Users = () => {
   return (
     <div className="p-4">
       <div className="container mx-auto">
+        {/* Navigation Tabs */}
+        <div className="flex space-x-4 border-b">
+          <button
+            className={`px-4 py-2 ${
+              activeTab === "current"
+                ? "border-b-2 border-main font-bold"
+                : "text-gray-500"
+            }`}
+            onClick={() => setActiveTab("current")}
+          >
+            Current Users
+          </button>
+          <button
+            className={`px-4 py-2 ${
+              activeTab === "invited"
+                ? "border-b-2 border-main font-bold"
+                : "text-gray-500"
+            }`}
+            onClick={() => setActiveTab("invited")}
+          >
+            Invited Users
+          </button>
+        </div>
+
+        {/* Invite User Button */}
         <div className="flex justify-between items-center my-5">
           <p className="text-lg font-semibold">All users</p>
 
@@ -68,22 +99,39 @@ const Users = () => {
               />
 
               <DialogFooter>
-                {/* <DialogClose asChild> */}
                 <Button
                   onClick={handleInvite}
-                  disabled={!phone}
+                  disabled={!phone || inviteMutation.isPending}
                   className="bg-main cursor-pointer hover:bg-teal-700 text-white mt-4"
                 >
-                  {inviteMutation.isPending ? "Please wait" : "Send Invitation"}
+                  {inviteMutation.isPending
+                    ? "Please wait..."
+                    : "Send Invitation"}
                 </Button>
-                {/* </DialogClose> */}
               </DialogFooter>
             </DialogContent>
           </Dialog>
         </div>
 
-        <UserFilter />
-        <UsersTable />
+        {/* Tab Content */}
+        {activeTab === "current" ? (
+          <>
+            <UserFilter />
+            <UsersTable />
+          </>
+        ) : (
+          <div className="mt-5">
+            <h2 className="text-lg font-semibold">Invited Users</h2>
+            <div className="mt-5">
+              <h2 className="text-lg font-semibold">Invited Users</h2>
+              {loadingInvitedUsers ? (
+                <p>Loading invited users...</p>
+              ) : (
+                <InvitedUsersTable invitedUsers={invitedUsers ?? []} />
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
