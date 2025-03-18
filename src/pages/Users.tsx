@@ -49,7 +49,6 @@ const Users = () => {
   return (
     <div className="p-4">
       <div className="container mx-auto">
-        {/* Navigation Tabs */}
         <div className="flex justify-between items-center">
           <div className="flex space-x-4 border-b">
             <button
@@ -109,9 +108,6 @@ const Users = () => {
           </Dialog>
         </div>
 
-        {/* Invite User Button */}
-        <div className="flex justify-end items-center my-5"></div>
-
         {/* Tab Content */}
         {activeTab === "current" ? (
           <>
@@ -120,15 +116,11 @@ const Users = () => {
           </>
         ) : (
           <div className="mt-5">
-            <h2 className="text-lg font-semibold">Invited Users</h2>
-            <div className="mt-5">
-              <h2 className="text-lg font-semibold">Invited Users</h2>
-              {loadingInvitedUsers ? (
-                <p>Loading invited users...</p>
-              ) : (
-                <InvitedUsersTable invitedUsers={invitedUsers ?? []} />
-              )}
-            </div>
+            {loadingInvitedUsers ? (
+              <p>Loading invited users...</p>
+            ) : (
+              <InvitedUsersTable invitedUsers={invitedUsers ?? []} />
+            )}
           </div>
         )}
       </div>
