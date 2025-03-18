@@ -50,33 +50,29 @@ const Users = () => {
     <div className="p-4">
       <div className="container mx-auto">
         {/* Navigation Tabs */}
-        <div className="flex space-x-4 border-b">
-          <button
-            className={`px-4 py-2 ${
-              activeTab === "current"
-                ? "border-b-2 border-main font-bold"
-                : "text-gray-500"
-            }`}
-            onClick={() => setActiveTab("current")}
-          >
-            Current Users
-          </button>
-          <button
-            className={`px-4 py-2 ${
-              activeTab === "invited"
-                ? "border-b-2 border-main font-bold"
-                : "text-gray-500"
-            }`}
-            onClick={() => setActiveTab("invited")}
-          >
-            Invited Users
-          </button>
-        </div>
-
-        {/* Invite User Button */}
-        <div className="flex justify-between items-center my-5">
-          <p className="text-lg font-semibold">All users</p>
-
+        <div className="flex justify-between items-center">
+          <div className="flex space-x-4 border-b">
+            <button
+              className={`px-4 py-2 ${
+                activeTab === "current"
+                  ? "border-b-2 border-main font-bold"
+                  : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("current")}
+            >
+              Current Users
+            </button>
+            <button
+              className={`px-4 py-2 ${
+                activeTab === "invited"
+                  ? "border-b-2 border-main font-bold"
+                  : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("invited")}
+            >
+              Invited Users
+            </button>
+          </div>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
               <Button className="cursor-pointer bg-main text-white flex items-center gap-x-2 rounded-md hover:bg-teal-700 transition">
@@ -112,6 +108,9 @@ const Users = () => {
             </DialogContent>
           </Dialog>
         </div>
+
+        {/* Invite User Button */}
+        <div className="flex justify-end items-center my-5"></div>
 
         {/* Tab Content */}
         {activeTab === "current" ? (
