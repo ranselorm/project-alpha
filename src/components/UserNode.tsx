@@ -5,11 +5,6 @@ const UserNode = ({ user }: { user: any }) => {
   return (
     <div className="flex flex-col items-center relative">
       <div className="flex flex-col items-center bg-white shadow-md p-2 rounded-lg w-16 h-16 text-center border relative z-10">
-        {/* <img
-          src={user.profilePic}
-          alt={user.name}
-          className="w-6 h-6 rounded-full border"
-        /> */}
         <Icon icon={"tabler:user"} />
         <p className="text-[7px] font-medium mt-1">{user.name}</p>
       </div>
