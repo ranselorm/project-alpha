@@ -17,7 +17,7 @@ const LoginForm = () => {
     if (isLoggedIn) {
       navigate("/", { replace: true });
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigate]);
 
   const loginMutation = useLogin();
 
