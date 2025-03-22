@@ -22,8 +22,6 @@ import { useUsers } from "@/hooks/useUsers";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { useGenealogy } from "@/hooks/useGenealogy";
 
-// import { users } from "@/data";
-
 const UsersTable = () => {
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);

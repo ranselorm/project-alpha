@@ -35,7 +35,7 @@ const Users = () => {
           toast.success("Invitation sent successfully!", {
             duration: 3000,
           });
-          setTimeout(() => setIsDialogOpen(false), 500); // ✅ Close only after success
+          setTimeout(() => setIsDialogOpen(false), 500);
         },
         onError: (error) => {
           console.error("Error sending invite:", error);

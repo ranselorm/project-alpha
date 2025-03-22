@@ -58,9 +58,10 @@ const MainPage = () => {
       navigate("/login");
     } else {
       const decodedToken = jwtDecode<{ exp: number }>(token);
+      console.log(decodedToken.exp);
       if (decodedToken && decodedToken.exp * 1000 < currentDate.getTime()) {
         console.log("Token expired, logging out");
-        localStorage.removeItem("token"); // Remove expired token
+        localStorage.removeItem("token");
         navigate("/login");
       }
     }
