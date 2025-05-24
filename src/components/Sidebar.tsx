@@ -11,11 +11,10 @@ const navLinks = [
   },
   { title: "Agents", path: "/agents", icon: "carbon:customer-service" },
   {
-    title: "Transactions",
+    title: "Chats",
     path: "/transactions",
     icon: "grommet-icons:transaction",
   },
-  { title: "Reports", path: "/reports", icon: "mage:chart-up" },
   { title: "Settings", path: "/settings", icon: "mdi:cog" },
 ];
 
