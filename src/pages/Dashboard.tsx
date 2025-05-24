@@ -2,41 +2,38 @@ import Card from "@/components/Card";
 import LineChart from "@/components/LineChart";
 import PieChart from "@/components/PieChart";
 import TransactionsTable from "@/components/TransactionsTable";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
 
 const Dashboard = () => {
-  const users = useSelector((state: RootState) => state.user.users);
-  console.log(users);
-
   return (
     <main>
       <div className="container mx-auto p-4">
         <section>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-x-6 bg-white p-4 rounded-b-md">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-x-6 bg-white p-4 rounded-md">
             <Card
-              title="Earnings"
+              title="Number of conversations"
               value={4700}
-              bgColor="red-100"
+              bgColor
               icon="lineicons:dollar"
+              percentage={11.01}
             />
             <Card
-              title="Users"
-              value={users.length}
-              bgColor="blue-100"
+              title="Visits"
+              value={1200}
               icon="mdi:users-outline"
+              percentage={0.02}
             />
             <Card
-              title="Reports"
+              title="New Users"
               value={22}
-              bgColor="blue-100"
+              bgColor
               icon="mage:chart-up"
+              percentage={15.03}
             />
             <Card
-              title="Transactions"
+              title="Active Users"
               value={46}
-              bgColor="blue-100"
               icon="grommet-icons:transaction"
+              percentage={6.08}
             />
           </div>
         </section>

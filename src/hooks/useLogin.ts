@@ -26,7 +26,7 @@ const loginUser = async (
   credentials: LoginCredentials
 ): Promise<LoginResponse> => {
   const { data } = await axios.post<LoginResponse>(
-    "https://yahwe-eita-api-dev.azurewebsites.net/api/login/admin",
+    "https://yahwe-eita-api.azurewebsites.net/api/login/admin",
     credentials
   );
   return data;

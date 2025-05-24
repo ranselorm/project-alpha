@@ -5,7 +5,7 @@ import AdminLogin from "@/pages/AdminLogin";
 import Dashboard from "@/pages/Dashboard";
 import Settings from "@/pages/Settings";
 import Transactions from "@/pages/Transactions";
-import Users from "@/pages/Users";
+import Users from "@/pages/Agents";
 import MainPage from "@/layouts/MainPage";
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/transactions" element={<Transactions />} />
-        <Route path="/users" element={<Users />} />
+        <Route path="/agents" element={<Users />} />
       </Route>
     </Routes>
   );

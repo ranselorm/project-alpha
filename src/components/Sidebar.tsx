@@ -7,9 +7,9 @@ const navLinks = [
   {
     title: "Overview",
     path: "/",
-    icon: "material-symbols:dashboard-outline-rounded",
+    icon: "mage:dashboard",
   },
-  { title: "Users", path: "/users", icon: "mdi:users-outline" },
+  { title: "Agents", path: "/agents", icon: "carbon:customer-service" },
   {
     title: "Transactions",
     path: "/transactions",
@@ -28,7 +28,7 @@ const Sidebar = () => {
 
   return (
     <aside className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col p-4">
-      <div className="w-[130px] mb-6">
+      <div className="w-[120px] mb-6">
         <img src="/berth.png" alt="Logo" className="w-full" />
       </div>
 
@@ -38,15 +38,15 @@ const Sidebar = () => {
             key={index}
             to={link.path}
             className={({ isActive }) =>
-              `flex items-center space-x-2 p-2 transition-all duration-150 rounded-md font-text ${
+              `flex items-center space-x-4 p-2 transition-all duration-150 rounded-md font-text text-sm ${
                 isActive
                   ? "bg-main text-white"
                   : "hover:bg-gray-100 text-gray-600 hover:text-black"
               }`
             }
           >
-            <Icon icon={link.icon} className="text-xl" />
-            <span>{link.title}</span>
+            <Icon icon={link.icon} className="text-lg" />
+            <span className="font-bold">{link.title}</span>
           </NavLink>
         ))}
       </nav>

@@ -16,7 +16,7 @@ import { useInvite } from "@/hooks/useInvite";
 import { useInvitedUsers } from "@/hooks/useInvitedUsers";
 import InvitedUsersTable from "@/components/InvitedUsersTable";
 
-const Users = () => {
+const Agents = () => {
   const [phone, setPhone] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("current");
@@ -126,4 +126,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Agents;
