@@ -4,8 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import AdminLogin from "@/pages/AdminLogin";
 import Dashboard from "@/pages/Dashboard";
 import Settings from "@/pages/Settings";
-import Transactions from "@/pages/Transactions";
-import Users from "@/pages/Agents";
+import Chats from "@/pages/Chats";
+import Agents from "@/pages/Agents";
 import MainPage from "@/layouts/MainPage";
 
 const App = () => {
@@ -19,8 +19,8 @@ const App = () => {
       <Route element={<MainPage />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/transactions" element={<Transactions />} />
-        <Route path="/agents" element={<Users />} />
+        <Route path="/chats" element={<Chats />} />
+        <Route path="/agents" element={<Agents />} />
       </Route>
     </Routes>
   );

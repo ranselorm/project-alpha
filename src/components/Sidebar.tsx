@@ -12,10 +12,10 @@ const navLinks = [
   { title: "Agents", path: "/agents", icon: "carbon:customer-service" },
   {
     title: "Chats",
-    path: "/transactions",
-    icon: "grommet-icons:transaction",
+    path: "/chats",
+    icon: "ph:chats-thin",
   },
-  { title: "Settings", path: "/settings", icon: "mdi:cog" },
+  { title: "Settings", path: "/settings", icon: "solar:settings-broken" },
 ];
 
 const Sidebar = () => {
