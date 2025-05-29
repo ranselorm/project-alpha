@@ -35,7 +35,7 @@ const Agents = () => {
             <p className="text-sm">Showing(21)</p>
             <Space wrap className="!focus:ring-2 !focus:ring-main">
               <Select
-                defaultValue="lucy"
+                defaultValue="Voice Call"
                 style={{ width: 120 }}
                 onChange={handleChange}
                 options={[
@@ -48,9 +48,21 @@ const Agents = () => {
             </Space>
           </div>
         </section>
-        <section className="bg-white p-4 grid grid-cols-3 rounded-md">
+        <section className="bg-white p-4 grid grid-cols-3 rounded-md gap-x-4">
           <AgentCard
             title="Voice Call"
+            icon="material-symbols-light:call-outline-sharp"
+            description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
+            channels={channels}
+          />
+          <AgentCard
+            title="Text Message"
+            icon="material-symbols-light:call-outline-sharp"
+            description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
+            channels={channels}
+          />
+          <AgentCard
+            title="Whatsapp"
             icon="material-symbols-light:call-outline-sharp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
             channels={channels}
