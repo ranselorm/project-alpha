@@ -48,7 +48,25 @@ const Agents = () => {
             </Space>
           </div>
         </section>
-        <section className="bg-white p-4 grid grid-cols-3 rounded-md gap-x-4">
+        <section className="bg-white p-4 grid grid-cols-3 rounded-md gap-4">
+          <AgentCard
+            title="Voice Call"
+            icon="material-symbols-light:call-outline-sharp"
+            description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
+            channels={channels}
+          />
+          <AgentCard
+            title="Text Message"
+            icon="material-symbols-light:call-outline-sharp"
+            description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
+            channels={channels}
+          />
+          <AgentCard
+            title="Whatsapp"
+            icon="material-symbols-light:call-outline-sharp"
+            description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
+            channels={channels}
+          />
           <AgentCard
             title="Voice Call"
             icon="material-symbols-light:call-outline-sharp"
