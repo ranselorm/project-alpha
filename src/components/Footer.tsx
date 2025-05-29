@@ -1,5 +1,3 @@
-import React from "react";
-
 const Footer = () => {
   return (
     <div className="text-xs flex flex-col lg:flex-row justify-center items-center gap-4 py-4">
