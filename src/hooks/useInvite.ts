@@ -7,14 +7,12 @@ interface InvitePayload {
   phone: string;
 }
 
+const API_URL = `${import.meta.env.VITE_BASE_URL}/invite`;
+
 const sendInvite = async (payload: InvitePayload, token: string) => {
-  const response = await axios.post(
-    "https://yahwe-eita-api-dev.azurewebsites.net/api/invite",
-    payload,
-    {
-      headers: { Authorization: `Bearer ${token}` },
-    }
-  );
+  const response = await axios.post(API_URL, payload, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   return response.data;
 };
 

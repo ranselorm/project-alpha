@@ -4,7 +4,7 @@ import { RootState } from "@/store/store";
 import axios from "axios";
 import { setUsers } from "@/store/userSlice";
 
-const API_URL = "https://yahwe-eita-api-dev.azurewebsites.net/api/users";
+const API_URL = `${import.meta.env.VITE_BASE_URL}/users`;
 
 const fetchUsers = async (token: string) => {
   const response = await axios.get(API_URL, {

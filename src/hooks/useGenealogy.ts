@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
-const API_URL = "https://yahwe-eita-api-dev.azurewebsites.net/api/geneology";
+const API_URL = `${import.meta.env.VITE_BASE_URL}/geneology`;
 
 const fetchGenealogy = async (user_id: string, token: string) => {
   try {

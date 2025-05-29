@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
-const API_URL = "https://yahwe-eita-api-dev.azurewebsites.net/api/invite"; // ✅ Change to correct endpoint
+const API_URL = `${import.meta.env.VITE_BASE_URL}/login/invite`;
 
 const fetchInvitedUsers = async (token: string) => {
   const response = await axios.get(API_URL, {
