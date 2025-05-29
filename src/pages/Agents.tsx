@@ -1,6 +1,9 @@
-import { Input } from "antd";
+import { Input, Select, Space } from "antd";
 
 const Agents = () => {
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
   return (
     <section className="p-4">
       <main className="container mx-auto">
@@ -12,16 +15,29 @@ const Agents = () => {
             Agents
           </p>
         </div>
-        <div className="mx-auto text-center my-5">
-          <Input
-            placeholder="Search for AI Agents here..."
-            className="bg-gray-100 !px-4 !py-2 border-none focus:ring-2 focus:ring-main !rounded-full !w-[50%]"
-          />
-        </div>
-        <section>
-          <div className="bg-white w-full flex justify-between items-center px-4 py-2 rounded-lg ">
-            <div>Showing(21)</div>
-            <div>Name</div>
+
+        <section className="flex items-center justify-between gap-8 my-6">
+          <div className="w-full">
+            <Input
+              placeholder="Search for AI Agents here..."
+              className="bg-gray-100 !px-4 !py-2 border-none focus:ring-2 focus:ring-main !rounded-full !w-[100%]"
+            />
+          </div>
+          <div className="bg-white w-[40%] flex justify-between items-center px-4 py-2 rounded-full">
+            <p className="text-sm">Showing(21)</p>
+            <Space wrap>
+              <Select
+                defaultValue="lucy"
+                style={{ width: 120 }}
+                onChange={handleChange}
+                options={[
+                  { value: "voice", label: "Voice Call" },
+                  { value: "whatsapp", label: "Whatsapp" },
+                  { value: "text", label: "Text Message" },
+                  { value: "disabled", label: "Disabled", disabled: true },
+                ]}
+              />
+            </Space>
           </div>
         </section>
       </main>
