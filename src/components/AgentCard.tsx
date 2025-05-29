@@ -12,7 +12,7 @@ const AgentCard = ({
   channels: any;
 }) => {
   return (
-    <div className="bg-[#f3f4f6] p-4 rounded-md">
+    <div className="bg-[#f3f4f6] p-4 rounded-md -hover:bg-red-400 transform transition-transform duration-300 hover:scale-105">
       <div className="flex gap-x-2  items-center ">
         <div className="rounded-full bg-transparent p-1 flex items-center justify-center border border-main">
           <Icon icon={icon} className="text-xl text-main" />
@@ -21,7 +21,7 @@ const AgentCard = ({
       </div>
       <p className="text-xs my-3">{description}</p>
       <div className="flex items-center gap-x-2">
-        <div className="flex items-center text-main cursor-pointer">
+        <div className="flex items-center justify-center text-main cursor-pointer">
           <Icon icon="iconamoon:like-thin" />
           <p className="text-xs">5</p>
         </div>
