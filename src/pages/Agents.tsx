@@ -1,5 +1,6 @@
 import AgentCard from "@/components/AgentCard";
-import { Input, Select, Space } from "antd";
+import { Input, Select, Space, Button, Drawer } from "antd";
+import { useState } from "react";
 
 const channels = [
   { title: "Voice Call", icon: "material-symbols-light:call-outline-sharp" },
@@ -8,6 +9,16 @@ const channels = [
 ];
 
 const Agents = () => {
+  const [open, setOpen] = useState(false);
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
@@ -54,18 +65,21 @@ const Agents = () => {
             icon="material-symbols-light:call-outline-sharp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
             channels={channels}
+            showDrawer={showDrawer}
           />
           <AgentCard
             title="Text Message"
             icon="material-symbols-light:sms-outline-sharp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
             channels={channels}
+            showDrawer={showDrawer}
           />
           <AgentCard
             title="Whatsapp"
             icon="ic:sharp-whatsapp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
             channels={channels}
+            showDrawer={showDrawer}
           />
 
           <AgentCard
@@ -73,21 +87,34 @@ const Agents = () => {
             icon="material-symbols-light:call-outline-sharp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
             channels={channels}
+            showDrawer={showDrawer}
           />
           <AgentCard
             title="Text Message"
             icon="material-symbols-light:sms-outline-sharp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
             channels={channels}
+            showDrawer={showDrawer}
           />
           <AgentCard
             title="Whatsapp"
             icon="ic:sharp-whatsapp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
             channels={channels}
+            showDrawer={showDrawer}
           />
         </section>
       </main>
+      <Drawer
+        title="Basic Drawer"
+        closable={{ "aria-label": "Close Button" }}
+        onClose={onClose}
+        open={open}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
     </section>
   );
 };

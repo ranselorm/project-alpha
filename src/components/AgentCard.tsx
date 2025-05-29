@@ -5,14 +5,19 @@ const AgentCard = ({
   icon,
   description,
   channels,
+  showDrawer,
 }: {
   title: string;
   icon: string;
   description: string;
   channels: any;
+  showDrawer: () => void;
 }) => {
   return (
-    <div className="bg-[#f3f4f6] p-4 rounded-md -hover:bg-red-400 transform transition-transform duration-300 hover:scale-105">
+    <div
+      className="bg-[#f3f4f6] p-4 rounded-md -hover:bg-red-400 transform transition-transform duration-300 hover:scale-105 cursor-pointer"
+      onClick={showDrawer}
+    >
       <div className="flex gap-x-2  items-center ">
         <div className="rounded-full bg-transparent p-1 flex items-center justify-center border border-main">
           <Icon icon={icon} className="text-xl text-main" />
