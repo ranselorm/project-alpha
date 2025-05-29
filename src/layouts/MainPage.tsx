@@ -14,41 +14,6 @@ const MainPage = () => {
   const navigate = useNavigate();
   useUsers();
 
-  // useEffect(() => {
-  //   const currentDate = new Date();
-
-  //   // Decode and check token expiration
-  //   const token =
-  //     globalState.token && jwtDecode<{ exp: number }>(globalState.token);
-  //   console.log(token, "token");
-
-  //   if (!globalState?.isLoggedIn) {
-  //     console.log("User not logged in, redirecting to login");
-  //     navigate("/login");
-  //   } else if (token && (token.exp ?? 0) * 1000 < currentDate.getTime()) {
-  //     console.log("Token expired, logging out");
-  //     navigate("/login");
-  //   }
-  // }, [globalState.isLoggedIn, navigate]);
-
-  // useEffect(() => {
-  //   const currentDate = new Date();
-
-  //   const token = globalState.token
-  //     ? jwtDecode<{ exp: number }>(globalState.token)
-  //     : null;
-
-  //   console.log(token, "token");
-
-  //   if (
-  //     !globalState?.isLoggedIn ||
-  //     (token && (token.exp ?? 0) * 1000 < currentDate.getTime())
-  //   ) {
-  //     console.log("User not logged in or token expired, redirecting to login");
-  //     navigate("/login");
-  //   }
-  // }, [globalState.isLoggedIn, globalState.token, navigate]);
-
   useEffect(() => {
     const currentDate = new Date();
     const token = globalState.token || localStorage.getItem("token");
