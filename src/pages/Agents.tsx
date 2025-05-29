@@ -1,10 +1,17 @@
 import AgentCard from "@/components/AgentCard";
 import { Input, Select, Space } from "antd";
 
+const channels = [
+  { title: "Voice Call", icon: "material-symbols-light:call-outline-sharp" },
+  { title: "Text Message", icon: "material-symbols-light:sms-outline-rounded" },
+  { title: "Whatsapp", icon: "ic:sharp-whatsapp" },
+];
+
 const Agents = () => {
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
+
   return (
     <section className="p-4">
       <main className="container mx-auto">
@@ -41,11 +48,12 @@ const Agents = () => {
             </Space>
           </div>
         </section>
-        <section className="bg-white p-4 grid grid-cols-3 gap-x-4 rounded-md">
+        <section className="bg-white p-4 grid grid-cols-3 rounded-md">
           <AgentCard
             title="Voice Call"
             icon="material-symbols-light:call-outline-sharp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
+            channels={channels}
           />
         </section>
       </main>
