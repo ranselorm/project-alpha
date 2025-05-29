@@ -37,7 +37,7 @@ const LoginForm = () => {
   };
 
   return (
-    <section className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
+    <section className="flex min-h-screen items-center justify-center bg-gray-100 px-4 flex-col">
       <div className="bg-white shadow-lg rounded-lg flex w-full max-w-md">
         {/* Left Side - Form */}
         <div className="w-full p-8 flex flex-col justify-center mx-auto">
@@ -89,6 +89,16 @@ const LoginForm = () => {
               {loginMutation.isPending ? "Please wait" : "Login"}
             </Button>
           </form>
+        </div>
+      </div>
+      <div className="text-xs flex flex-col lg:flex-row justify-center items-center gap-4 mt-8">
+        <div className="flex gap-x-4 justify-center">
+          <div className="flex items-center">
+            <p className="text-sm">Powered by</p>
+            <div className="w-24 h-auto">
+              <img src="/berth.png" alt="logo" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
