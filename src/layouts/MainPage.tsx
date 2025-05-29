@@ -42,7 +42,7 @@ const MainPage = () => {
           <Outlet />
         </main>
 
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );

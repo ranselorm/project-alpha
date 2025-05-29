@@ -13,11 +13,11 @@ const Agents = () => {
   };
 
   return (
-    <section className="p-4">
+    <section className="">
       <main className="container mx-auto">
         {/* header */}
         <div className="text-center">
-          <h1 className="text-2xl font-semibold mb-2"> AI Agents Directory</h1>
+          <h2 className="text-2xl font-semibold mb-2"> AI Agents Directory</h2>
           <p>
             Your One-Stop Destination to Explore and Learn About Modern AI
             Agents
