@@ -22,13 +22,12 @@ interface DecodedToken {
   picture: string;
 }
 
+const API_URL = `${import.meta.env.VITE_BASE_URL}/login/admin`;
+
 const loginUser = async (
   credentials: LoginCredentials
 ): Promise<LoginResponse> => {
-  const { data } = await axios.post<LoginResponse>(
-    "https://yahwe-eita-api.azurewebsites.net/api/login/admin",
-    credentials
-  );
+  const { data } = await axios.post<LoginResponse>(API_URL, credentials);
   return data;
 };
 
