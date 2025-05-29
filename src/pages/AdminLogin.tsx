@@ -39,7 +39,6 @@ const LoginForm = () => {
   return (
     <section className="flex min-h-screen items-center justify-center bg-gray-100 px-4 flex-col">
       <div className="bg-white shadow-lg rounded-lg flex w-full max-w-md">
-        {/* Left Side - Form */}
         <div className="w-full p-8 flex flex-col justify-center mx-auto">
           <div className="flex items-center justify-center mb-6 w-10 h-10 mx-auto">
             <img src="/icon.png" alt="Logo" />

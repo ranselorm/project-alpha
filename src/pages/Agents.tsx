@@ -57,16 +57,17 @@ const Agents = () => {
           />
           <AgentCard
             title="Text Message"
-            icon="material-symbols-light:call-outline-sharp"
+            icon="material-symbols-light:sms-outline-sharp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
             channels={channels}
           />
           <AgentCard
             title="Whatsapp"
-            icon="material-symbols-light:call-outline-sharp"
+            icon="ic:sharp-whatsapp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
             channels={channels}
           />
+
           <AgentCard
             title="Voice Call"
             icon="material-symbols-light:call-outline-sharp"
@@ -75,13 +76,13 @@ const Agents = () => {
           />
           <AgentCard
             title="Text Message"
-            icon="material-symbols-light:call-outline-sharp"
+            icon="material-symbols-light:sms-outline-sharp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
             channels={channels}
           />
           <AgentCard
             title="Whatsapp"
-            icon="material-symbols-light:call-outline-sharp"
+            icon="ic:sharp-whatsapp"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum explicabo."
             channels={channels}
           />

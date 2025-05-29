@@ -15,7 +15,7 @@ const AgentCard = ({
     <div className="bg-[#f3f4f6] p-4 rounded-md">
       <div className="flex gap-x-2  items-center ">
         <div className="rounded-full bg-transparent p-1 flex items-center justify-center border border-main">
-          <Icon icon={icon} className="text-xl" />
+          <Icon icon={icon} className="text-xl text-main" />
         </div>
         <p className="font-bold">{title}</p>
       </div>
