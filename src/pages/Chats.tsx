@@ -86,8 +86,10 @@ const ChatListItem: React.FC<ChatListItemProps> = ({
   return (
     <div
       onClick={onClick}
-      className={`cursor-pointer px-3 py-1 border-b border-gray-200 flex items-center ${
-        isActive ? "bg-white" : "hover:bg-gray-100"
+      className={`cursor-pointer px-3 py-1 flex items-center ${
+        isActive
+          ? "bg-gray-200 border-l-2 border-main"
+          : "hover:bg-gray-100 border-2 border-transparent"
       }`}
     >
       <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-base font-bold mr-3">
@@ -111,14 +113,14 @@ interface MessageProps {
 const Message: React.FC<MessageProps> = ({ message, isOwn }) => {
   return (
     <div
-      className={`max-w-xs my-2 px-4 py-2 rounded-lg ${
+      className={`max-w-xs my-2 px-4 py-1 rounded-md ${
         isOwn
           ? "bg-main text-white self-end"
           : "bg-gray-200 text-gray-800 self-start"
       }`}
     >
-      <div>{message.text}</div>
-      <div className="text-xs mt-1 text-right">{message.time}</div>
+      <div className="text-sm">{message.text}</div>
+      <div className="text-[10px] mt-1 text-right">{message.time}</div>
     </div>
   );
 };
@@ -130,14 +132,15 @@ interface ConversationProps {
 const Conversation: React.FC<ConversationProps> = ({ chat }) => {
   if (!chat)
     return (
-      <div className="p-6 text-gray-500 bg-white h-[70vh] flex items-center justify-center">
+      <div className="p-6 text-gray-500 bg-white h-[76vh] flex items-center justify-center flex-col">
+        <Icon icon="twemoji:smiling-face" className="text-3xl mb-4" />
         <p>Select a chat to start conversation</p>
       </div>
     );
 
   return (
     <div className="flex flex-col p-6 h-[76vh] bg-white rounded-md">
-      <div className="mb-4 font-bold text-xl border-b pb-2">{chat.name}</div>
+      <div className="font-bold text-xl border-b pb-2">{chat.name}</div>
       <div className="overflow-auto">
         <div className="flex flex-col space-y-1">
           {chat.messages.map((msg) => (
@@ -145,13 +148,13 @@ const Conversation: React.FC<ConversationProps> = ({ chat }) => {
           ))}
         </div>
       </div>
-      <div className="mt-auto pt-4 border-t">
+      <div className="mt-auto border flex items-center justify-center px-4 rounded-md">
         <input
           type="text"
           placeholder="Type your message here"
-          disabled
-          className="w-full p-3 border rounded-md text-gray-400 cursor-not-allowed"
+          className="w-full h-full py-6 border-none focus:outline-none focus:border-none focus:shadow-none"
         />
+        <Icon icon="iconamoon:send-thin" className="text-3xl cursor-pointer" />
       </div>
     </div>
   );
@@ -169,16 +172,18 @@ const Sidebar: React.FC<SidebarProps> = ({
   onSelectChat,
 }) => {
   return (
-    <div className="w-60 border-r border-gray-300 flex flex-col bg-white rounded-md py-4 h-[76vh] overflow-auto">
+    <div className="w-60 flex flex-col bg-white rounded-md py-4 h-[76vh] overflow-auto">
       <div className="text-center mx-auto w-full">
-        {/* <Icon
-          icon="material-symbols-light:search-rounded"
-          className="absolute right-3 cursor-pointer size-5 text-main"
-        /> */}
-        <Input
-          placeholder="Search"
-          className="bg-white !px-4 !py-1 border-none focus:ring-2 focus:ring-red-500 !rounded-md !w-[90%] !text-sm placeholder:text-sm"
-        />
+        <div className="w-[90%] bg-grey rounded-full relative flex items-center px-4 mx-auto">
+          <Icon
+            icon="material-symbols-light:search-rounded"
+            className="absolute right-3 cursor-pointer size-5 text-main"
+          />
+          <input
+            className="h-full py-2 focus:ring-0 focus:outline-none text-xs w-[300px] placeholder:text-main"
+            placeholder="Search"
+          />
+        </div>
       </div>
       <div className="overflow-y-auto flex-grow mt-8">
         {chats.map((chat) => (
@@ -199,8 +204,8 @@ const Chat: React.FC = () => {
   const activeChat = chatsData.find((c) => c.id === activeChatId) ?? null;
 
   return (
-    <section className="px-4 rounded-md">
-      <div className="container mx-auto border border-red-400">
+    <section className="rounded-md">
+      <div className="container mx-auto">
         <h1 className="text-2xl font-semibold mb-2">Inbox</h1>
 
         <div className="flex gap-x-4">
