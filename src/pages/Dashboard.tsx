@@ -40,13 +40,13 @@ const Dashboard = () => {
         <section className="flex gap-x-4 items-center justify-center my-8">
           <div className="md:w-4/6 h-full">
             <p className="mb-4">Weekly New Users</p>
-            <div className="bg-white shadow-md rounded-lg p-4 h-96">
+            <div className="bg-white rounded-lg p-4 h-96">
               <BarChat />
             </div>
           </div>
           <div className="md:w-2/6 h-full">
             <p className="mb-4">Daily New Users</p>
-            <div className="bg-white h-96 shadow-md rounded-lg p-4 flex items-center justify-center">
+            <div className="bg-white h-96 rounded-lg p-4 flex items-center justify-center">
               <Example />
             </div>
           </div>
