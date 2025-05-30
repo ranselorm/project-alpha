@@ -3,13 +3,29 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import RBACForm from "@/components/Rbac";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { Modal } from "antd";
 
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState("Account Information");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState<
+    "profile" | "personal" | "none"
+  >("none");
+
+  const openModal = (content: "profile" | "personal") => {
+    setModalContent(content);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    setModalContent("none");
+  };
 
   return (
-    <div className="p-4">
-      <div className="rounded-lg overflow-hidden container mx-auto bg-white p-4">
+    <div className="p-4 bg-gray-50 min-h-screen">
+      <div className="rounded-lg overflow-hidden container mx-auto bg-white p-6 shadow-md max-w-5xl">
+        {/* Tabs */}
         <div className="flex space-x-6 border-b border-gray-300 pb-3 bg-white">
           {[
             "Account Information",
@@ -22,7 +38,7 @@ const SettingsPage = () => {
               onClick={() => setActiveTab(tab)}
               className={`p-2 cursor-pointer hover:text-black transition ${
                 activeTab === tab
-                  ? "border-b-2 border-main text-main"
+                  ? "border-b-2 border-main text-main font-semibold"
                   : "text-gray-600"
               }`}
             >
@@ -31,20 +47,19 @@ const SettingsPage = () => {
           ))}
         </div>
 
+        {/* Tab Contents */}
         <div className="py-6">
           {activeTab === "Account Information" && (
-            <div className="">
-              <div className="flex items-center justify-between space-x-4 p-2 border border-gray-300 rounded-md">
-                <div className="flex items-center justify-between space-x-4">
+            <>
+              {/* Profile Header */}
+              <div className="flex items-center justify-between space-x-4 p-4 border border-gray-300 rounded-md">
+                <div className="flex items-center space-x-4">
                   <div className="relative">
                     <img
                       src="/profile.jpg"
                       alt="Profile"
                       className="w-20 h-20 rounded-full object-cover"
                     />
-                    <button className="absolute bottom-1 right-1 bg-blue-500 text-white p-1 h-4 w-4 rounded-full text-[10px] flex items-center justify-center">
-                      ✎
-                    </button>
                   </div>
                   <div>
                     <h2 className="text-lg font-semibold">Charlene Randy</h2>
@@ -56,71 +71,96 @@ const SettingsPage = () => {
                 <Icon
                   icon="cuida:edit-outline"
                   className="text-2xl text-main cursor-pointer"
+                  onClick={() => openModal("profile")}
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-8 mt-6">
-                <div>
-                  <label className="block text-sm">Your Name</label>
-                  <Input
-                    placeholder="Charlene Randy"
-                    className="focus-visible:ring-0"
+              {/* Personal Information */}
+              <div className="mt-6 border border-gray-300 p-4 rounded-md">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="font-bold text-lg">Personal Information</h3>
+                  <Icon
+                    icon="cuida:edit-outline"
+                    className="text-2xl text-main cursor-pointer"
+                    onClick={() => openModal("personal")}
                   />
                 </div>
-                <div>
-                  <label className="block text-sm">User Name</label>
-                  <Input
-                    placeholder="Charlene Randy"
-                    className="focus-visible:ring-0"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm">Email</label>
-                  <Input
-                    placeholder="charlenerandy@gmail.com"
-                    className="focus-visible:ring-0"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm">Password</label>
-                  <Input
-                    type="password"
-                    placeholder="********"
-                    className="focus-visible:ring-0"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm">Date of Birth</label>
-                  <Input
-                    placeholder="25 January 1990"
-                    className="focus-visible:ring-0"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm">Present Address</label>
-                  <Input
-                    placeholder="American St. USA"
-                    className="focus-visible:ring-0"
-                  />
-                </div>
-              </div>
 
-              <div className="mt-6 flex justify-end">
-                <Button className="w-max bg-main transition-all duration-150 text-white cursor-pointer px-12">
-                  Save
-                </Button>
+                <div className="grid grid-cols-2 gap-x-8 gap-y-6 max-w-xl">
+                  <div>
+                    <p className="mb-1 font-medium text-gray-400 text-sm">
+                      First Name
+                    </p>
+                    <p className="">Randy</p>
+                  </div>
+                  <div>
+                    <p className="mb-1 font-medium text-gray-400">Last Name</p>
+                    <p className="">Selorm</p>
+                  </div>
+                  <div>
+                    <p className="mb-1 font-medium text-gray-400 text-sm">
+                      Email Address
+                    </p>
+                    <p>randy@gmail.com</p>
+                  </div>
+                  <div>
+                    <p className="mb-1 font-medium">Phone</p>
+                    <p>+233 555 1234</p>
+                  </div>
+                  <div className="col-span-2">
+                    <p className="mb-1 font-medium text-gray-400">Bio</p>
+                    <p>Product Designer</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            </>
           )}
 
           {activeTab === "Billing Information" && (
-            <div>hello billing information</div>
+            <div className="text-gray-700">hello billing information</div>
           )}
 
           {activeTab === "Roles" && <RBACForm />}
-          {activeTab === "Train Agent" && <div>hello agent information</div>}
+
+          {activeTab === "Train Agent" && (
+            <div className="text-gray-700">hello agent information</div>
+          )}
         </div>
       </div>
+
+      {/* Modal */}
+      <Modal
+        title={
+          modalContent === "profile"
+            ? "Edit Profile"
+            : modalContent === "personal"
+            ? "Edit Personal Information"
+            : ""
+        }
+        visible={modalVisible}
+        onCancel={closeModal}
+        footer={[
+          <Button
+            key="close"
+            onClick={closeModal}
+            className="bg-main text-white"
+          >
+            Close
+          </Button>,
+        ]}
+      >
+        {modalContent === "profile" && (
+          <div>
+            <p>This is where you would edit profile info.</p>
+          </div>
+        )}
+
+        {modalContent === "personal" && (
+          <div>
+            <p>This is where you would edit personal information.</p>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };
