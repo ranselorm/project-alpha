@@ -22,7 +22,7 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="p-4 bg-gray-50 min-h-screen">
+    <div className="p-4 min-h-screen">
       <div className="rounded-lg overflow-hidden container mx-auto bg-white p-6 max-w-5xl">
         {/* Tabs */}
         <div className="flex space-x-6 border-b border-gray-300 pb-3 bg-white">

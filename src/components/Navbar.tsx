@@ -10,7 +10,7 @@ type NavbarProps = {
 const Navbar = ({ toggleSidebar }: NavbarProps) => {
   // const user = useSelector((state: RootState) => state.user.user);
   return (
-    <nav className="bg-white border-b flex items-center">
+    <nav className="bg-white border-b flex items-center ">
       <div className="container mx-auto p-4">
         <button
           onClick={toggleSidebar}
