@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import RBACForm from "@/components/Rbac";
 
 const SettingsPage = () => {
-  const [activeTab, setActiveTab] = useState("Edit Profile");
+  const [activeTab, setActiveTab] = useState("Account Information");
 
   return (
     <div className="p-4">
