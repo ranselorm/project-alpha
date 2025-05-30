@@ -1,8 +1,6 @@
 import BarChat from "@/components/BarChat";
 import Card from "@/components/Card";
-import LineChart from "@/components/LineChart";
 import Example from "@/components/Pie";
-import PieChart from "@/components/PieChart";
 import TransactionsTable from "@/components/TransactionsTable";
 
 const Dashboard = () => {
@@ -43,17 +41,12 @@ const Dashboard = () => {
           <div className="md:w-4/6 h-full">
             <p className="mb-4">Weekly New Users</p>
             <div className="bg-white shadow-md rounded-lg p-4 h-96">
-              {/* <LineChart
-                labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
-                data={[10, 30, 20, 40, 60, 50, 90]}
-              /> */}
               <BarChat />
             </div>
           </div>
           <div className="md:w-2/6 h-full">
             <p className="mb-4">Daily New Users</p>
             <div className="bg-white h-96 shadow-md rounded-lg p-4 flex items-center justify-center">
-              {/* <PieChart data={[30, 25, 20, 15, 10]} /> */}
               <Example />
             </div>
           </div>
