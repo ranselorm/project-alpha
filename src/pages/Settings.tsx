@@ -2,7 +2,96 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import RBACForm from "@/components/Rbac";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Modal } from "antd";
+import { Modal, Table } from "antd";
+
+const data = [
+  {
+    key: "1",
+    invoice: "Invoice #005",
+    plan: "Basic Plan",
+    amount: "11 USD",
+    status: "Paid",
+    date: "1 December 2020",
+  },
+  {
+    key: "2",
+    invoice: "Invoice #004",
+    plan: "Basic Plan",
+    amount: "11 USD",
+    status: "Paid",
+    date: "1 November 2020",
+  },
+  {
+    key: "3",
+    invoice: "Invoice #003",
+    plan: "Basic Plan",
+    amount: "11 USD",
+    status: "Paid",
+    date: "1 October 2020",
+  },
+  {
+    key: "4",
+    invoice: "Invoice #002",
+    plan: "Basic Plan",
+    amount: "11 USD",
+    status: "Paid",
+    date: "1 September 2020",
+  },
+  {
+    key: "5",
+    invoice: "Invoice #001",
+    plan: "Basic Plan",
+    amount: "11 USD",
+    status: "Paid",
+    date: "1 August 2020",
+  },
+];
+
+const columns = [
+  {
+    title: "INVOICE",
+    dataIndex: "invoice",
+    key: "invoice",
+    render: (_: any, record: any) => (
+      <div>
+        <div className="font-semibold">{record.invoice}</div>
+        <div className="text-xs text-gray-500">{record.plan}</div>
+      </div>
+    ),
+  },
+  {
+    title: "AMOUNT",
+    dataIndex: "amount",
+    key: "amount",
+    width: 100,
+  },
+  {
+    title: "STATUS",
+    dataIndex: "status",
+    key: "status",
+    width: 100,
+    render: (status: string) => (
+      <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs">
+        {status}
+      </span>
+    ),
+  },
+  {
+    title: "DATE",
+    dataIndex: "date",
+    key: "date",
+    width: 140,
+  },
+  {
+    title: "",
+    key: "action",
+    render: () => (
+      <a className="text-purple-700 font-semibold hover:underline" href="#">
+        View invoice →
+      </a>
+    ),
+  },
+];
 
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState("Account Information");
@@ -25,7 +114,7 @@ const SettingsPage = () => {
     <div className="p-4 min-h-screen">
       <div className="rounded-lg overflow-hidden container mx-auto bg-white p-6 max-w-5xl">
         {/* Tabs */}
-        <div className="flex space-x-6 border-b border-gray-300 pb-3 bg-white">
+        <div className="flex space-x-6 pb-3 bg-white">
           {[
             "Account Information",
             "Billing Information",
@@ -103,7 +192,9 @@ const SettingsPage = () => {
                     <p>randy@gmail.com</p>
                   </div>
                   <div>
-                    <p className="mb-1 font-medium">Phone</p>
+                    <p className="mb-1 font-medium text-sm text-gray-400">
+                      Phone
+                    </p>
                     <p>+233 555 1234</p>
                   </div>
                   <div className="col-span-2">
@@ -116,7 +207,72 @@ const SettingsPage = () => {
           )}
 
           {activeTab === "Billing Information" && (
-            <div className="text-gray-700">hello billing information</div>
+            <div className="p-6 max-w-5xl mx-auto">
+              <h2 className="text-xl font-semibold mb-6">Billing details</h2>
+
+              <div className="flex flex-wrap gap-6 mb-10">
+                <div className="flex-1 min-w-[280px] p-6 bg-white rounded shadow border border-gray-100">
+                  <div className="flex justify-between items-center mb-2">
+                    <div className="font-semibold flex items-center gap-2">
+                      Explorer plan
+                      <span className="text-xs bg-teal-100 text-teal-600 px-2 py-0.5 rounded-full font-medium">
+                        Monthly
+                      </span>
+                    </div>
+                    <div className="text-3xl font-bold">$100</div>
+                  </div>
+                  <div className="text-sm text-gray-400 mb-4">per month</div>
+                  <div className="text-xs mb-1">3 out of 5 users</div>
+                  <div className="w-full h-2 rounded-full bg-gray-200 mb-2">
+                    <div
+                      className="h-2 rounded-full bg-purple-600"
+                      style={{ width: "60%" }}
+                    />
+                  </div>
+                  <button className="text-xs text-teal-500 hover:text-teal-700 font-semibold">
+                    Upgrade plan &rarr;
+                  </button>
+                </div>
+
+                <div className="flex-1 min-w-[280px] p-6 bg-white rounded shadow border border-gray-100">
+                  <div className="font-semibold mb-2">Payment method</div>
+                  <div className="text-xs text-gray-400 mb-4">
+                    You can edit your card details here.
+                  </div>
+                  <div className="flex items-center gap-4 border border-gray-200 rounded-md p-3">
+                    <div className="bg-blue-600 text-white px-3 py-1 rounded font-semibold text-sm">
+                      VISA
+                    </div>
+                    <div>
+                      <div className="text-gray-800">Visa ending in 1234</div>
+                      <div className="text-xs text-gray-400">
+                        Expiry 06/2024
+                      </div>
+                    </div>
+                    <button
+                      aria-label="Edit payment method"
+                      className="ml-auto p-1 text-gray-600 hover:text-gray-900 focus:outline-none border border-gray-300 rounded"
+                    >
+                      ✎
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-4 text-gray-900">
+                  Billing history
+                </h3>
+                <Table
+                  columns={columns}
+                  dataSource={data}
+                  pagination={false}
+                  bordered={false}
+                  rowClassName={() => "border-b border-gray-100"}
+                  className="ant-table-small"
+                />
+              </div>
+            </div>
           )}
 
           {activeTab === "Roles" && <RBACForm />}
