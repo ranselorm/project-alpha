@@ -209,15 +209,15 @@ const SettingsPage = () => {
           {/* billing information */}
 
           {activeTab === "Billing Information" && (
-            <div className="container mx-auto bg-gray-100">
+            <div className="container mx-auto">
               <h2 className="text-xl font-semibold mb-6">Billing details</h2>
 
               <div className="flex flex-wrap gap-6 mb-10">
-                <div className="flex-1 min-w-[280px]">
+                <div className="flex-1 min-w-[280px] bg-white p-6 rounded-md">
                   <div className="flex justify-between items-center mb-2">
                     <div className="font-semibold flex items-center gap-2">
                       Explorer plan
-                      <span className="text-xs bg-teal-100 text-teal-600 px-2 py-0.5 rounded-full font-medium">
+                      <span className="text-xs border border-main text-main px-2 py-0.5 rounded-full font-medium">
                         Monthly
                       </span>
                     </div>
@@ -227,13 +227,15 @@ const SettingsPage = () => {
                   <div className="text-xs mb-1">3 out of 5 users</div>
                   <div className="w-full h-2 rounded-full bg-gray-200 mb-2">
                     <div
-                      className="h-2 rounded-full bg-purple-600"
+                      className="h-2 rounded-full bg-main"
                       style={{ width: "60%" }}
                     />
                   </div>
-                  <button className="text-xs text-teal-500 hover:text-teal-700 font-semibold">
-                    Upgrade plan &rarr;
-                  </button>
+                  <div className="flex justify-end mt-5">
+                    <button className="text-xs text-main hover:text-black font-semibold cursor-pointer transition-all duration-150">
+                      Upgrade plan &rarr;
+                    </button>
+                  </div>
                 </div>
 
                 <div className="flex-1 min-w-[280px] p-6 bg-white rounded shadow border border-gray-100">
