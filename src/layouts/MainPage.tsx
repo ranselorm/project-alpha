@@ -38,7 +38,7 @@ const MainPage = () => {
       <div className="flex-1 flex flex-col overflow-y-auto">
         <Navbar />
 
-        <main className="flex-grow p-4">
+        <main className="flex-grow p-4" id="scrollable-content">
           <Outlet />
         </main>
 

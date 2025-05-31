@@ -148,15 +148,15 @@ const SettingsPage = () => {
                 <div className="flex items-center space-x-4">
                   <div className="relative">
                     <img
-                      src="/profile.jpg"
+                      src="https://images.squarespace-cdn.com/content/v1/5e55243ba20fd3781edfa8ef/1730910582143-I3Y15WVRFS2QIQXU62OM/Atikur+Rahman+UK+Passport+Photo.jpg?format=500w"
                       alt="Profile"
                       className="w-20 h-20 rounded-full object-cover"
                     />
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold">Charlene Randy</h2>
+                    <h2 className="text-lg font-semibold">Selorm</h2>
                     <p className="text-sm text-gray-500">
-                      charlenerandy@gmail.com
+                      randyselorm@gmail.com
                     </p>
                   </div>
                 </div>

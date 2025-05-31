@@ -51,10 +51,10 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
-        <div>
+        {/* <div>
           <p className="mb-4">Recent Transactions</p>
           <TransactionsTable />
-        </div>
+        </div> */}
       </div>
     </main>
   );
