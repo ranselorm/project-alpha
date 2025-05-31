@@ -52,26 +52,35 @@ const columns = [
     title: "INVOICE",
     dataIndex: "invoice",
     key: "invoice",
-    render: (_: any, record: any) => (
-      <div>
-        <div className="font-semibold">{record.invoice}</div>
-        <div className="text-xs text-gray-500">{record.plan}</div>
-      </div>
+    render: (text: string, record: any) => (
+      <>
+        <a>{text}</a>
+        <div style={{ fontSize: 12, color: "#888" }}>{record.plan}</div>
+      </>
     ),
   },
   {
     title: "AMOUNT",
     dataIndex: "amount",
     key: "amount",
-    width: 100,
   },
   {
     title: "STATUS",
     dataIndex: "status",
     key: "status",
-    width: 100,
     render: (status: string) => (
-      <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs">
+      <span
+        style={{
+          backgroundColor: "#d9f7be",
+          color: "#389e0d",
+          padding: "0 8px",
+          borderRadius: 8,
+          fontSize: 12,
+          display: "inline-block",
+          minWidth: 40,
+          textAlign: "center",
+        }}
+      >
         {status}
       </span>
     ),
@@ -80,16 +89,9 @@ const columns = [
     title: "DATE",
     dataIndex: "date",
     key: "date",
-    width: 140,
   },
   {
-    title: "",
-    key: "action",
-    render: () => (
-      <a className="text-purple-700 font-semibold hover:underline" href="#">
-        View invoice →
-      </a>
-    ),
+    render: () => <a style={{ color: "#722ed1" }}>View invoice →</a>,
   },
 ];
 
@@ -97,10 +99,10 @@ const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState("Account Information");
   const [modalVisible, setModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState<
-    "profile" | "personal" | "none"
+    "profile" | "personal" | "billing" | "none"
   >("none");
 
-  const openModal = (content: "profile" | "personal") => {
+  const openModal = (content: "profile" | "personal" | "billing") => {
     setModalContent(content);
     setModalVisible(true);
   };
@@ -111,7 +113,7 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <div className="rounded-lg overflow-hidden container mx-auto">
         {/* Tabs */}
         <div className="flex space-x-6 pb-3">
@@ -179,11 +181,11 @@ const SettingsPage = () => {
                     <p className="mb-1 font-medium text-gray-400 text-sm">
                       First Name
                     </p>
-                    <p className="">Randy</p>
+                    <p>Randy</p>
                   </div>
                   <div>
                     <p className="mb-1 font-medium text-gray-400">Last Name</p>
-                    <p className="">Selorm</p>
+                    <p>Selorm</p>
                   </div>
                   <div>
                     <p className="mb-1 font-medium text-gray-400 text-sm">
@@ -205,8 +207,6 @@ const SettingsPage = () => {
               </div>
             </>
           )}
-
-          {/* billing information */}
 
           {activeTab === "Billing Information" && (
             <div className="container mx-auto">
@@ -238,7 +238,7 @@ const SettingsPage = () => {
                   </div>
                 </div>
 
-                <div className="flex-1 min-w-[280px] p-6 bg-white rounded shadow border border-gray-100">
+                <div className="flex-1 min-w-[280px] p-6 bg-white rounded-md">
                   <div className="font-semibold mb-2">Payment method</div>
                   <div className="text-xs text-gray-400 mb-4">
                     You can edit your card details here.
@@ -248,17 +248,18 @@ const SettingsPage = () => {
                       VISA
                     </div>
                     <div>
-                      <div className="text-gray-800">Visa ending in 1234</div>
+                      <div className="text-gray-800">
+                        Visa ending in ****123
+                      </div>
                       <div className="text-xs text-gray-400">
-                        Expiry 06/2024
+                        Expiry 06/2028
                       </div>
                     </div>
-                    <button
-                      aria-label="Edit payment method"
-                      className="ml-auto p-1 text-gray-600 hover:text-gray-900 focus:outline-none border border-gray-300 rounded"
-                    >
-                      ✎
-                    </button>
+                    <Icon
+                      icon="cuida:edit-outline"
+                      className="text-2xl text-main cursor-pointer ml-auto"
+                      onClick={() => openModal("billing")}
+                    />
                   </div>
                 </div>
               </div>
@@ -267,14 +268,7 @@ const SettingsPage = () => {
                 <h3 className="font-semibold mb-4 text-gray-900">
                   Billing history
                 </h3>
-                <Table
-                  columns={columns}
-                  dataSource={data}
-                  pagination={false}
-                  bordered={false}
-                  rowClassName={() => "border-b border-gray-100"}
-                  className="ant-table-small"
-                />
+                <Table columns={columns} dataSource={data} pagination={false} />
               </div>
             </div>
           )}
@@ -294,6 +288,8 @@ const SettingsPage = () => {
             ? "Edit Profile"
             : modalContent === "personal"
             ? "Edit Personal Information"
+            : modalContent === "billing"
+            ? "Edit Billing Information"
             : ""
         }
         visible={modalVisible}
@@ -317,6 +313,12 @@ const SettingsPage = () => {
         {modalContent === "personal" && (
           <div>
             <p>This is where you would edit personal information.</p>
+          </div>
+        )}
+
+        {modalContent === "billing" && (
+          <div>
+            <p>This is where you would edit billing information.</p>
           </div>
         )}
       </Modal>
