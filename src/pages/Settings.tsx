@@ -68,21 +68,26 @@ const columns = [
     title: "STATUS",
     dataIndex: "status",
     key: "status",
+
     render: (status: string) => (
-      <span
-        style={{
-          backgroundColor: "#d9f7be",
-          color: "#389e0d",
-          padding: "4px",
-          borderRadius: 50,
-          fontSize: 12,
-          display: "inline-block",
-          minWidth: 40,
-          textAlign: "center",
-        }}
-      >
-        {status}
-      </span>
+      <div>
+        <span
+          style={{
+            backgroundColor: "#d9f7be",
+            color: "#389e0d",
+            padding: "4px",
+            borderRadius: 50,
+            fontSize: 12,
+            display: "inline-block",
+            minWidth: 40,
+            textAlign: "center",
+          }}
+        >
+          <span style={{ backgroundColor: "#000", height: 390, width: 390 }} />
+
+          {status}
+        </span>
+      </div>
     ),
   },
   {
@@ -91,9 +96,7 @@ const columns = [
     key: "date",
   },
   {
-    render: () => (
-      <a style={{ color: "#000", fontWeight: "bold" }}>View invoice →</a>
-    ),
+    render: () => <a style={{ color: "#000" }}>View invoice →</a>,
   },
 ];
 
