@@ -54,7 +54,7 @@ const columns = [
     key: "invoice",
     render: (text: string, record: any) => (
       <>
-        <a>{text}</a>
+        <p style={{ color: "black", fontWeight: "semibold" }}>{text}</p>
         <div style={{ fontSize: 12, color: "#888" }}>{record.plan}</div>
       </>
     ),
@@ -73,8 +73,8 @@ const columns = [
         style={{
           backgroundColor: "#d9f7be",
           color: "#389e0d",
-          padding: "0 8px",
-          borderRadius: 8,
+          padding: "4px",
+          borderRadius: 50,
           fontSize: 12,
           display: "inline-block",
           minWidth: 40,
@@ -91,7 +91,9 @@ const columns = [
     key: "date",
   },
   {
-    render: () => <a style={{ color: "#722ed1" }}>View invoice →</a>,
+    render: () => (
+      <a style={{ color: "#000", fontWeight: "bold" }}>View invoice →</a>
+    ),
   },
 ];
 
