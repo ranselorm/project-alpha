@@ -24,7 +24,7 @@ const Agents = () => {
   };
 
   return (
-    <section className="">
+    <section className="py-2">
       <main className="container mx-auto">
         {/* header */}
         <div className="text-center">

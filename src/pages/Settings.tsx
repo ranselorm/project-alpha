@@ -111,10 +111,10 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="p-4 min-h-screen">
-      <div className="rounded-lg overflow-hidden container mx-auto bg-white p-6 max-w-5xl">
+    <div className="">
+      <div className="rounded-lg overflow-hidden container mx-auto">
         {/* Tabs */}
-        <div className="flex space-x-6 pb-3 bg-white">
+        <div className="flex space-x-6 pb-3">
           {[
             "Account Information",
             "Billing Information",
@@ -136,11 +136,11 @@ const SettingsPage = () => {
         </div>
 
         {/* Tab Contents */}
-        <div className="py-6">
+        <div className="py-4">
           {activeTab === "Account Information" && (
             <>
               {/* Profile Header */}
-              <div className="flex items-center justify-between space-x-4 p-4 border border-gray-300 rounded-md">
+              <div className="flex items-center justify-between space-x-4 p-4 bg-white rounded-md">
                 <div className="flex items-center space-x-4">
                   <div className="relative">
                     <img
@@ -164,7 +164,7 @@ const SettingsPage = () => {
               </div>
 
               {/* Personal Information */}
-              <div className="mt-6 border border-gray-300 p-4 rounded-md">
+              <div className="mt-6 border bg-white p-4 rounded-md">
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="font-bold text-lg">Personal Information</h3>
                   <Icon
@@ -206,12 +206,14 @@ const SettingsPage = () => {
             </>
           )}
 
+          {/* billing information */}
+
           {activeTab === "Billing Information" && (
-            <div className="p-6 max-w-5xl mx-auto">
+            <div className="container mx-auto bg-gray-100">
               <h2 className="text-xl font-semibold mb-6">Billing details</h2>
 
               <div className="flex flex-wrap gap-6 mb-10">
-                <div className="flex-1 min-w-[280px] p-6 bg-white rounded shadow border border-gray-100">
+                <div className="flex-1 min-w-[280px]">
                   <div className="flex justify-between items-center mb-2">
                     <div className="font-semibold flex items-center gap-2">
                       Explorer plan
