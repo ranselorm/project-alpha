@@ -70,23 +70,19 @@ const columns = [
     key: "status",
 
     render: (status: string) => (
-      <div>
-        <span
-          style={{
-            backgroundColor: "#d9f7be",
-            color: "#389e0d",
-            padding: "4px",
-            borderRadius: 50,
-            fontSize: 12,
-            display: "inline-block",
-            minWidth: 40,
-            textAlign: "center",
-          }}
-        >
-          <span style={{ backgroundColor: "#000", height: 390, width: 390 }} />
-
-          {status}
-        </span>
+      <div
+        style={{
+          backgroundColor: "#d9f7be",
+          color: "#389e0d",
+          padding: "4px",
+          borderRadius: 50,
+          fontSize: 12,
+          display: "inline-block",
+          minWidth: 40,
+          textAlign: "center",
+        }}
+      >
+        {status}
       </div>
     ),
   },
@@ -215,7 +211,9 @@ const SettingsPage = () => {
 
           {activeTab === "Billing Information" && (
             <div className="container mx-auto">
-              <h2 className="text-xl font-semibold mb-6">Billing details</h2>
+              <h2 className="font-semibold mb-4 text-gray-900">
+                Billing details
+              </h2>
 
               <div className="flex flex-wrap gap-6 mb-10">
                 <div className="flex-1 min-w-[280px] bg-white p-6 rounded-md">
