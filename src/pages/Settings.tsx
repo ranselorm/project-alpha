@@ -202,6 +202,54 @@ const SettingsPage = () => {
                     <p>This is the information about the business</p>
                   </div>
                 </div>
+                {/* uploads */}
+                <div>
+                  <div className="mt-8">
+                    <p className="mb-1 font-medium text-gray-400 text-sm">
+                      Upload Document 1
+                    </p>
+                    <div className="border border-gray-400 rounded-md w-full py-12 border-dashed text-center mx-auto bg-gray-100 flex items-center justify-center flex-col gap-2">
+                      <Icon
+                        icon="mdi:files"
+                        className="text-gray-600 text-[40px]"
+                      />
+                      <p className="font-semibold mt-4">
+                        Drag & drop files here or <br />
+                        <span className="text-main">browse</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-8">
+                    <p className="mb-1 font-medium text-gray-400 text-sm">
+                      Upload Document 2
+                    </p>
+                    <div className="border border-gray-400 rounded-md w-full py-12 border-dashed text-center mx-auto bg-gray-100 flex items-center justify-center flex-col gap-2">
+                      <Icon
+                        icon="mdi:files"
+                        className="text-gray-600 text-[40px]"
+                      />
+                      <p className="font-semibold mt-4">
+                        Drag & drop files here or <br />
+                        <span className="text-main">browse</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-8">
+                    <p className="mb-1 font-medium text-gray-400 text-sm">
+                      Upload Document 3
+                    </p>
+                    <div className="border border-gray-400 rounded-md w-full py-12 border-dashed text-center mx-auto bg-gray-100 flex items-center justify-center flex-col gap-2">
+                      <Icon
+                        icon="mdi:files"
+                        className="text-gray-600 text-[40px]"
+                      />
+                      <p className="font-semibold mt-4">
+                        Drag & drop files here or <br />
+                        <span className="text-main">browse</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Personal Information */}
@@ -239,8 +287,8 @@ const SettingsPage = () => {
                     <p>+233 555 1234</p>
                   </div>
                   <div className="col-span-2">
-                    <p className="mb-1 font-medium text-gray-400">Bio</p>
-                    <p>Product Designer</p>
+                    <p className="mb-1 font-medium text-gray-400">Role</p>
+                    <p>Admin</p>
                   </div>
                 </div>
               </div>
