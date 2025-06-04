@@ -323,16 +323,20 @@ const SettingsPage = () => {
                   </div>
 
                   <div className="col-span-2">
-                    <p className="mb-1 font-medium text-gray-400">Bio</p>
+                    <p className="mb-1 font-medium text-gray-400">
+                      About the business
+                    </p>
                     <p>This is the information about the business</p>
                   </div>
                 </div>
 
-                {/* ――― Upload Documents Grid ――― */}
-                <div className="grid grid-cols-3 gap-6 mt-8">
+                <p className="mt-8 mb-3">Upload Documents</p>
+
+                {/* Upload Documents */}
+                <div className="grid grid-cols-3 gap-6">
                   <div>
                     <p className="mb-1 font-medium text-gray-400 text-sm">
-                      Upload Document 1
+                      Business Registration
                     </p>
 
                     {file1 ? (
@@ -398,11 +402,10 @@ const SettingsPage = () => {
                       </ul>
                     )}
                   </div>
-
-                  {/* ================= Document 2 ================= */}
+                  {/* document2 */}
                   <div>
                     <p className="mb-1 font-medium text-gray-400 text-sm">
-                      Upload Document 2
+                      National ID (e.g. Passport, Ghana Card)
                     </p>
 
                     {file2 ? (
@@ -465,11 +468,10 @@ const SettingsPage = () => {
                       </ul>
                     )}
                   </div>
-
-                  {/* ================= Document 3 ================= */}
+                  {/* Document3 */}
                   <div>
                     <p className="mb-1 font-medium text-gray-400 text-sm">
-                      Upload Document 3
+                      Business Logo
                     </p>
 
                     {file3 ? (
