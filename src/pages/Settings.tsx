@@ -340,11 +340,9 @@ const SettingsPage = () => {
                     </p>
 
                     {file1 ? (
-                      /* Entire box replaced by file+preview */
                       <div
                         className={`bg-gray-100 border border-gray-400 rounded-md ${BOX_HEIGHT} flex flex-col`}
                       >
-                        {/* Top row: filename + remove icon */}
                         <div className="flex items-center justify-between px-4 py-2 border-b border-gray-300">
                           <p className="text-sm text-gray-700 truncate">
                             {file1.name}
@@ -355,7 +353,6 @@ const SettingsPage = () => {
                             onClick={() => setFile1(null)}
                           />
                         </div>
-                        {/* Bottom row: inline PDF preview, scrolling if needed */}
                         <div className="flex-1 overflow-auto">
                           <iframe
                             src={file1PreviewUrl}
@@ -365,7 +362,6 @@ const SettingsPage = () => {
                         </div>
                       </div>
                     ) : (
-                      /* Dropzone area when no file is chosen */
                       <div
                         {...getRootProps1()}
                         className={`border border-gray-400 rounded-md ${BOX_HEIGHT} border-dashed bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
