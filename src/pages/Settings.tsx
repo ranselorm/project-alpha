@@ -105,9 +105,7 @@ const SettingsPage = () => {
     "profile" | "personal" | "billing" | "none"
   >("none");
 
-  // ===========================================================================
   // State for each uploaded PDF + preview URL
-  // ===========================================================================
   const [file1, setFile1] = useState<File | null>(null);
   const [file1PreviewUrl, setFile1PreviewUrl] = useState<string>("");
 
@@ -117,9 +115,7 @@ const SettingsPage = () => {
   const [file3, setFile3] = useState<File | null>(null);
   const [file3PreviewUrl, setFile3PreviewUrl] = useState<string>("");
 
-  // ===========================================================================
   // Dropzone #1 (Upload Document 1)
-  // ===========================================================================
   const onDrop1 = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       setFile1(acceptedFiles[0]);
@@ -151,9 +147,7 @@ const SettingsPage = () => {
     };
   }, [file1]);
 
-  // ===========================================================================
   // Dropzone #2 (Upload Document 2)
-  // ===========================================================================
   const onDrop2 = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       setFile2(acceptedFiles[0]);
@@ -185,9 +179,7 @@ const SettingsPage = () => {
     };
   }, [file2]);
 
-  // ===========================================================================
   // Dropzone #3 (Upload Document 3)
-  // ===========================================================================
   const onDrop3 = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       setFile3(acceptedFiles[0]);
@@ -219,9 +211,7 @@ const SettingsPage = () => {
     };
   }, [file3]);
 
-  // ===========================================================================
-  // Modal logic
-  // ===========================================================================
+  // Modal
   const openModal = (content: "profile" | "personal" | "billing") => {
     setModalContent(content);
     setModalVisible(true);
@@ -334,7 +324,7 @@ const SettingsPage = () => {
                   {file1 ? (
                     <>
                       {/* Filename + remove icon */}
-                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md max-w-lg">
+                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md">
                         <p className="text-sm text-gray-700">{file1.name}</p>
                         <Icon
                           icon="mdi:close-circle"
@@ -344,7 +334,7 @@ const SettingsPage = () => {
                       </div>
 
                       {/* Inline PDF preview */}
-                      <div className="mt-4 border border-gray-300 rounded-md overflow-hidden max-w-lg">
+                      <div className="mt-4 border border-gray-300 rounded-md overflow-hidden">
                         <iframe
                           src={file1PreviewUrl}
                           title="Preview PDF"
@@ -400,7 +390,7 @@ const SettingsPage = () => {
                   {file2 ? (
                     <>
                       {/* Filename + remove icon */}
-                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md max-w-lg">
+                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md">
                         <p className="text-sm text-gray-700">{file2.name}</p>
                         <Icon
                           icon="mdi:close-circle"
@@ -410,7 +400,7 @@ const SettingsPage = () => {
                       </div>
 
                       {/* Inline PDF preview */}
-                      <div className="mt-4 border border-gray-300 rounded-md overflow-hidden max-w-lg">
+                      <div className="mt-4 border border-gray-300 rounded-md overflow-hidden">
                         <iframe
                           src={file2PreviewUrl}
                           title="Preview PDF"
@@ -466,7 +456,7 @@ const SettingsPage = () => {
                   {file3 ? (
                     <>
                       {/* Filename + remove icon */}
-                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md max-w-lg">
+                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md ">
                         <p className="text-sm text-gray-700">{file3.name}</p>
                         <Icon
                           icon="mdi:close-circle"
