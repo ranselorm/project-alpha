@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import RBACForm from "@/components/Rbac";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -106,12 +106,24 @@ const SettingsPage = () => {
   >("none");
 
   // ===========================================================================
+  // State for each uploaded PDF + preview URL
+  // ===========================================================================
+  const [file1, setFile1] = useState<File | null>(null);
+  const [file1PreviewUrl, setFile1PreviewUrl] = useState<string>("");
+
+  const [file2, setFile2] = useState<File | null>(null);
+  const [file2PreviewUrl, setFile2PreviewUrl] = useState<string>("");
+
+  const [file3, setFile3] = useState<File | null>(null);
+  const [file3PreviewUrl, setFile3PreviewUrl] = useState<string>("");
+
+  // ===========================================================================
   // Dropzone #1 (Upload Document 1)
   // ===========================================================================
   const onDrop1 = useCallback((acceptedFiles: File[]) => {
-    // acceptedFiles[0] is the PDF file for Document 1
-    // You can save to state or send to server here
-    console.log("Document 1 selected:", acceptedFiles[0]);
+    if (acceptedFiles.length > 0) {
+      setFile1(acceptedFiles[0]);
+    }
   }, []);
 
   const {
@@ -119,7 +131,6 @@ const SettingsPage = () => {
     getInputProps: getInputProps1,
     isDragActive: isDragActive1,
     fileRejections: fileRejections1,
-    acceptedFiles: acceptedFiles1,
   } = useDropzone({
     onDrop: onDrop1,
     accept: { "application/pdf": [".pdf"] },
@@ -127,11 +138,26 @@ const SettingsPage = () => {
     maxFiles: 1,
   });
 
+  useEffect(() => {
+    if (!file1) {
+      URL.revokeObjectURL(file1PreviewUrl);
+      setFile1PreviewUrl("");
+      return;
+    }
+    const url = URL.createObjectURL(file1);
+    setFile1PreviewUrl(url);
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [file1]);
+
   // ===========================================================================
   // Dropzone #2 (Upload Document 2)
   // ===========================================================================
   const onDrop2 = useCallback((acceptedFiles: File[]) => {
-    console.log("Document 2 selected:", acceptedFiles[0]);
+    if (acceptedFiles.length > 0) {
+      setFile2(acceptedFiles[0]);
+    }
   }, []);
 
   const {
@@ -139,7 +165,6 @@ const SettingsPage = () => {
     getInputProps: getInputProps2,
     isDragActive: isDragActive2,
     fileRejections: fileRejections2,
-    acceptedFiles: acceptedFiles2,
   } = useDropzone({
     onDrop: onDrop2,
     accept: { "application/pdf": [".pdf"] },
@@ -147,11 +172,26 @@ const SettingsPage = () => {
     maxFiles: 1,
   });
 
+  useEffect(() => {
+    if (!file2) {
+      URL.revokeObjectURL(file2PreviewUrl);
+      setFile2PreviewUrl("");
+      return;
+    }
+    const url = URL.createObjectURL(file2);
+    setFile2PreviewUrl(url);
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [file2]);
+
   // ===========================================================================
   // Dropzone #3 (Upload Document 3)
   // ===========================================================================
   const onDrop3 = useCallback((acceptedFiles: File[]) => {
-    console.log("Document 3 selected:", acceptedFiles[0]);
+    if (acceptedFiles.length > 0) {
+      setFile3(acceptedFiles[0]);
+    }
   }, []);
 
   const {
@@ -159,13 +199,25 @@ const SettingsPage = () => {
     getInputProps: getInputProps3,
     isDragActive: isDragActive3,
     fileRejections: fileRejections3,
-    acceptedFiles: acceptedFiles3,
   } = useDropzone({
     onDrop: onDrop3,
     accept: { "application/pdf": [".pdf"] },
     multiple: false,
     maxFiles: 1,
   });
+
+  useEffect(() => {
+    if (!file3) {
+      URL.revokeObjectURL(file3PreviewUrl);
+      setFile3PreviewUrl("");
+      return;
+    }
+    const url = URL.createObjectURL(file3);
+    setFile3PreviewUrl(url);
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [file3]);
 
   // ===========================================================================
   // Modal logic
@@ -207,9 +259,7 @@ const SettingsPage = () => {
 
         {/* Tab Contents */}
         <div className="py-4">
-          {/* ――――――――――――――――――――――――――――――― */}
-          {/* ACCOUNT INFORMATION */}
-          {/* ――――――――――――――――――――――――――――――― */}
+          {/* ――― ACCOUNT INFORMATION ――― */}
           {activeTab === "Account Information" && (
             <>
               {/* Profile Header */}
@@ -275,33 +325,57 @@ const SettingsPage = () => {
                   </div>
                 </div>
 
-                {/* ―――――――――――――――――――――――――――――― */}
-                {/* Upload Document 1 */}
-                {/* ―――――――――――――――――――――――――――――― */}
+                {/* ――― Upload Document 1 ――― */}
                 <div className="mt-8">
                   <p className="mb-1 font-medium text-gray-400 text-sm">
                     Upload Document 1
                   </p>
-                  <div
-                    {...getRootProps1()}
-                    className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
-                      isDragActive1 ? "bg-gray-200" : "bg-gray-100"
-                    }`}
-                  >
-                    <input {...getInputProps1()} />
-                    <Icon
-                      icon="mdi:files"
-                      className="text-gray-600 text-[40px]"
-                    />
-                    <p className="font-semibold mt-4 text-gray-700">
-                      {isDragActive1
-                        ? "Drop PDF here …"
-                        : "Drag & drop files here or click to browse"}
-                    </p>
-                  </div>
+
+                  {file1 ? (
+                    <>
+                      {/* Filename + remove icon */}
+                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md max-w-lg">
+                        <p className="text-sm text-gray-700">{file1.name}</p>
+                        <Icon
+                          icon="mdi:close-circle"
+                          className="text-xl text-red-600 cursor-pointer"
+                          onClick={() => setFile1(null)}
+                        />
+                      </div>
+
+                      {/* Inline PDF preview */}
+                      <div className="mt-4 border border-gray-300 rounded-md overflow-hidden max-w-lg">
+                        <iframe
+                          src={file1PreviewUrl}
+                          title="Preview PDF"
+                          className="w-full"
+                          style={{ height: "400px" }}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    // Dropzone area when no file is chosen
+                    <div
+                      {...getRootProps1()}
+                      className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
+                        isDragActive1 ? "bg-gray-200" : "bg-gray-100"
+                      }`}
+                    >
+                      <input {...getInputProps1()} />
+                      <Icon
+                        icon="mdi:files"
+                        className="text-gray-600 text-[40px]"
+                      />
+                      <p className="font-semibold mt-4 text-gray-700">
+                        {isDragActive1
+                          ? "Drop PDF here …"
+                          : "Drag & drop files here or click to browse"}
+                      </p>
+                    </div>
+                  )}
 
                   {/* Show rejection errors for Document 1 */}
-                  {fileRejections1.length > 0 && (
+                  {!file1 && fileRejections1.length > 0 && (
                     <ul className="mt-2">
                       {fileRejections1.map(({ file, errors }) => (
                         <li key={file.path} className="text-sm text-red-600">
@@ -315,49 +389,59 @@ const SettingsPage = () => {
                       ))}
                     </ul>
                   )}
-
-                  {/* Show accepted file for Document 1 */}
-                  {acceptedFiles1.length > 0 && (
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-600">Selected file:</p>
-                      <ul>
-                        {acceptedFiles1.map((file) => (
-                          <li key={file.path} className="text-sm text-gray-700">
-                            {file.path}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                 </div>
 
-                {/* ―――――――――――――――――――――――――――――― */}
-                {/* Upload Document 2 */}
-                {/* ―――――――――――――――――――――――――――――― */}
+                {/* ――― Upload Document 2 ――― */}
                 <div className="mt-8">
                   <p className="mb-1 font-medium text-gray-400 text-sm">
                     Upload Document 2
                   </p>
-                  <div
-                    {...getRootProps2()}
-                    className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
-                      isDragActive2 ? "bg-gray-200" : "bg-gray-100"
-                    }`}
-                  >
-                    <input {...getInputProps2()} />
-                    <Icon
-                      icon="mdi:files"
-                      className="text-gray-600 text-[40px]"
-                    />
-                    <p className="font-semibold mt-4 text-gray-700">
-                      {isDragActive2
-                        ? "Drop PDF here …"
-                        : "Drag & drop files here or click to browse"}
-                    </p>
-                  </div>
+
+                  {file2 ? (
+                    <>
+                      {/* Filename + remove icon */}
+                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md max-w-lg">
+                        <p className="text-sm text-gray-700">{file2.name}</p>
+                        <Icon
+                          icon="mdi:close-circle"
+                          className="text-xl text-red-600 cursor-pointer"
+                          onClick={() => setFile2(null)}
+                        />
+                      </div>
+
+                      {/* Inline PDF preview */}
+                      <div className="mt-4 border border-gray-300 rounded-md overflow-hidden max-w-lg">
+                        <iframe
+                          src={file2PreviewUrl}
+                          title="Preview PDF"
+                          className="w-full"
+                          style={{ height: "400px" }}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    // Dropzone area when no file is chosen
+                    <div
+                      {...getRootProps2()}
+                      className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
+                        isDragActive2 ? "bg-gray-200" : "bg-gray-100"
+                      }`}
+                    >
+                      <input {...getInputProps2()} />
+                      <Icon
+                        icon="mdi:files"
+                        className="text-gray-600 text-[40px]"
+                      />
+                      <p className="font-semibold mt-4 text-gray-700">
+                        {isDragActive2
+                          ? "Drop PDF here …"
+                          : "Drag & drop files here or click to browse"}
+                      </p>
+                    </div>
+                  )}
 
                   {/* Show rejection errors for Document 2 */}
-                  {fileRejections2.length > 0 && (
+                  {!file2 && fileRejections2.length > 0 && (
                     <ul className="mt-2">
                       {fileRejections2.map(({ file, errors }) => (
                         <li key={file.path} className="text-sm text-red-600">
@@ -371,49 +455,59 @@ const SettingsPage = () => {
                       ))}
                     </ul>
                   )}
-
-                  {/* Show accepted file for Document 2 */}
-                  {acceptedFiles2.length > 0 && (
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-600">Selected file:</p>
-                      <ul>
-                        {acceptedFiles2.map((file) => (
-                          <li key={file.path} className="text-sm text-gray-700">
-                            {file.path}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                 </div>
 
-                {/* ―――――――――――――――――――――――――――――― */}
-                {/* Upload Document 3 */}
-                {/* ―――――――――――――――――――――――――――――― */}
+                {/* ――― Upload Document 3 ――― */}
                 <div className="mt-8">
                   <p className="mb-1 font-medium text-gray-400 text-sm">
                     Upload Document 3
                   </p>
-                  <div
-                    {...getRootProps3()}
-                    className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
-                      isDragActive3 ? "bg-gray-200" : "bg-gray-100"
-                    }`}
-                  >
-                    <input {...getInputProps3()} />
-                    <Icon
-                      icon="mdi:files"
-                      className="text-gray-600 text-[40px]"
-                    />
-                    <p className="font-semibold mt-4 text-gray-700">
-                      {isDragActive3
-                        ? "Drop PDF here …"
-                        : "Drag & drop files here or click to browse"}
-                    </p>
-                  </div>
+
+                  {file3 ? (
+                    <>
+                      {/* Filename + remove icon */}
+                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md max-w-lg">
+                        <p className="text-sm text-gray-700">{file3.name}</p>
+                        <Icon
+                          icon="mdi:close-circle"
+                          className="text-xl text-red-600 cursor-pointer"
+                          onClick={() => setFile3(null)}
+                        />
+                      </div>
+
+                      {/* Inline PDF preview */}
+                      <div className="mt-4 border border-gray-300 rounded-md overflow-hidden ">
+                        <iframe
+                          src={file3PreviewUrl}
+                          title="Preview PDF"
+                          className="w-full"
+                          style={{ height: "400px" }}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    // Dropzone area when no file is chosen
+                    <div
+                      {...getRootProps3()}
+                      className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
+                        isDragActive3 ? "bg-gray-200" : "bg-gray-100"
+                      }`}
+                    >
+                      <input {...getInputProps3()} />
+                      <Icon
+                        icon="mdi:files"
+                        className="text-gray-600 text-[40px]"
+                      />
+                      <p className="font-semibold mt-4 text-gray-700">
+                        {isDragActive3
+                          ? "Drop PDF here …"
+                          : "Drag & drop files here or click to browse"}
+                      </p>
+                    </div>
+                  )}
 
                   {/* Show rejection errors for Document 3 */}
-                  {fileRejections3.length > 0 && (
+                  {!file3 && fileRejections3.length > 0 && (
                     <ul className="mt-2">
                       {fileRejections3.map(({ file, errors }) => (
                         <li key={file.path} className="text-sm text-red-600">
@@ -427,24 +521,10 @@ const SettingsPage = () => {
                       ))}
                     </ul>
                   )}
-
-                  {/* Show accepted file for Document 3 */}
-                  {acceptedFiles3.length > 0 && (
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-600">Selected file:</p>
-                      <ul>
-                        {acceptedFiles3.map((file) => (
-                          <li key={file.path} className="text-sm text-gray-700">
-                            {file.path}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                 </div>
               </div>
 
-              {/* PERSONAL INFORMATION */}
+              {/* Personal Information */}
               <div className="mt-6 border bg-white p-4 rounded-md">
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="font-bold text-lg">Personal Information</h3>
@@ -487,7 +567,7 @@ const SettingsPage = () => {
             </>
           )}
 
-          {/* BILLING INFORMATION */}
+          {/* ――― BILLING INFORMATION ――― */}
           {activeTab === "Billing Information" && (
             <div className="container mx-auto">
               <h2 className="font-semibold mb-4 text-gray-900">
@@ -555,8 +635,10 @@ const SettingsPage = () => {
             </div>
           )}
 
+          {/* ――― ROLES ――― */}
           {activeTab === "Roles" && <RBACForm />}
 
+          {/* ――― TRAIN AGENT ――― */}
           {activeTab === "Train Agent" && (
             <div className="text-gray-700">hello agent information</div>
           )}
