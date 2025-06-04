@@ -98,6 +98,8 @@ const columns = [
   },
 ];
 
+const BOX_HEIGHT = "h-[260px]"; // fixed height for each upload box
+
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState("Account Information");
   const [modalVisible, setModalVisible] = useState(false);
@@ -105,7 +107,9 @@ const SettingsPage = () => {
     "profile" | "personal" | "billing" | "none"
   >("none");
 
+  // ===========================================================================
   // State for each uploaded PDF + preview URL
+  // ===========================================================================
   const [file1, setFile1] = useState<File | null>(null);
   const [file1PreviewUrl, setFile1PreviewUrl] = useState<string>("");
 
@@ -115,7 +119,9 @@ const SettingsPage = () => {
   const [file3, setFile3] = useState<File | null>(null);
   const [file3PreviewUrl, setFile3PreviewUrl] = useState<string>("");
 
+  // ===========================================================================
   // Dropzone #1 (Upload Document 1)
+  // ===========================================================================
   const onDrop1 = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       setFile1(acceptedFiles[0]);
@@ -135,6 +141,7 @@ const SettingsPage = () => {
   });
 
   useEffect(() => {
+    // build / revoke object URL for preview
     if (!file1) {
       URL.revokeObjectURL(file1PreviewUrl);
       setFile1PreviewUrl("");
@@ -147,7 +154,9 @@ const SettingsPage = () => {
     };
   }, [file1]);
 
+  // ===========================================================================
   // Dropzone #2 (Upload Document 2)
+  // ===========================================================================
   const onDrop2 = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       setFile2(acceptedFiles[0]);
@@ -179,7 +188,9 @@ const SettingsPage = () => {
     };
   }, [file2]);
 
+  // ===========================================================================
   // Dropzone #3 (Upload Document 3)
+  // ===========================================================================
   const onDrop3 = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       setFile3(acceptedFiles[0]);
@@ -211,7 +222,9 @@ const SettingsPage = () => {
     };
   }, [file3]);
 
-  // Modal
+  // ===========================================================================
+  // Modal logic
+  // ===========================================================================
   const openModal = (content: "profile" | "personal" | "billing") => {
     setModalContent(content);
     setModalVisible(true);
@@ -315,202 +328,210 @@ const SettingsPage = () => {
                   </div>
                 </div>
 
-                {/* ――― Upload Document 1 ――― */}
-                <div className="mt-8">
-                  <p className="mb-1 font-medium text-gray-400 text-sm">
-                    Upload Document 1
-                  </p>
+                {/* ――― Upload Documents Grid ――― */}
+                <div className="grid grid-cols-3 gap-6 mt-8">
+                  <div>
+                    <p className="mb-1 font-medium text-gray-400 text-sm">
+                      Upload Document 1
+                    </p>
 
-                  {file1 ? (
-                    <>
-                      {/* Filename + remove icon */}
-                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md">
-                        <p className="text-sm text-gray-700">{file1.name}</p>
+                    {file1 ? (
+                      /* Entire box replaced by file+preview */
+                      <div
+                        className={`bg-gray-100 border border-gray-400 rounded-md ${BOX_HEIGHT} flex flex-col`}
+                      >
+                        {/* Top row: filename + remove icon */}
+                        <div className="flex items-center justify-between px-4 py-2 border-b border-gray-300">
+                          <p className="text-sm text-gray-700 truncate">
+                            {file1.name}
+                          </p>
+                          <Icon
+                            icon="mdi:close-circle"
+                            className="text-xl text-red-600 cursor-pointer"
+                            onClick={() => setFile1(null)}
+                          />
+                        </div>
+                        {/* Bottom row: inline PDF preview, scrolling if needed */}
+                        <div className="flex-1 overflow-auto">
+                          <iframe
+                            src={file1PreviewUrl}
+                            title="Preview PDF"
+                            className="w-full h-full"
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      /* Dropzone area when no file is chosen */
+                      <div
+                        {...getRootProps1()}
+                        className={`border border-gray-400 rounded-md ${BOX_HEIGHT} border-dashed bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
+                          isDragActive1 ? "bg-gray-200" : "bg-gray-100"
+                        }`}
+                      >
+                        <input {...getInputProps1()} />
                         <Icon
-                          icon="mdi:close-circle"
-                          className="text-xl text-red-600 cursor-pointer"
-                          onClick={() => setFile1(null)}
+                          icon="mdi:files"
+                          className="text-gray-600 text-[40px]"
                         />
+                        <p className="font-semibold mt-4 text-gray-700 text-center">
+                          {isDragActive1
+                            ? "Drop PDF here …"
+                            : "Drag & drop files here or "}
+                          <span className="text-main underline">browse</span>
+                        </p>
                       </div>
+                    )}
 
-                      {/* Inline PDF preview */}
-                      <div className="mt-4 border border-gray-300 rounded-md overflow-hidden">
-                        <iframe
-                          src={file1PreviewUrl}
-                          title="Preview PDF"
-                          className="w-full"
-                          style={{ height: "400px" }}
-                        />
+                    {/* Show rejection errors only if no file is chosen */}
+                    {!file1 && fileRejections1.length > 0 && (
+                      <ul className="mt-2">
+                        {fileRejections1.map(({ file, errors }) => (
+                          <li key={file.path} className="text-sm text-red-600">
+                            {file.path} - {(file.size / 1024).toFixed(1)} KB
+                            <ul className="list-disc list-inside">
+                              {errors.map((e) => (
+                                <li key={e.code}>{e.message}</li>
+                              ))}
+                            </ul>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  {/* ================= Document 2 ================= */}
+                  <div>
+                    <p className="mb-1 font-medium text-gray-400 text-sm">
+                      Upload Document 2
+                    </p>
+
+                    {file2 ? (
+                      /* Entire box replaced by file+preview */
+                      <div
+                        className={`bg-gray-100 border border-gray-400 rounded-md ${BOX_HEIGHT} flex flex-col`}
+                      >
+                        <div className="flex items-center justify-between px-4 py-2 border-b border-gray-300">
+                          <p className="text-sm text-gray-700 truncate">
+                            {file2.name}
+                          </p>
+                          <Icon
+                            icon="mdi:close-circle"
+                            className="text-xl text-red-600 cursor-pointer"
+                            onClick={() => setFile2(null)}
+                          />
+                        </div>
+                        <div className="flex-1 overflow-auto">
+                          <iframe
+                            src={file2PreviewUrl}
+                            title="Preview PDF"
+                            className="w-full h-full"
+                          />
+                        </div>
                       </div>
-                    </>
-                  ) : (
-                    // Dropzone area when no file is chosen
-                    <div
-                      {...getRootProps1()}
-                      className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
-                        isDragActive1 ? "bg-gray-200" : "bg-gray-100"
-                      }`}
-                    >
-                      <input {...getInputProps1()} />
-                      <Icon
-                        icon="mdi:files"
-                        className="text-gray-600 text-[40px]"
-                      />
-                      <p className="font-semibold mt-4 text-gray-700">
-                        {isDragActive1
-                          ? "Drop PDF here …"
-                          : "Drag & drop files here or click to browse"}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Show rejection errors for Document 1 */}
-                  {!file1 && fileRejections1.length > 0 && (
-                    <ul className="mt-2">
-                      {fileRejections1.map(({ file, errors }) => (
-                        <li key={file.path} className="text-sm text-red-600">
-                          {file.path} - {(file.size / 1024).toFixed(1)} KB
-                          <ul className="list-disc list-inside">
-                            {errors.map((e) => (
-                              <li key={e.code}>{e.message}</li>
-                            ))}
-                          </ul>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-
-                {/* ――― Upload Document 2 ――― */}
-                <div className="mt-8">
-                  <p className="mb-1 font-medium text-gray-400 text-sm">
-                    Upload Document 2
-                  </p>
-
-                  {file2 ? (
-                    <>
-                      {/* Filename + remove icon */}
-                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md">
-                        <p className="text-sm text-gray-700">{file2.name}</p>
+                    ) : (
+                      /* Dropzone area when no file is chosen */
+                      <div
+                        {...getRootProps2()}
+                        className={`border border-gray-400 rounded-md ${BOX_HEIGHT} border-dashed bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
+                          isDragActive2 ? "bg-gray-200" : "bg-gray-100"
+                        }`}
+                      >
+                        <input {...getInputProps2()} />
                         <Icon
-                          icon="mdi:close-circle"
-                          className="text-xl text-red-600 cursor-pointer"
-                          onClick={() => setFile2(null)}
+                          icon="mdi:files"
+                          className="text-gray-600 text-[40px]"
                         />
+                        <p className="font-semibold mt-4 text-gray-700 text-center">
+                          {isDragActive2
+                            ? "Drop PDF here …"
+                            : "Drag & drop files here or "}
+                          <span className="text-main underline">browse</span>
+                        </p>
                       </div>
+                    )}
 
-                      {/* Inline PDF preview */}
-                      <div className="mt-4 border border-gray-300 rounded-md overflow-hidden">
-                        <iframe
-                          src={file2PreviewUrl}
-                          title="Preview PDF"
-                          className="w-full"
-                          style={{ height: "400px" }}
-                        />
+                    {!file2 && fileRejections2.length > 0 && (
+                      <ul className="mt-2">
+                        {fileRejections2.map(({ file, errors }) => (
+                          <li key={file.path} className="text-sm text-red-600">
+                            {file.path} - {(file.size / 1024).toFixed(1)} KB
+                            <ul className="list-disc list-inside">
+                              {errors.map((e) => (
+                                <li key={e.code}>{e.message}</li>
+                              ))}
+                            </ul>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  {/* ================= Document 3 ================= */}
+                  <div>
+                    <p className="mb-1 font-medium text-gray-400 text-sm">
+                      Upload Document 3
+                    </p>
+
+                    {file3 ? (
+                      /* Entire box replaced by file+preview */
+                      <div
+                        className={`bg-gray-100 border border-gray-400 rounded-md ${BOX_HEIGHT} flex flex-col`}
+                      >
+                        <div className="flex items-center justify-between px-4 py-2 border-b border-gray-300">
+                          <p className="text-sm text-gray-700 truncate">
+                            {file3.name}
+                          </p>
+                          <Icon
+                            icon="mdi:close-circle"
+                            className="text-xl text-red-600 cursor-pointer"
+                            onClick={() => setFile3(null)}
+                          />
+                        </div>
+                        <div className="flex-1 overflow-auto">
+                          <iframe
+                            src={file3PreviewUrl}
+                            title="Preview PDF"
+                            className="w-full h-full"
+                          />
+                        </div>
                       </div>
-                    </>
-                  ) : (
-                    // Dropzone area when no file is chosen
-                    <div
-                      {...getRootProps2()}
-                      className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
-                        isDragActive2 ? "bg-gray-200" : "bg-gray-100"
-                      }`}
-                    >
-                      <input {...getInputProps2()} />
-                      <Icon
-                        icon="mdi:files"
-                        className="text-gray-600 text-[40px]"
-                      />
-                      <p className="font-semibold mt-4 text-gray-700">
-                        {isDragActive2
-                          ? "Drop PDF here …"
-                          : "Drag & drop files here or click to browse"}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Show rejection errors for Document 2 */}
-                  {!file2 && fileRejections2.length > 0 && (
-                    <ul className="mt-2">
-                      {fileRejections2.map(({ file, errors }) => (
-                        <li key={file.path} className="text-sm text-red-600">
-                          {file.path} - {(file.size / 1024).toFixed(1)} KB
-                          <ul className="list-disc list-inside">
-                            {errors.map((e) => (
-                              <li key={e.code}>{e.message}</li>
-                            ))}
-                          </ul>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-
-                {/* ――― Upload Document 3 ――― */}
-                <div className="mt-8">
-                  <p className="mb-1 font-medium text-gray-400 text-sm">
-                    Upload Document 3
-                  </p>
-
-                  {file3 ? (
-                    <>
-                      {/* Filename + remove icon */}
-                      <div className="flex items-center justify-between p-4 bg-gray-100 border border-gray-400 rounded-md ">
-                        <p className="text-sm text-gray-700">{file3.name}</p>
+                    ) : (
+                      /* Dropzone area when no file is chosen */
+                      <div
+                        {...getRootProps3()}
+                        className={`border border-gray-400 rounded-md ${BOX_HEIGHT} border-dashed bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
+                          isDragActive3 ? "bg-gray-200" : "bg-gray-100"
+                        }`}
+                      >
+                        <input {...getInputProps3()} />
                         <Icon
-                          icon="mdi:close-circle"
-                          className="text-xl text-red-600 cursor-pointer"
-                          onClick={() => setFile3(null)}
+                          icon="mdi:files"
+                          className="text-gray-600 text-[40px]"
                         />
+                        <p className="font-semibold mt-4 text-gray-700 text-center">
+                          {isDragActive3
+                            ? "Drop PDF here …"
+                            : "Drag & drop files here or "}
+                          <span className="text-main underline">browse</span>
+                        </p>
                       </div>
+                    )}
 
-                      {/* Inline PDF preview */}
-                      <div className="mt-4 border border-gray-300 rounded-md overflow-hidden ">
-                        <iframe
-                          src={file3PreviewUrl}
-                          title="Preview PDF"
-                          className="w-full"
-                          style={{ height: "400px" }}
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    // Dropzone area when no file is chosen
-                    <div
-                      {...getRootProps3()}
-                      className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
-                        isDragActive3 ? "bg-gray-200" : "bg-gray-100"
-                      }`}
-                    >
-                      <input {...getInputProps3()} />
-                      <Icon
-                        icon="mdi:files"
-                        className="text-gray-600 text-[40px]"
-                      />
-                      <p className="font-semibold mt-4 text-gray-700">
-                        {isDragActive3
-                          ? "Drop PDF here …"
-                          : "Drag & drop files here or click to browse"}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Show rejection errors for Document 3 */}
-                  {!file3 && fileRejections3.length > 0 && (
-                    <ul className="mt-2">
-                      {fileRejections3.map(({ file, errors }) => (
-                        <li key={file.path} className="text-sm text-red-600">
-                          {file.path} - {(file.size / 1024).toFixed(1)} KB
-                          <ul className="list-disc list-inside">
-                            {errors.map((e) => (
-                              <li key={e.code}>{e.message}</li>
-                            ))}
-                          </ul>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                    {!file3 && fileRejections3.length > 0 && (
+                      <ul className="mt-2">
+                        {fileRejections3.map(({ file, errors }) => (
+                          <li key={file.path} className="text-sm text-red-600">
+                            {file.path} - {(file.size / 1024).toFixed(1)} KB
+                            <ul className="list-disc list-inside">
+                              {errors.map((e) => (
+                                <li key={e.code}>{e.message}</li>
+                              ))}
+                            </ul>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
               </div>
 
