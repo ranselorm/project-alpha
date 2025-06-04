@@ -166,6 +166,44 @@ const SettingsPage = () => {
                 />
               </div>
 
+              {/* Business Information */}
+              <div className="mt-6 border bg-white p-4 rounded-md">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="font-bold text-lg">Business Information</h3>
+                  <Icon
+                    icon="cuida:edit-outline"
+                    className="text-2xl text-main cursor-pointer"
+                    onClick={() => openModal("personal")}
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-x-8 gap-y-6 max-w-xl">
+                  <div>
+                    <p className="mb-1 font-medium text-gray-400 text-sm">
+                      Business Name
+                    </p>
+                    <p>Berth Global</p>
+                  </div>
+
+                  <div>
+                    <p className="mb-1 font-medium text-gray-400 text-sm">
+                      Email Address
+                    </p>
+                    <p>contact@berthglobal.com</p>
+                  </div>
+                  <div>
+                    <p className="mb-1 font-medium text-sm text-gray-400">
+                      Phone
+                    </p>
+                    <p>+233 30 1234</p>
+                  </div>
+                  <div className="col-span-2">
+                    <p className="mb-1 font-medium text-gray-400">Bio</p>
+                    <p>This is the information about the business</p>
+                  </div>
+                </div>
+              </div>
+
               {/* Personal Information */}
               <div className="mt-6 border bg-white p-4 rounded-md">
                 <div className="flex justify-between items-center mb-6">
