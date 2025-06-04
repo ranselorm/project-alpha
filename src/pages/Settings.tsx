@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import RBACForm from "@/components/Rbac";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Modal, Table } from "antd";
+
+import { useDropzone } from "react-dropzone";
 
 const data = [
   {
@@ -230,7 +232,7 @@ const SettingsPage = () => {
                       />
                       <p className="font-semibold mt-4">
                         Drag & drop files here or <br />
-                        <span className="text-main">browse</span>
+                        <span className="text-main cursor-pointer">browse</span>
                       </p>
                     </div>
                   </div>
