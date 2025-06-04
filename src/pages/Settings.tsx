@@ -374,7 +374,7 @@ const SettingsPage = () => {
                       >
                         <input {...getInputProps1()} />
                         <Icon
-                          icon="mdi:files"
+                          icon="solar:upload-broken"
                           className="text-gray-600 text-[40px]"
                         />
                         <p className="font-semibold mt-4 text-gray-700 text-center">
