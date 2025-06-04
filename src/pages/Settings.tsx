@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import RBACForm from "@/components/Rbac";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Modal, Table } from "antd";
-
 import { useDropzone } from "react-dropzone";
 
 const data = [
@@ -56,7 +55,7 @@ const columns = [
     key: "invoice",
     render: (text: string, record: any) => (
       <>
-        <p style={{ color: "black", fontWeight: "semibold" }}>{text}</p>
+        <p style={{ color: "black", fontWeight: 600 }}>{text}</p>
         <div style={{ fontSize: 12, color: "#888" }}>{record.plan}</div>
       </>
     ),
@@ -70,13 +69,12 @@ const columns = [
     title: "STATUS",
     dataIndex: "status",
     key: "status",
-
     render: (status: string) => (
       <div
         style={{
           backgroundColor: "#d9f7be",
           color: "#389e0d",
-          padding: "4px",
+          padding: "4px 8px",
           borderRadius: 50,
           fontSize: 12,
           display: "inline-block",
@@ -94,6 +92,8 @@ const columns = [
     key: "date",
   },
   {
+    title: "ACTION",
+    key: "action",
     render: () => <a style={{ color: "#000" }}>View invoice →</a>,
   },
 ];
@@ -105,6 +105,71 @@ const SettingsPage = () => {
     "profile" | "personal" | "billing" | "none"
   >("none");
 
+  // ===========================================================================
+  // Dropzone #1 (Upload Document 1)
+  // ===========================================================================
+  const onDrop1 = useCallback((acceptedFiles: File[]) => {
+    // acceptedFiles[0] is the PDF file for Document 1
+    // You can save to state or send to server here
+    console.log("Document 1 selected:", acceptedFiles[0]);
+  }, []);
+
+  const {
+    getRootProps: getRootProps1,
+    getInputProps: getInputProps1,
+    isDragActive: isDragActive1,
+    fileRejections: fileRejections1,
+    acceptedFiles: acceptedFiles1,
+  } = useDropzone({
+    onDrop: onDrop1,
+    accept: { "application/pdf": [".pdf"] },
+    multiple: false,
+    maxFiles: 1,
+  });
+
+  // ===========================================================================
+  // Dropzone #2 (Upload Document 2)
+  // ===========================================================================
+  const onDrop2 = useCallback((acceptedFiles: File[]) => {
+    console.log("Document 2 selected:", acceptedFiles[0]);
+  }, []);
+
+  const {
+    getRootProps: getRootProps2,
+    getInputProps: getInputProps2,
+    isDragActive: isDragActive2,
+    fileRejections: fileRejections2,
+    acceptedFiles: acceptedFiles2,
+  } = useDropzone({
+    onDrop: onDrop2,
+    accept: { "application/pdf": [".pdf"] },
+    multiple: false,
+    maxFiles: 1,
+  });
+
+  // ===========================================================================
+  // Dropzone #3 (Upload Document 3)
+  // ===========================================================================
+  const onDrop3 = useCallback((acceptedFiles: File[]) => {
+    console.log("Document 3 selected:", acceptedFiles[0]);
+  }, []);
+
+  const {
+    getRootProps: getRootProps3,
+    getInputProps: getInputProps3,
+    isDragActive: isDragActive3,
+    fileRejections: fileRejections3,
+    acceptedFiles: acceptedFiles3,
+  } = useDropzone({
+    onDrop: onDrop3,
+    accept: { "application/pdf": [".pdf"] },
+    multiple: false,
+    maxFiles: 1,
+  });
+
+  // ===========================================================================
+  // Modal logic
+  // ===========================================================================
   const openModal = (content: "profile" | "personal" | "billing") => {
     setModalContent(content);
     setModalVisible(true);
@@ -142,6 +207,9 @@ const SettingsPage = () => {
 
         {/* Tab Contents */}
         <div className="py-4">
+          {/* ――――――――――――――――――――――――――――――― */}
+          {/* ACCOUNT INFORMATION */}
+          {/* ――――――――――――――――――――――――――――――― */}
           {activeTab === "Account Information" && (
             <>
               {/* Profile Header */}
@@ -193,68 +261,190 @@ const SettingsPage = () => {
                     </p>
                     <p>contact@berthglobal.com</p>
                   </div>
+
                   <div>
                     <p className="mb-1 font-medium text-sm text-gray-400">
                       Phone
                     </p>
                     <p>+233 30 1234</p>
                   </div>
+
                   <div className="col-span-2">
                     <p className="mb-1 font-medium text-gray-400">Bio</p>
                     <p>This is the information about the business</p>
                   </div>
                 </div>
-                {/* uploads */}
-                <div>
-                  <div className="mt-8">
-                    <p className="mb-1 font-medium text-gray-400 text-sm">
-                      Upload Document 1
+
+                {/* ―――――――――――――――――――――――――――――― */}
+                {/* Upload Document 1 */}
+                {/* ―――――――――――――――――――――――――――――― */}
+                <div className="mt-8">
+                  <p className="mb-1 font-medium text-gray-400 text-sm">
+                    Upload Document 1
+                  </p>
+                  <div
+                    {...getRootProps1()}
+                    className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
+                      isDragActive1 ? "bg-gray-200" : "bg-gray-100"
+                    }`}
+                  >
+                    <input {...getInputProps1()} />
+                    <Icon
+                      icon="mdi:files"
+                      className="text-gray-600 text-[40px]"
+                    />
+                    <p className="font-semibold mt-4 text-gray-700">
+                      {isDragActive1
+                        ? "Drop PDF here …"
+                        : "Drag & drop files here or click to browse"}
                     </p>
-                    <div className="border border-gray-400 rounded-md w-full py-12 border-dashed text-center mx-auto bg-gray-100 flex items-center justify-center flex-col gap-2">
-                      <Icon
-                        icon="mdi:files"
-                        className="text-gray-600 text-[40px]"
-                      />
-                      <p className="font-semibold mt-4">
-                        Drag & drop files here or <br />
-                        <span className="text-main">browse</span>
-                      </p>
-                    </div>
                   </div>
-                  <div className="mt-8">
-                    <p className="mb-1 font-medium text-gray-400 text-sm">
-                      Upload Document 2
+
+                  {/* Show rejection errors for Document 1 */}
+                  {fileRejections1.length > 0 && (
+                    <ul className="mt-2">
+                      {fileRejections1.map(({ file, errors }) => (
+                        <li key={file.path} className="text-sm text-red-600">
+                          {file.path} - {(file.size / 1024).toFixed(1)} KB
+                          <ul className="list-disc list-inside">
+                            {errors.map((e) => (
+                              <li key={e.code}>{e.message}</li>
+                            ))}
+                          </ul>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {/* Show accepted file for Document 1 */}
+                  {acceptedFiles1.length > 0 && (
+                    <div className="mt-2">
+                      <p className="text-sm text-gray-600">Selected file:</p>
+                      <ul>
+                        {acceptedFiles1.map((file) => (
+                          <li key={file.path} className="text-sm text-gray-700">
+                            {file.path}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                {/* ―――――――――――――――――――――――――――――― */}
+                {/* Upload Document 2 */}
+                {/* ―――――――――――――――――――――――――――――― */}
+                <div className="mt-8">
+                  <p className="mb-1 font-medium text-gray-400 text-sm">
+                    Upload Document 2
+                  </p>
+                  <div
+                    {...getRootProps2()}
+                    className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
+                      isDragActive2 ? "bg-gray-200" : "bg-gray-100"
+                    }`}
+                  >
+                    <input {...getInputProps2()} />
+                    <Icon
+                      icon="mdi:files"
+                      className="text-gray-600 text-[40px]"
+                    />
+                    <p className="font-semibold mt-4 text-gray-700">
+                      {isDragActive2
+                        ? "Drop PDF here …"
+                        : "Drag & drop files here or click to browse"}
                     </p>
-                    <div className="border border-gray-400 rounded-md w-full py-12 border-dashed text-center mx-auto bg-gray-100 flex items-center justify-center flex-col gap-2">
-                      <Icon
-                        icon="mdi:files"
-                        className="text-gray-600 text-[40px]"
-                      />
-                      <p className="font-semibold mt-4">
-                        Drag & drop files here or <br />
-                        <span className="text-main cursor-pointer">browse</span>
-                      </p>
-                    </div>
                   </div>
-                  <div className="mt-8">
-                    <p className="mb-1 font-medium text-gray-400 text-sm">
-                      Upload Document 3
+
+                  {/* Show rejection errors for Document 2 */}
+                  {fileRejections2.length > 0 && (
+                    <ul className="mt-2">
+                      {fileRejections2.map(({ file, errors }) => (
+                        <li key={file.path} className="text-sm text-red-600">
+                          {file.path} - {(file.size / 1024).toFixed(1)} KB
+                          <ul className="list-disc list-inside">
+                            {errors.map((e) => (
+                              <li key={e.code}>{e.message}</li>
+                            ))}
+                          </ul>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {/* Show accepted file for Document 2 */}
+                  {acceptedFiles2.length > 0 && (
+                    <div className="mt-2">
+                      <p className="text-sm text-gray-600">Selected file:</p>
+                      <ul>
+                        {acceptedFiles2.map((file) => (
+                          <li key={file.path} className="text-sm text-gray-700">
+                            {file.path}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                {/* ―――――――――――――――――――――――――――――― */}
+                {/* Upload Document 3 */}
+                {/* ―――――――――――――――――――――――――――――― */}
+                <div className="mt-8">
+                  <p className="mb-1 font-medium text-gray-400 text-sm">
+                    Upload Document 3
+                  </p>
+                  <div
+                    {...getRootProps3()}
+                    className={`border border-gray-400 rounded-md w-full py-12 border-dashed text-center bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
+                      isDragActive3 ? "bg-gray-200" : "bg-gray-100"
+                    }`}
+                  >
+                    <input {...getInputProps3()} />
+                    <Icon
+                      icon="mdi:files"
+                      className="text-gray-600 text-[40px]"
+                    />
+                    <p className="font-semibold mt-4 text-gray-700">
+                      {isDragActive3
+                        ? "Drop PDF here …"
+                        : "Drag & drop files here or click to browse"}
                     </p>
-                    <div className="border border-gray-400 rounded-md w-full py-12 border-dashed text-center mx-auto bg-gray-100 flex items-center justify-center flex-col gap-2">
-                      <Icon
-                        icon="mdi:files"
-                        className="text-gray-600 text-[40px]"
-                      />
-                      <p className="font-semibold mt-4">
-                        Drag & drop files here or <br />
-                        <span className="text-main">browse</span>
-                      </p>
-                    </div>
                   </div>
+
+                  {/* Show rejection errors for Document 3 */}
+                  {fileRejections3.length > 0 && (
+                    <ul className="mt-2">
+                      {fileRejections3.map(({ file, errors }) => (
+                        <li key={file.path} className="text-sm text-red-600">
+                          {file.path} - {(file.size / 1024).toFixed(1)} KB
+                          <ul className="list-disc list-inside">
+                            {errors.map((e) => (
+                              <li key={e.code}>{e.message}</li>
+                            ))}
+                          </ul>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {/* Show accepted file for Document 3 */}
+                  {acceptedFiles3.length > 0 && (
+                    <div className="mt-2">
+                      <p className="text-sm text-gray-600">Selected file:</p>
+                      <ul>
+                        {acceptedFiles3.map((file) => (
+                          <li key={file.path} className="text-sm text-gray-700">
+                            {file.path}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {/* Personal Information */}
+              {/* PERSONAL INFORMATION */}
               <div className="mt-6 border bg-white p-4 rounded-md">
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="font-bold text-lg">Personal Information</h3>
@@ -297,6 +487,7 @@ const SettingsPage = () => {
             </>
           )}
 
+          {/* BILLING INFORMATION */}
           {activeTab === "Billing Information" && (
             <div className="container mx-auto">
               <h2 className="font-semibold mb-4 text-gray-900">
