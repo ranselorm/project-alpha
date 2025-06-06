@@ -97,13 +97,10 @@ const TrainAgent: React.FC = () => {
     website: (
       <div>
         <h2 className="font-medium text-base mb-4">Paste or type in the URL</h2>
-        <Form
-          name="urlsForm"
-          initialValues={{ urls: [""] }} // Initialize with one input field
-        >
+        <Form name="urlsForm" initialValues={{ urls: [""] }}>
           <Form.List
             name="urls"
-            initialValue={[""]} // Starts with one input field
+            initialValue={[""]}
             rules={[
               {
                 validator: async (_, urls) => {
