@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button, Modal, Input } from "antd";
+import { Button, Modal, Input, Form, Space } from "antd";
 
 type TabKey = "Train" | "second" | "longtext";
 type ModalTabKey = "website" | "pdf" | "word" | "text";
@@ -41,17 +41,9 @@ const TrainAgent: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalActiveKey, setModalActiveKey] = useState<ModalTabKey>("website");
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  const showModal = () => setIsModalOpen(true);
+  const handleOk = () => setIsModalOpen(false);
+  const handleCancel = () => setIsModalOpen(false);
 
   const dataForTabs: Record<TabKey, React.ReactNode> = {
     Train: (
@@ -104,7 +96,69 @@ const TrainAgent: React.FC = () => {
   const modalDataForTabs: Record<ModalTabKey, React.ReactNode> = {
     website: (
       <div>
-        <h2 className="font-medium text-base">Paste or type in the url</h2>
+        <h2 className="font-medium text-base mb-4">Paste or type in the URL</h2>
+        <Form
+          name="urlsForm"
+          initialValues={{ urls: [""] }} // Initialize with one input field
+        >
+          <Form.List
+            name="urls"
+            initialValue={[""]} // Starts with one input field
+            rules={[
+              {
+                validator: async (_, urls) => {
+                  if (!urls || urls.length < 1) {
+                    return Promise.reject(
+                      new Error("At least one URL is required")
+                    );
+                  }
+                },
+              },
+            ]}
+          >
+            {(fields, { add, remove }) => (
+              <>
+                {fields.map(({ key, fieldKey, name, ...restField }) => (
+                  <Space
+                    key={key}
+                    style={{ display: "flex", marginBottom: 8 }}
+                    align="baseline"
+                  >
+                    <Form.Item
+                      {...restField}
+                      name={[name, "url"]}
+                      rules={[
+                        { required: true, message: "Please input a URL" },
+                      ]}
+                    >
+                      <Input
+                        placeholder="Enter URL"
+                        addonBefore="https://"
+                        style={{ width: "300px" }}
+                      />
+                    </Form.Item>
+                    <Button
+                      danger
+                      icon={
+                        <Icon icon="material-symbols:remove-circle-outline" />
+                      }
+                      onClick={() => remove(name)} // Remove button to delete an input field
+                    />
+                  </Space>
+                ))}
+                <Form.Item>
+                  <Button
+                    type="dashed"
+                    onClick={() => add()} // Add button to add new input fields
+                    icon={<Icon icon="material-symbols:add-rounded" />}
+                  >
+                    Add URL
+                  </Button>
+                </Form.Item>
+              </>
+            )}
+          </Form.List>
+        </Form>
       </div>
     ),
     pdf: (
@@ -155,6 +209,7 @@ const TrainAgent: React.FC = () => {
           ))}
         </div>
 
+        {/* Display content of the active tab in the modal */}
         <div>{modalDataForTabs[modalActiveKey]}</div>
       </Modal>
 
