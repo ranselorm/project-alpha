@@ -3,8 +3,9 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button, Modal } from "antd";
 
 type TabKey = "Train" | "second" | "longtext";
+type ModalTabKey = "modalTrain" | "modalSecond" | "modalLongtext";
 
-const hsitory = [
+const history = [
   {
     id: 1,
     title: "Company Profile",
@@ -38,6 +39,8 @@ const hsitory = [
 const TrainAgent: React.FC = () => {
   const [activeKey, setActiveKey] = useState<TabKey>("Train");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalActiveKey, setModalActiveKey] =
+    useState<ModalTabKey>("modalTrain");
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -56,7 +59,7 @@ const TrainAgent: React.FC = () => {
       <div className="flex items-center space-x-4">
         <div className="bg-white w-[300px] h-[70vh] rounded-md overflow-y-auto border border-gray-200">
           <div className="flex flex-col space-y-2 px-4">
-            {hsitory.map((item) => (
+            {history.map((item) => (
               <div
                 key={item.id}
                 className="border-b border-gray-200 py-2 cursor-pointer hover:bg-gray-50"
@@ -80,56 +83,79 @@ const TrainAgent: React.FC = () => {
     ),
     second: (
       <section>
-        <h2>Animal Examples</h2>
-        <ul>
-          {["🐶 Dog", "🐱 Cat", "🐰 Rabbit"].map((animal) => (
-            <li key={animal}>{animal}</li>
-          ))}
-        </ul>
+        <h2>Tab 2 Section</h2>
+        <p>Content for tab 2</p>
       </section>
     ),
     longtext: (
       <div>
-        <h2>Colors Section</h2>
-        <p>
-          This tab holds longer text describing colors. Use paragraphs,
-          sections, or any structure you like:
-        </p>
-        {["Red", "Green", "Blue"].map((color) => (
-          <section key={color} style={{ marginTop: "12px" }}>
-            <p>
-              <strong>{color}:</strong> Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit.
-            </p>
-          </section>
-        ))}
+        <h2>Tab 3 Section</h2>
+        <p>Content for tab 3</p>
       </div>
     ),
   };
 
-  const tabNames: Record<TabKey, string> = {
-    Train: "Train Agent",
-    second: "Tab 2",
-    longtext: "Tab 3",
+  const modalTabs: Record<ModalTabKey, string> = {
+    modalTrain: "Modal Train",
+    modalSecond: "Modal Tab 2",
+    modalLongtext: "Modal Tab 3",
+  };
+
+  const modalDataForTabs: Record<ModalTabKey, React.ReactNode> = {
+    modalTrain: (
+      <div>
+        <h2>Modal Train Section</h2>
+        <p>Content for Modal Train</p>
+      </div>
+    ),
+    modalSecond: (
+      <section>
+        <h2>Modal Tab 2 Section</h2>
+        <p>Content for Modal Tab 2</p>
+      </section>
+    ),
+    modalLongtext: (
+      <div>
+        <h2>Modal Tab 3 Section</h2>
+        <p>Content for Modal Tab 3</p>
+      </div>
+    ),
   };
 
   return (
     <section>
+      {/* Modal */}
       <Modal
-        title="Basic Modal"
+        title="What would you like to train?"
         closable={{ "aria-label": "Custom Close Button" }}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        {/* Tabs inside the Modal */}
+        <div className="flex space-x-8 mb-4 border-b border-gray-300">
+          {Object.keys(modalTabs).map((key) => (
+            <div
+              key={key}
+              className={`cursor-pointer py-2 ${
+                modalActiveKey === key
+                  ? "border-b-2 border-main font-semibold"
+                  : "text-gray-500"
+              }`}
+              onClick={() => setModalActiveKey(key as ModalTabKey)}
+            >
+              {modalTabs[key as ModalTabKey]}
+            </div>
+          ))}
+        </div>
+
+        <div>{modalDataForTabs[modalActiveKey]}</div>
       </Modal>
 
+      {/* Main Content */}
       <div className="container mx-auto">
         <div className="flex space-x-8 mb-2 border-b border-gray-300">
-          {Object.keys(tabNames).map((key) => (
+          {Object.keys(dataForTabs).map((key) => (
             <div
               key={key}
               className={`cursor-pointer py-2 ${
@@ -139,7 +165,9 @@ const TrainAgent: React.FC = () => {
               }`}
               onClick={() => setActiveKey(key as TabKey)}
             >
-              {tabNames[key as TabKey]}
+              {key === "Train" && "Train Agent"}
+              {key === "second" && "Tab 2"}
+              {key === "longtext" && "Tab 3"}
             </div>
           ))}
         </div>
