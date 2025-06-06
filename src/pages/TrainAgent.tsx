@@ -140,7 +140,11 @@ const TrainAgent: React.FC = () => {
                     <Button
                       danger
                       icon={
-                        <Icon icon="material-symbols:remove-circle-outline" />
+                        <Icon
+                          icon="material-symbols:remove-circle-outline"
+                          className="text-black"
+                          style={{ color: "black" }}
+                        />
                       }
                       onClick={() => remove(name)} // Remove button to delete an input field
                     />
