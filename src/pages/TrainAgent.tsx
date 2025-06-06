@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button, Modal } from "antd";
 
 type TabKey = "Train" | "second" | "longtext";
-type ModalTabKey = "modalTrain" | "modalSecond" | "modalLongtext";
+type ModalTabKey = "website" | "pdf" | "word" | "text";
 
 const history = [
   {
@@ -39,8 +39,7 @@ const history = [
 const TrainAgent: React.FC = () => {
   const [activeKey, setActiveKey] = useState<TabKey>("Train");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalActiveKey, setModalActiveKey] =
-    useState<ModalTabKey>("modalTrain");
+  const [modalActiveKey, setModalActiveKey] = useState<ModalTabKey>("website");
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -96,25 +95,32 @@ const TrainAgent: React.FC = () => {
   };
 
   const modalTabs: Record<ModalTabKey, string> = {
-    modalTrain: "Modal Train",
-    modalSecond: "Modal Tab 2",
-    modalLongtext: "Modal Tab 3",
+    website: "WEBSITE",
+    pdf: "PDF",
+    word: "WORD",
+    text: "TEXT",
   };
 
   const modalDataForTabs: Record<ModalTabKey, React.ReactNode> = {
-    modalTrain: (
+    website: (
       <div>
         <h2>Modal Train Section</h2>
         <p>Content for Modal Train</p>
       </div>
     ),
-    modalSecond: (
+    pdf: (
       <section>
         <h2>Modal Tab 2 Section</h2>
         <p>Content for Modal Tab 2</p>
       </section>
     ),
-    modalLongtext: (
+    word: (
+      <div>
+        <h2>Modal Tab 3 Section</h2>
+        <p>Content for Modal Tab 3</p>
+      </div>
+    ),
+    text: (
       <div>
         <h2>Modal Tab 3 Section</h2>
         <p>Content for Modal Tab 3</p>
@@ -131,13 +137,14 @@ const TrainAgent: React.FC = () => {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        width={700}
       >
         {/* Tabs inside the Modal */}
-        <div className="flex space-x-8 mb-4 border-b border-gray-300">
+        <div className="flex space-x-8 mb-4 border-b border-gray-300 mt-5">
           {Object.keys(modalTabs).map((key) => (
             <div
               key={key}
-              className={`cursor-pointer py-2 ${
+              className={`cursor-pointer py-2 px-4 ${
                 modalActiveKey === key
                   ? "border-b-2 border-main font-semibold"
                   : "text-gray-500"
