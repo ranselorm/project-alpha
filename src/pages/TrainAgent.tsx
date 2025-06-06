@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button, Modal } from "antd";
+import { Button, Modal, Input } from "antd";
 
 type TabKey = "Train" | "second" | "longtext";
 type ModalTabKey = "website" | "pdf" | "word" | "text";
@@ -104,8 +104,7 @@ const TrainAgent: React.FC = () => {
   const modalDataForTabs: Record<ModalTabKey, React.ReactNode> = {
     website: (
       <div>
-        <h2>Modal Train Section</h2>
-        <p>Content for Modal Train</p>
+        <h2 className="font-medium text-base">Paste or type in the url</h2>
       </div>
     ),
     pdf: (
@@ -140,7 +139,7 @@ const TrainAgent: React.FC = () => {
         width={700}
       >
         {/* Tabs inside the Modal */}
-        <div className="flex space-x-8 mb-4 border-b border-gray-300 mt-5">
+        <div className="flex space-x-8 border-b border-gray-300 mt-5 mb-8">
           {Object.keys(modalTabs).map((key) => (
             <div
               key={key}
@@ -165,7 +164,7 @@ const TrainAgent: React.FC = () => {
           {Object.keys(dataForTabs).map((key) => (
             <div
               key={key}
-              className={`cursor-pointer py-2 ${
+              className={`cursor-pointer py-2 px-4 ${
                 activeKey === key
                   ? "border-b-2 border-main font-semibold"
                   : "text-gray-500"
