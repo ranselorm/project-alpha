@@ -1,5 +1,4 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Input } from "antd";
 import React, { useState } from "react";
 
 interface MessageType {

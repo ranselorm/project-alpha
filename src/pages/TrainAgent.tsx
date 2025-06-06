@@ -1,225 +1,98 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
-import { Input } from "antd";
 import React, { useState } from "react";
+import { Segmented } from "antd";
 
-interface MessageType {
-  id: number;
-  sender: string;
-  text: string;
-  time: string;
+type TabKey = "first" | "second" | "longtext";
+
+// 1) Change DataMap so that each key maps to React.ReactNode (any JSX)
+interface DataMap {
+  [key: string]: React.ReactNode;
 }
 
-interface ChatType {
-  id: number;
-  name: string;
-  lastMessage: string;
-  messages: MessageType[];
-}
-
-const chatsData: ChatType[] = [
-  {
-    id: 1,
-    name: "Lyla",
-    lastMessage: "Can I have your name?",
-    messages: [
-      {
-        id: 1,
-        sender: "Lyla",
-        text: "Hi! I need support for...",
-        time: "10:30 AM",
-      },
-      {
-        id: 2,
-        sender: "You",
-        text: "Welcome to our service, Lyla!",
-        time: "10:32 AM",
-      },
-      {
-        id: 3,
-        sender: "Lyla",
-        text: "Can I have your name?",
-        time: "10:33 AM",
-      },
-      {
-        id: 4,
-        sender: "You",
-        text: "My name is Ranselorm",
-        time: "10:34 AM",
-      },
-      {
-        id: 5,
-        sender: "You",
-        text: "My name is Ranselorm",
-        time: "10:34 AM",
-      },
-      // {
-      //   id: 5,
-      //   sender: "Lyla",
-      //   text: "Thank you for the response",
-      //   time: "10:33 AM",
-      // },
-    ],
-  },
-  {
-    id: 2,
-    name: "John Doe",
-    lastMessage: "Thank you!",
-    messages: [
-      { id: 1, sender: "John Doe", text: "Hello!", time: "Yesterday" },
-      { id: 2, sender: "You", text: "How can I help you?", time: "Yesterday" },
-      { id: 3, sender: "John Doe", text: "Thank you!", time: "Yesterday" },
-    ],
-  },
-];
-
-interface ChatListItemProps {
-  chat: ChatType;
-  isActive: boolean;
-  onClick: () => void;
-}
-
-const ChatListItem: React.FC<ChatListItemProps> = ({
-  chat,
-  isActive,
-  onClick,
-}) => {
-  return (
-    <div
-      onClick={onClick}
-      className={`cursor-pointer px-3 py-1 flex items-center ${
-        isActive
-          ? "bg-gray-200 border-l-2 border-main"
-          : "hover:bg-gray-100 border-2 border-transparent"
-      }`}
-    >
-      <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-base font-bold mr-3">
-        {chat.name.charAt(0)}
+// 2) Provide arbitrary JSX for each tab
+const dataForTabs: Record<TabKey, React.ReactNode> = {
+  first: (
+    <div>
+      <h2>Fruits List</h2>
+      <p>
+        Here are some example fruits you might want to train your agent with:
+      </p>
+      <div style={{ display: "flex", gap: "8px" }}>
+        <div style={{ padding: "8px", border: "1px solid #ccc" }}>Apple</div>
+        <div style={{ padding: "8px", border: "1px solid #ccc" }}>Banana</div>
+        <div style={{ padding: "8px", border: "1px solid #ccc" }}>Cherry</div>
       </div>
+    </div>
+  ),
+  second: (
+    <section>
+      <h2>Animal Examples</h2>
       <div>
-        <div className="font-semibold text-base">{chat.name}</div>
-        <div className="text-sm text-gray-500 truncate max-w-xs">
-          {chat.lastMessage}
-        </div>
+        <p>You can pass any JSX—here’s a simple list of animals:</p>
+        <ul>
+          <li>🐶 Dog</li>
+          <li>🐱 Cat</li>
+          <li>🐰 Rabbit</li>
+        </ul>
+      </div>
+    </section>
+  ),
+  longtext: (
+    <div>
+      <h2>Colors Section</h2>
+      <p>
+        This tab holds longer text describing colors. Use paragraphs, sections,
+        or any structure you like:
+      </p>
+      <section style={{ marginTop: "12px" }}>
+        <p>
+          <strong>Red:</strong> The color of energy and passion. Lorem ipsum
+          dolor sit amet, consectetur adipiscing elit.
+        </p>
+        <p>
+          <strong>Green:</strong> Symbolizes growth and harmony. Integer nec
+          odio. Praesent libero. Sed cursus ante dapibus diam.
+        </p>
+        <p>
+          <strong>Blue:</strong> Represents tranquility and stability. Sed nisi.
+          Nulla quis sem at nibh elementum imperdiet.
+        </p>
+      </section>
+      <div
+        style={{ border: "1px solid #ddd", padding: "8px", marginTop: "16px" }}
+      >
+        <strong>Pro Tip:</strong> You can embed additional components or styling
+        here.
       </div>
     </div>
-  );
-};
-
-interface MessageProps {
-  message: MessageType;
-  isOwn: boolean;
-}
-
-const Message: React.FC<MessageProps> = ({ message, isOwn }) => {
-  return (
-    <div
-      className={`max-w-xs my-2 px-4 py-1 rounded-md ${
-        isOwn
-          ? "bg-main text-white self-end"
-          : "bg-gray-200 text-gray-800 self-start"
-      }`}
-    >
-      <div className="text-sm">{message.text}</div>
-      <div className="text-[10px] mt-1 text-right">{message.time}</div>
-    </div>
-  );
-};
-
-interface ConversationProps {
-  chat: ChatType | null;
-}
-
-const Conversation: React.FC<ConversationProps> = ({ chat }) => {
-  if (!chat)
-    return (
-      <div className="p-6 text-gray-500 bg-white h-[76vh] flex items-center justify-center flex-col">
-        <Icon icon="twemoji:smiling-face" className="text-3xl mb-4" />
-        <p>Select a chat to start conversation</p>
-      </div>
-    );
-
-  return (
-    <div className="flex flex-col p-6 h-[76vh] bg-white rounded-md">
-      <div className="font-bold text-xl border-b pb-2">{chat.name}</div>
-      <div className="overflow-auto">
-        <div className="flex flex-col space-y-1">
-          {chat.messages.map((msg) => (
-            <Message key={msg.id} message={msg} isOwn={msg.sender === "You"} />
-          ))}
-        </div>
-      </div>
-      <div className="mt-auto border flex items-center justify-center px-4 rounded-md">
-        <input
-          type="text"
-          placeholder="Type your message here"
-          className="w-full h-full py-6 border-none focus:outline-none focus:border-none focus:shadow-none"
-        />
-        <Icon icon="iconamoon:send-thin" className="text-3xl cursor-pointer" />
-      </div>
-    </div>
-  );
-};
-
-interface SidebarProps {
-  chats: ChatType[];
-  activeChatId: number | null;
-  onSelectChat: (id: number) => void;
-}
-
-const Sidebar: React.FC<SidebarProps> = ({
-  chats,
-  activeChatId,
-  onSelectChat,
-}) => {
-  return (
-    <div className="w-60 flex flex-col bg-white rounded-md py-4 h-[76vh] overflow-auto">
-      <div className="text-center mx-auto w-full">
-        <div className="w-[90%] bg-grey rounded-full relative flex items-center px-4 mx-auto">
-          <Icon
-            icon="material-symbols-light:search-rounded"
-            className="absolute right-3 cursor-pointer size-5 text-main"
-          />
-          <input
-            className="h-full py-2 focus:ring-0 focus:outline-none text-xs w-[300px] placeholder:text-main"
-            placeholder="Search"
-          />
-        </div>
-      </div>
-      <div className="overflow-y-auto flex-grow mt-8">
-        {chats.map((chat) => (
-          <ChatListItem
-            key={chat.id}
-            chat={chat}
-            isActive={chat.id === activeChatId}
-            onClick={() => onSelectChat(chat.id)}
-          />
-        ))}
-      </div>
-    </div>
-  );
+  ),
 };
 
 const TrainAgent: React.FC = () => {
-  const [activeChatId, setActiveChatId] = useState<number | null>(null);
-  const activeChat = chatsData.find((c) => c.id === activeChatId) ?? null;
+  const [activeKey, setActiveKey] = useState<TabKey>("first");
+
+  // 4) Segmented options must match the keys in dataForTabs
+  const options: { label: string; value: TabKey }[] = [
+    { label: "123 (Fruits)", value: "first" },
+    { label: "456 (Animals)", value: "second" },
+    { label: "longtext-longtext-longtext (Colors)", value: "longtext" },
+  ];
 
   return (
-    <section className="rounded-md">
-      <div className="container mx-auto">
-        <h1 className="text-2xl font-semibold mb-2">Inbox</h1>
-
-        <div className="flex gap-x-4">
-          <Sidebar
-            chats={chatsData}
-            activeChatId={activeChatId}
-            onSelectChat={setActiveChatId}
+    <div>
+      <p>Train Agent</p>
+      <main className="container mx-auto">
+        <div style={{ width: 400 }}>
+          <Segmented
+            options={options}
+            block
+            value={activeKey}
+            onChange={(val) => setActiveKey(val as TabKey)}
           />
-          <div className="flex-grow flex flex-col">
-            <Conversation chat={activeChat} />
-          </div>
+
+          <div style={{ marginTop: 16 }}>{dataForTabs[activeKey]}</div>
         </div>
-      </div>
-    </section>
+      </main>
+    </div>
   );
 };
 
