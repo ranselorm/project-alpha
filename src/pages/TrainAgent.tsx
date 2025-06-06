@@ -118,7 +118,7 @@ const TrainAgent: React.FC = () => {
           >
             {(fields, { add, remove }) => (
               <>
-                {fields.map(({ key, fieldKey, name, ...restField }) => (
+                {fields.map(({ key, name, ...restField }) => (
                   <Space
                     key={key}
                     style={{ display: "flex", marginBottom: 8 }}
@@ -134,10 +134,19 @@ const TrainAgent: React.FC = () => {
                       <Input
                         placeholder="Enter URL"
                         addonBefore="https://"
-                        style={{ width: "300px" }}
+                        style={{ width: "620px" }}
                       />
                     </Form.Item>
-                    <Button
+                    <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-base font-bold mr-3">
+                      {/* <Icon
+                        icon="material-symbols:remove-circle-outline"
+                        className="text-black z-20"
+                        onClick={() => remove(name)}
+                      /> */}
+                      -
+                    </div>
+
+                    {/* <Button
                       danger
                       icon={
                         <Icon
@@ -147,7 +156,7 @@ const TrainAgent: React.FC = () => {
                         />
                       }
                       onClick={() => remove(name)} // Remove button to delete an input field
-                    />
+                    /> */}
                   </Space>
                 ))}
                 <Form.Item>
