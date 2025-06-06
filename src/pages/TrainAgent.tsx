@@ -134,7 +134,10 @@ const TrainAgent: React.FC = () => {
                         style={{ width: "620px" }}
                       />
                     </Form.Item>
-                    <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-base font-bold mr-3">
+                    <div
+                      className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-base font-bold mr-3"
+                      onClick={() => remove(name)}
+                    >
                       {/* <Icon
                         icon="material-symbols:remove-circle-outline"
                         className="text-black z-20"
