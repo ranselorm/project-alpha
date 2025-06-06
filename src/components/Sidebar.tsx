@@ -15,6 +15,11 @@ const navLinks = [
     path: "/chats",
     icon: "ph:chats-thin",
   },
+  {
+    title: "Train Agent",
+    path: "/train-agent",
+    icon: "grommet-icons:document-config",
+  },
   { title: "Settings", path: "/settings", icon: "solar:settings-broken" },
 ];
 

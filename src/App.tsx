@@ -7,6 +7,7 @@ import Settings from "@/pages/Settings";
 import Chats from "@/pages/Chats";
 import Agents from "@/pages/Agents";
 import MainPage from "@/layouts/MainPage";
+import TrainAgent from "./pages/TrainAgent";
 
 const App = () => {
   // const user = useSelector((state: RootState) => state.user.user);
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/settings" element={<Settings />} />
         <Route path="/chats" element={<Chats />} />
         <Route path="/agents" element={<Agents />} />
+        <Route path="/train-agent" element={<TrainAgent />} />
       </Route>
     </Routes>
   );
