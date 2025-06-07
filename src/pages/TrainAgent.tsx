@@ -384,7 +384,7 @@ const TrainAgent: React.FC = () => {
           rows={4}
           placeholder="maxLength is 6"
           maxLength={6}
-          className="!border !focus:border-main !shadow-none !bg-gray-100 !rounded-md !h-[200px] !resize-none !mb-4"
+          className="!focus:outline-none !focus:border-red-400 !shadow-none !bg-gray-100 !rounded-md !h-[200px] !resize-none !mb-4 !p-4"
         />
       </section>
     ),
@@ -407,7 +407,7 @@ const TrainAgent: React.FC = () => {
             key="train"
             type="primary"
             onClick={handleOk}
-            className="!bg-main"
+            className="!bg-main !px-8"
           >
             Train
           </Button>,
