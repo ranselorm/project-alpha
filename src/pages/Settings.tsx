@@ -151,9 +151,7 @@ const SettingsPage = () => {
     };
   }, [file1]);
 
-  // ===========================================================================
   // Dropzone #2 (Upload Document 2)
-  // ===========================================================================
   const onDrop2 = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       setFile2(acceptedFiles[0]);
@@ -185,9 +183,7 @@ const SettingsPage = () => {
     };
   }, [file2]);
 
-  // ===========================================================================
   // Dropzone #3 (Upload Document 3)
-  // ===========================================================================
   const onDrop3 = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       setFile3(acceptedFiles[0]);
@@ -219,9 +215,7 @@ const SettingsPage = () => {
     };
   }, [file3]);
 
-  // ===========================================================================
   // Modal logic
-  // ===========================================================================
   const openModal = (content: "profile" | "personal" | "billing") => {
     setModalContent(content);
     setModalVisible(true);

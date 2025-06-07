@@ -4,6 +4,8 @@ import { Button, Modal, Input, Form, Space } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { useDropzone } from "react-dropzone";
 
+const { TextArea } = Input;
+
 type TabKey = "Train" | "second" | "longtext";
 type ModalTabKey = "website" | "pdf" | "word" | "text";
 
@@ -46,6 +48,8 @@ const TrainAgent: React.FC = () => {
   const [modalActiveKey, setModalActiveKey] = useState<ModalTabKey>("website");
   const [file1, setFile1] = useState<File | null>(null);
   const [file1PreviewUrl, setFile1PreviewUrl] = useState<string>("");
+  const [file2, setFile2] = useState<File | null>(null);
+  const [file2PreviewUrl, setFile2PreviewUrl] = useState<string>("");
 
   const showModal = () => setIsModalOpen(true);
   const handleOk = () => setIsModalOpen(false);
@@ -64,7 +68,14 @@ const TrainAgent: React.FC = () => {
     fileRejections: fileRejections1,
   } = useDropzone({
     onDrop: onDrop1,
-    accept: { "application/pdf": [".pdf"] },
+    accept: {
+      "application/pdf": [".pdf"], // Accept PDFs
+      "application/msword": [".doc", ".docx"], // Accept Word files
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
+        ".xlsx",
+      ], // Accept Excel files
+      "text/plain": [".txt"], // Accept text files
+    },
     multiple: false,
     maxFiles: 1,
   });
@@ -82,6 +93,46 @@ const TrainAgent: React.FC = () => {
       URL.revokeObjectURL(url);
     };
   }, [file1]);
+
+  // Dropzone #2 (Upload word document)
+  const onDrop2 = useCallback((acceptedFiles: File[]) => {
+    if (acceptedFiles.length > 0) {
+      setFile2(acceptedFiles[0]);
+    }
+  }, []);
+
+  const {
+    getRootProps: getRootProps2,
+    getInputProps: getInputProps2,
+    isDragActive: isDragActive2,
+    fileRejections: fileRejections2,
+  } = useDropzone({
+    onDrop: onDrop2,
+    accept: {
+      "application/pdf": [".pdf"], // Accept PDFs
+      "application/msword": [".doc", ".docx"], // Accept Word files
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
+        ".xlsx",
+      ], // Accept Excel files
+      "text/plain": [".txt"], // Accept text files
+    },
+    multiple: false,
+    maxFiles: 1,
+  });
+
+  useEffect(() => {
+    // Build / revoke object URL for preview
+    if (!file2) {
+      URL.revokeObjectURL(file2PreviewUrl);
+      setFile2PreviewUrl("");
+      return;
+    }
+    const url = URL.createObjectURL(file2);
+    setFile2PreviewUrl(url);
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [file2]);
 
   const dataForTabs: Record<TabKey, React.ReactNode> = {
     Train: (
@@ -268,16 +319,74 @@ const TrainAgent: React.FC = () => {
       </section>
     ),
     word: (
-      <div>
-        <h2>Modal Tab 3 Section</h2>
-        <p>Content for Modal Tab 3</p>
-      </div>
+      <section>
+        {file2 ? (
+          <div
+            className={`bg-gray-100 border border-gray-400 rounded-md ${BOX_HEIGHT} flex flex-col`}
+          >
+            <div className="flex items-center justify-between px-4 py-2 border-b border-gray-300">
+              <p className="text-sm text-gray-700 truncate">{file2.name}</p>
+              <Icon
+                icon="mdi:close-circle"
+                className="text-xl text-red-600 cursor-pointer"
+                onClick={() => setFile2(null)}
+              />
+            </div>
+            <div className="flex-1 overflow-auto">
+              <iframe
+                src={file2PreviewUrl}
+                title="Preview PDF"
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+        ) : (
+          /* Dropzone area when no file is chosen */
+          <div
+            {...getRootProps2()}
+            className={`border border-gray-400 rounded-md ${BOX_HEIGHT} border-dashed bg-gray-100 flex items-center justify-center flex-col gap-2 cursor-pointer ${
+              isDragActive2 ? "bg-gray-200" : "bg-gray-100"
+            }`}
+          >
+            <input {...getInputProps2()} />
+            <Icon
+              icon="solar:upload-broken"
+              className="text-gray-600 text-[40px]"
+            />
+            <p className="font-semibold mt-4 text-gray-700 text-center">
+              {isDragActive2
+                ? "Drop Word (Docx) here …"
+                : "Drag & drop files here or "}
+              <span className="text-main underline">browse</span>
+            </p>
+          </div>
+        )}
+
+        {!file2 && fileRejections2.length > 0 && (
+          <ul className="mt-2">
+            {fileRejections2.map(({ file, errors }) => (
+              <li key={file.path} className="text-sm text-red-600">
+                {file.path} - {(file.size / 1024).toFixed(1)} KB
+                <ul className="list-disc list-inside">
+                  {errors.map((e) => (
+                    <li key={e.code}>{e.message}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
     ),
     text: (
-      <div>
-        <h2>Modal Tab 3 Section</h2>
-        <p>Content for Modal Tab 3</p>
-      </div>
+      <section>
+        <TextArea
+          rows={4}
+          placeholder="maxLength is 6"
+          maxLength={6}
+          className="!border !focus:border-main !shadow-none !bg-gray-100 !rounded-md !h-[200px] !resize-none !mb-4"
+        />
+      </section>
     ),
   };
 
