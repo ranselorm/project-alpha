@@ -235,7 +235,7 @@ const SettingsPage = () => {
             "Account Information",
             "Billing Information",
             "Roles",
-            "Train Agent",
+            // "Train Agent",
           ].map((tab) => (
             <button
               key={tab}
@@ -639,9 +639,9 @@ const SettingsPage = () => {
           {activeTab === "Roles" && <RBACForm />}
 
           {/* ――― TRAIN AGENT ――― */}
-          {activeTab === "Train Agent" && (
+          {/* {activeTab === "Train Agent" && (
             <div className="text-gray-700">hello agent information</div>
-          )}
+          )} */}
         </div>
       </div>
 

@@ -73,15 +73,14 @@ const TrainAgent: React.FC = () => {
       "application/msword": [".doc", ".docx"], // Accept Word files
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
         ".xlsx",
-      ], // Accept Excel files
-      "text/plain": [".txt"], // Accept text files
+      ],
+      "text/plain": [".txt"],
     },
     multiple: false,
     maxFiles: 1,
   });
 
   useEffect(() => {
-    // build / revoke object URL for preview
     if (!file1) {
       URL.revokeObjectURL(file1PreviewUrl);
       setFile1PreviewUrl("");
@@ -113,8 +112,8 @@ const TrainAgent: React.FC = () => {
       "application/msword": [".doc", ".docx"], // Accept Word files
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
         ".xlsx",
-      ], // Accept Excel files
-      "text/plain": [".txt"], // Accept text files
+      ],
+      "text/plain": [".txt"],
     },
     multiple: false,
     maxFiles: 1,
@@ -156,8 +155,16 @@ const TrainAgent: React.FC = () => {
             ))}
           </div>
         </div>
-        <div className="bg-white flex-grow h-[70vh] rounded-md border border-gray-200">
-          2
+        <div className="bg-white flex-grow h-[70vh] rounded-md border border-gray-200 p-4">
+          <div className="gap-y-4">
+            {["PDF", "Website", "Word", "Text"].map(
+              (item: string, index: number) => (
+                <div key={index} className="mt-2">
+                  {item}
+                </div>
+              )
+            )}
+          </div>
         </div>
       </div>
     ),
@@ -410,6 +417,7 @@ const TrainAgent: React.FC = () => {
             className="!bg-main !px-8"
           >
             Train
+            <Icon icon="basil:arrow-right-outline" className="text-xl" />
           </Button>,
         ]}
       >
