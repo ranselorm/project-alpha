@@ -98,10 +98,10 @@ const TrainAgent: React.FC = () => {
     website: (
       <div>
         <h2 className="font-medium text-base mb-4">Paste or type in the URL</h2>
-        <Form name="urlsForm" initialValues={{ urls: [""] }}>
+        <Form name="urlsForm">
           <Form.List
             name="urls"
-            initialValue={[""]}
+            initialValue={[""]} // Initialize with one input field
             rules={[
               {
                 validator: async (_, urls) => {
@@ -116,6 +116,21 @@ const TrainAgent: React.FC = () => {
           >
             {(fields, { add, remove }) => (
               <>
+                {/* Base URL */}
+                <Form.Item
+                  name="baseUrl"
+                  rules={[
+                    { required: true, message: "Please input a base URL" },
+                  ]}
+                >
+                  <Input
+                    addonBefore="https://"
+                    placeholder="example.com"
+                    style={{ width: "100%" }}
+                  />
+                </Form.Item>
+
+                {/* Pages */}
                 {fields.map(({ key, name, ...restField }) => (
                   <Space
                     key={key}
@@ -124,32 +139,31 @@ const TrainAgent: React.FC = () => {
                   >
                     <Form.Item
                       {...restField}
-                      name={[name, "url"]}
+                      name={[name, "path"]}
                       rules={[
-                        { required: true, message: "Please input a URL" },
+                        { required: true, message: "Please input a page path" },
                       ]}
                     >
                       <Input
-                        placeholder="Enter URL"
-                        addonBefore="https://"
-                        style={{ width: "620px" }}
+                        addonBefore="/"
+                        placeholder="about"
+                        style={{ width: "300px" }}
                       />
                     </Form.Item>
-                    {fields.length > 1 ? (
-                      <MinusCircleOutlined
-                        className="dynamic-delete-button"
-                        onClick={() => remove(name)}
-                      />
-                    ) : null}
+                    {/* Remove button only for page URLs */}
+                    <MinusCircleOutlined
+                      className="dynamic-delete-button"
+                      onClick={() => remove(name)}
+                    />
                   </Space>
                 ))}
                 <Form.Item>
                   <Button
                     type="dashed"
-                    onClick={() => add()} // Add button to add new input fields
-                    icon={<Icon icon="material-symbols:add-rounded" />}
+                    onClick={() => add()}
+                    icon={<PlusOutlined />}
                   >
-                    Add URL
+                    Add Page
                   </Button>
                 </Form.Item>
               </>
@@ -183,13 +197,25 @@ const TrainAgent: React.FC = () => {
       {/* Modal */}
       <Modal
         title="What would you like to train?"
-        closable={{ "aria-label": "Custom Close Button" }}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
         width={700}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button
+            key="train"
+            type="primary"
+            onClick={handleOk}
+            className="!bg-main"
+          >
+            Train
+          </Button>,
+        ]}
       >
-        {/* Tabs inside the Modal */}
+        {/* Modal Tabs */}
         <div className="flex space-x-8 border-b border-gray-300 mt-5 mb-8">
           {Object.keys(modalTabs).map((key) => (
             <div
@@ -206,8 +232,8 @@ const TrainAgent: React.FC = () => {
           ))}
         </div>
 
-        {/* Display content of the active tab in the modal */}
-        <div>{modalDataForTabs[modalActiveKey]}</div>
+        {/* Modal content */}
+        {modalDataForTabs[modalActiveKey]}
       </Modal>
 
       {/* Main Content */}
