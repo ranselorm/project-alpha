@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button, Modal, Input, Form, Space } from "antd";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 
 type TabKey = "Train" | "second" | "longtext";
 type ModalTabKey = "website" | "pdf" | "word" | "text";
@@ -134,29 +135,12 @@ const TrainAgent: React.FC = () => {
                         style={{ width: "620px" }}
                       />
                     </Form.Item>
-                    <div
-                      className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-base font-bold mr-3"
-                      onClick={() => remove(name)}
-                    >
-                      {/* <Icon
-                        icon="material-symbols:remove-circle-outline"
-                        className="text-black z-20"
+                    {fields.length > 1 ? (
+                      <MinusCircleOutlined
+                        className="dynamic-delete-button"
                         onClick={() => remove(name)}
-                      /> */}
-                      -
-                    </div>
-
-                    {/* <Button
-                      danger
-                      icon={
-                        <Icon
-                          icon="material-symbols:remove-circle-outline"
-                          className="text-black"
-                          style={{ color: "black" }}
-                        />
-                      }
-                      onClick={() => remove(name)} // Remove button to delete an input field
-                    /> */}
+                      />
+                    ) : null}
                   </Space>
                 ))}
                 <Form.Item>
