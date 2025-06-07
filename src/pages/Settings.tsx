@@ -107,9 +107,7 @@ const SettingsPage = () => {
     "profile" | "personal" | "billing" | "none"
   >("none");
 
-  // ===========================================================================
   // State for each uploaded PDF + preview URL
-  // ===========================================================================
   const [file1, setFile1] = useState<File | null>(null);
   const [file1PreviewUrl, setFile1PreviewUrl] = useState<string>("");
 
@@ -119,9 +117,8 @@ const SettingsPage = () => {
   const [file3, setFile3] = useState<File | null>(null);
   const [file3PreviewUrl, setFile3PreviewUrl] = useState<string>("");
 
-  // ===========================================================================
   // Dropzone #1 (Upload Document 1)
-  // ===========================================================================
+
   const onDrop1 = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       setFile1(acceptedFiles[0]);
