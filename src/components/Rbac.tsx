@@ -1,7 +1,7 @@
 import { useState } from "react";
-
 import { toast } from "sonner";
-import { Table, Input, Modal, Button, Select, Space } from "antd";
+import { Table, Input, Modal, Button, Select, Space, Dropdown } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const data = [
@@ -9,18 +9,18 @@ const data = [
     key: "1",
     name: "Ran Selorm",
     email: "ranselorm@gmail.com",
-    role: "Admininstrator",
+    role: "Administrator",
     date: "May 22, 2025",
   },
   {
-    key: "1",
+    key: "2",
     name: "Gideon Bedzrah",
     email: "gbedzrah1@gmail.com",
-    role: "Admininstrator",
+    role: "Administrator",
     date: "June 09, 2025",
   },
   {
-    key: "1",
+    key: "3",
     name: "Rose Sikatse",
     email: "rosesikatse@gmail.com",
     role: "Project Manager",
@@ -30,30 +30,57 @@ const data = [
 
 const columns = [
   {
-    title: "NAME",
+    title: "Name",
     dataIndex: "name",
     key: "name",
-    render: (text: string) => (
-      <>
-        <p>{text}</p>
-      </>
-    ),
+    render: (text: string) => <p>{text}</p>,
   },
   {
-    title: "EMAIL",
+    title: "Email",
     dataIndex: "email",
     key: "email",
   },
   {
-    title: "ROLE",
+    title: "Role",
     dataIndex: "role",
     key: "role",
-    render: (role: string) => <div>{role}</div>,
   },
   {
-    title: "DATE CREATED",
+    title: "Created At",
     dataIndex: "date",
     key: "date",
+  },
+  {
+    title: "Actions",
+    key: "actions",
+    render: (_: any) => {
+      const items = [
+        { key: "remove", label: "Remove" },
+        { key: "suspend", label: "Suspend" },
+        { key: "delete", label: "Delete" },
+      ];
+      return (
+        <Dropdown
+          menu={{ items }}
+          className="!w-24 !rounded-full !px-1 !py-4 !border !border-main"
+          trigger={["click"]}
+        >
+          <Button
+            size="small"
+            className="!flex !items-center group !hover:text-main !focus:text-main !active:text-main"
+            style={{ color: "inherit" }}
+          >
+            <span className="group-hover:text-main group-focus:text-main group-active:text-main">
+              Actions
+            </span>
+            <Icon
+              icon="ri:arrow-down-s-line"
+              className="group-hover:text-main group-focus:text-main group-active:text-main"
+            />
+          </Button>
+        </Dropdown>
+      );
+    },
   },
 ];
 
@@ -85,10 +112,11 @@ const RBACForm = () => {
 
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
+    setRole(value);
   };
 
   return (
-    <section className="">
+    <section>
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-semibold text-gray-900">Users</h3>
         <Button
@@ -99,9 +127,8 @@ const RBACForm = () => {
           Add user
         </Button>
       </div>
-      <div>
-        <Table columns={columns} dataSource={data} pagination={false} />
-      </div>
+
+      <Table columns={columns} dataSource={data} pagination={false} />
 
       <Modal
         open={open}
@@ -109,18 +136,16 @@ const RBACForm = () => {
         onOk={handleOk}
         onCancel={handleCancel}
         width={450}
-        className=""
         footer={[
           <Button
             key="back"
             onClick={handleCancel}
-            className="!border  !border-gray-400 !px-8 !text-gray-600 hover:border-main hover:text-white"
+            className="!border !border-gray-400 !px-8 !text-gray-600 hover:border-main hover:text-white"
           >
             Cancel
           </Button>,
           <Button
             key="submit"
-            // loading={loading}
             onClick={handleOk}
             className="!bg-main !text-white !border-none !px-8"
             style={{ boxShadow: "none" }}
@@ -137,7 +162,6 @@ const RBACForm = () => {
               placeholder="Ran Selorm"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              // className="focus:outline-none focus:shadow-none focus:ring-0 !important"
             />
           </div>
           <div className="mb-4">
@@ -147,7 +171,6 @@ const RBACForm = () => {
               placeholder="user@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="focus-visible:ring-0"
             />
           </div>
 
@@ -158,7 +181,6 @@ const RBACForm = () => {
               placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="focus-visible:ring-0"
             />
           </div>
 
@@ -166,7 +188,7 @@ const RBACForm = () => {
             <label className="block text-sm font-medium mb-2">
               Select Role
             </label>
-            <Space wrap className="">
+            <Space wrap>
               <Select
                 defaultValue="lucy"
                 style={{ width: "150px" }}
