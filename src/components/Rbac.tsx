@@ -1,106 +1,59 @@
 import { useState } from "react";
 
-import {
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { toast } from "sonner";
 import { Table, Input, Modal, Button, Select, Space } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const data = [
   {
     key: "1",
-    invoice: "Invoice #005",
-    plan: "Basic Plan",
-    amount: "11 USD",
-    status: "Paid",
-    date: "1 December 2020",
+    name: "Ran Selorm",
+    email: "ranselorm@gmail.com",
+    role: "Admininstrator",
+    date: "May 22, 2025",
   },
   {
-    key: "2",
-    invoice: "Invoice #004",
-    plan: "Basic Plan",
-    amount: "11 USD",
-    status: "Paid",
-    date: "1 November 2020",
+    key: "1",
+    name: "Gideon Bedzrah",
+    email: "gbedzrah1@gmail.com",
+    role: "Admininstrator",
+    date: "June 09, 2025",
   },
   {
-    key: "3",
-    invoice: "Invoice #003",
-    plan: "Basic Plan",
-    amount: "11 USD",
-    status: "Paid",
-    date: "1 October 2020",
-  },
-  {
-    key: "4",
-    invoice: "Invoice #002",
-    plan: "Basic Plan",
-    amount: "11 USD",
-    status: "Paid",
-    date: "1 September 2020",
-  },
-  {
-    key: "5",
-    invoice: "Invoice #001",
-    plan: "Basic Plan",
-    amount: "11 USD",
-    status: "Paid",
-    date: "1 August 2020",
+    key: "1",
+    name: "Rose Sikatse",
+    email: "rosesikatse@gmail.com",
+    role: "Project Manager",
+    date: "June 03, 2025",
   },
 ];
 
 const columns = [
   {
-    title: "INVOICE",
-    dataIndex: "invoice",
-    key: "invoice",
-    render: (text: string, record: any) => (
+    title: "NAME",
+    dataIndex: "name",
+    key: "name",
+    render: (text: string) => (
       <>
-        <p style={{ color: "black", fontWeight: 600 }}>{text}</p>
-        <div style={{ fontSize: 12, color: "#888" }}>{record.plan}</div>
+        <p>{text}</p>
       </>
     ),
   },
   {
-    title: "AMOUNT",
-    dataIndex: "amount",
-    key: "amount",
+    title: "EMAIL",
+    dataIndex: "email",
+    key: "email",
   },
   {
-    title: "STATUS",
-    dataIndex: "status",
-    key: "status",
-    render: (status: string) => (
-      <div
-        style={{
-          backgroundColor: "#d9f7be",
-          color: "#389e0d",
-          padding: "4px 8px",
-          borderRadius: 50,
-          fontSize: 12,
-          display: "inline-block",
-          minWidth: 40,
-          textAlign: "center",
-        }}
-      >
-        {status}
-      </div>
-    ),
+    title: "ROLE",
+    dataIndex: "role",
+    key: "role",
+    render: (role: string) => <div>{role}</div>,
   },
   {
-    title: "DATE",
+    title: "DATE CREATED",
     dataIndex: "date",
     key: "date",
-  },
-  {
-    title: "ACTION",
-    key: "action",
-    render: () => <a style={{ color: "#000" }}>View invoice →</a>,
   },
 ];
 
@@ -113,15 +66,16 @@ const RBACForm = () => {
   const [open, setOpen] = useState(false);
 
   const handleOk = () => {
+    if (!name || !email || !password || !role) {
+      toast.error("All fields are required!");
+      return;
+    }
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       setOpen(false);
     }, 3000);
-    if (!name || !email || !password || !role) {
-      toast.error("All fields are required!");
-      return;
-    }
+
     toast.success(`Role "${role}" assigned to ${email} successfully!`);
   };
 
@@ -133,14 +87,6 @@ const RBACForm = () => {
     console.log(`selected ${value}`);
   };
 
-  // const handleAssignRole = () => {
-  //   if (!email || !password || !role) {
-  //     toast.error("All fields are required!");
-  //     return;
-  //   }
-  //   toast.success(`Role "${role}" assigned to ${email} successfully!`);
-  // };
-
   return (
     <section className="">
       <div className="flex items-center justify-between mb-4">
@@ -150,7 +96,7 @@ const RBACForm = () => {
           onClick={() => setOpen(true)}
         >
           <Icon icon="material-symbols:add-rounded" className="text-white" />
-          Add
+          Add user
         </Button>
       </div>
       <div>
