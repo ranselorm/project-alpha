@@ -109,7 +109,7 @@ const RBACForm = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleOk = () => {
     setLoading(true);
@@ -133,7 +133,7 @@ const RBACForm = () => {
 
   return (
     <section className="">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mb-4">
         <h3 className="font-semibold text-gray-900">Users</h3>
         <Button
           className="!bg-main !text-white"
@@ -149,7 +149,7 @@ const RBACForm = () => {
 
       <Modal
         open={open}
-        title="Title"
+        title="Assign Role"
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
