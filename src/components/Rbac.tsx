@@ -167,8 +167,6 @@ const RBACForm = () => {
         ]}
       >
         <div className="p-6 bg-white rounded-lg container mx-auto border border-gray-300">
-          <h2 className="text-lg mb-4">Assign Role</h2>
-
           <div className="mb-4">
             <label className="block text-sm font-medium">Email</label>
             <Input
@@ -204,13 +202,6 @@ const RBACForm = () => {
               </SelectContent>
             </Select>
           </div>
-
-          <Button
-            className="w-full bg-main transition-all duration-150 text-white cursor-pointer"
-            onClick={handleAssignRole}
-          >
-            Assign Role
-          </Button>
         </div>
       </Modal>
     </section>
