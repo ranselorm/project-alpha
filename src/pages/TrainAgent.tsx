@@ -456,14 +456,14 @@ const TrainAgent: React.FC = () => {
               onClick={() => setActiveKey(key as TabKey)}
             >
               {key === "Train" && "Train Agent"}
-              {key === "second" && "Tab 2"}
-              {key === "longtext" && "Tab 3"}
+              {/* {key === "second" && "Tab 2"}
+              {key === "longtext" && "Tab 3"} */}
             </div>
           ))}
         </div>
         <div className="flex justify-end mb-2">
           <Button
-            className="!bg-main !text-white !border-none"
+            className="!bg-main !text-white !border-none !px-8"
             onClick={showModal}
           >
             <Icon icon="material-symbols:add-rounded" className="text-white" />
