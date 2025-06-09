@@ -185,7 +185,7 @@ const RBACForm = () => {
               placeholder="Ran Selorm"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="focus-visible:ring-0"
+              // className="focus:outline-none focus:shadow-none focus:ring-0 !important"
             />
           </div>
           <div className="mb-4">
@@ -214,7 +214,7 @@ const RBACForm = () => {
             <label className="block text-sm font-medium mb-2">
               Select Role
             </label>
-            <Space wrap className="!w-full !bg-red-400">
+            <Space wrap className="">
               <Select
                 defaultValue="lucy"
                 style={{ width: "150px" }}

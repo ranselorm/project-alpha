@@ -144,6 +144,13 @@ body {
   }
 }
 
-.ant-segmented-item-checked {
-  border-bottom: 2px solid #1d4ed8; /* Replace with your desired color */
+.ant-select-focused,
+.ant-select:hover .ant-select-selector,
+.ant-select-selector:focus,
+.ant-select-selector:active,
+.ant-select-open .ant-select-selector,
+.ant-input:focus,
+.ant-input:hover {
+  border-color: #5041bc !important;
+  box-shadow: none !important;
 }
