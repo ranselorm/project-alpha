@@ -162,7 +162,7 @@ const RBACForm = () => {
         onOk={handleOk}
         onCancel={handleCancel}
         width={450}
-        className="pb-8"
+        className=""
         footer={[
           <Button key="back" onClick={handleCancel}>
             Cancel
@@ -170,14 +170,14 @@ const RBACForm = () => {
           <Button
             key="submit"
             type="primary"
-            loading={loading}
+            // loading={loading}
             onClick={handleOk}
           >
             Submit
           </Button>,
         ]}
       >
-        <div className="bg-white rounded-lg container mx-auto">
+        <div className="bg-white rounded-lg container mx-auto pb-5">
           <div className="my-4">
             <label className="block text-sm font-medium mb-2">Name</label>
             <Input
@@ -210,14 +210,14 @@ const RBACForm = () => {
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-12">
             <label className="block text-sm font-medium mb-2">
               Select Role
             </label>
-            <Space wrap>
+            <Space wrap className="!w-full !bg-red-400">
               <Select
                 defaultValue="lucy"
-                style={{ width: 120 }}
+                style={{ width: "150px" }}
                 onChange={handleChange}
                 options={[
                   { value: "jack", label: "Jack" },
