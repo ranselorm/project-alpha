@@ -149,6 +149,9 @@ body {
 .ant-select-selector:focus,
 .ant-select-selector:active,
 .ant-select-open .ant-select-selector,
+.ant-select-selection-item:focus,
+.ant-select-selection-item:active,
+.ant-select-selection-item-selected,
 .ant-input:focus,
 .ant-input:hover {
   border-color: #5041bc !important;

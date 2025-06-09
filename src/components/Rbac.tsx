@@ -9,6 +9,7 @@ import {
 import { toast } from "sonner";
 import { Table, Input, Modal, Button, Select, Space } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const data = [
   {
@@ -145,11 +146,11 @@ const RBACForm = () => {
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-semibold text-gray-900">Users</h3>
         <Button
-          className="!bg-main !text-white"
+          className="!bg-main !text-white !border-none !px-8"
           onClick={() => setOpen(true)}
-          icon={<PlusOutlined size={4} className="!text-sm" />}
         >
-          Add user
+          <Icon icon="material-symbols:add-rounded" className="text-white" />
+          Add
         </Button>
       </div>
       <div>
@@ -164,14 +165,19 @@ const RBACForm = () => {
         width={450}
         className=""
         footer={[
-          <Button key="back" onClick={handleCancel}>
+          <Button
+            key="back"
+            onClick={handleCancel}
+            className="!border  !border-gray-400 !px-8 !text-gray-600 hover:border-main hover:text-white"
+          >
             Cancel
           </Button>,
           <Button
             key="submit"
-            type="primary"
             // loading={loading}
             onClick={handleOk}
+            className="!bg-main !text-white !border-none !px-8"
+            style={{ boxShadow: "none" }}
           >
             Submit
           </Button>,
