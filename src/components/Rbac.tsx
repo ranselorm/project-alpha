@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Table, Input, Modal, Button, Select, Space, Dropdown } from "antd";
-import { DownOutlined } from "@ant-design/icons";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const data = [
