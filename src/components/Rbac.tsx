@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { Table, Input, Modal, Button } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 const data = [
   {
@@ -132,8 +133,17 @@ const RBACForm = () => {
 
   return (
     <section className="">
+      <div className="flex items-center justify-between">
+        <h3 className="font-semibold text-gray-900">Users</h3>
+        <Button
+          className="!bg-main !text-white"
+          onClick={() => setOpen(true)}
+          icon={<PlusOutlined size={4} className="!text-sm" />}
+        >
+          Add user
+        </Button>
+      </div>
       <div>
-        <h3 className="font-semibold mb-4 text-gray-900">Billing history</h3>
         <Table columns={columns} dataSource={data} pagination={false} />
       </div>
 

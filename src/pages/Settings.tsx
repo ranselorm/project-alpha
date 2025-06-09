@@ -635,13 +635,8 @@ const SettingsPage = () => {
             </div>
           )}
 
-          {/* ――― ROLES ――― */}
+          {/* ROLES */}
           {activeTab === "Roles" && <RBACForm />}
-
-          {/* ――― TRAIN AGENT ――― */}
-          {/* {activeTab === "Train Agent" && (
-            <div className="text-gray-700">hello agent information</div>
-          )} */}
         </div>
       </div>
 
