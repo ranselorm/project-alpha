@@ -1,14 +1,13 @@
 import { useState } from "react";
 
 import {
-  Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Table, Input, Modal, Button } from "antd";
+import { Table, Input, Modal, Button, Select, Space } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 const data = [
@@ -105,6 +104,7 @@ const columns = [
 ];
 
 const RBACForm = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
@@ -117,19 +117,28 @@ const RBACForm = () => {
       setLoading(false);
       setOpen(false);
     }, 3000);
+    if (!name || !email || !password || !role) {
+      toast.error("All fields are required!");
+      return;
+    }
+    toast.success(`Role "${role}" assigned to ${email} successfully!`);
   };
 
   const handleCancel = () => {
     setOpen(false);
   };
 
-  const handleAssignRole = () => {
-    if (!email || !password || !role) {
-      toast.error("All fields are required!");
-      return;
-    }
-    toast.success(`Role "${role}" assigned to ${email} successfully!`);
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
   };
+
+  // const handleAssignRole = () => {
+  //   if (!email || !password || !role) {
+  //     toast.error("All fields are required!");
+  //     return;
+  //   }
+  //   toast.success(`Role "${role}" assigned to ${email} successfully!`);
+  // };
 
   return (
     <section className="">
@@ -153,9 +162,10 @@ const RBACForm = () => {
         onOk={handleOk}
         onCancel={handleCancel}
         width={450}
+        className="pb-8"
         footer={[
           <Button key="back" onClick={handleCancel}>
-            Return
+            Cancel
           </Button>,
           <Button
             key="submit"
@@ -173,8 +183,8 @@ const RBACForm = () => {
             <Input
               type="text"
               placeholder="Ran Selorm"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="focus-visible:ring-0"
             />
           </div>
@@ -204,16 +214,18 @@ const RBACForm = () => {
             <label className="block text-sm font-medium mb-2">
               Select Role
             </label>
-            <Select onValueChange={(value) => setRole(value)}>
-              <SelectTrigger>
-                <SelectValue placeholder="Choose a role" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Admin">Admin</SelectItem>
-                <SelectItem value="Editor">Editor</SelectItem>
-                <SelectItem value="Viewer">Viewer</SelectItem>
-              </SelectContent>
-            </Select>
+            <Space wrap>
+              <Select
+                defaultValue="lucy"
+                style={{ width: 120 }}
+                onChange={handleChange}
+                options={[
+                  { value: "jack", label: "Jack" },
+                  { value: "lucy", label: "Lucy" },
+                  { value: "Yiminghe", label: "yiminghe" },
+                ]}
+              />
+            </Space>
           </div>
         </div>
       </Modal>
