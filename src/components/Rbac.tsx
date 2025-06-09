@@ -152,6 +152,7 @@ const RBACForm = () => {
         title="Assign Role"
         onOk={handleOk}
         onCancel={handleCancel}
+        width={450}
         footer={[
           <Button key="back" onClick={handleCancel}>
             Return
@@ -166,9 +167,19 @@ const RBACForm = () => {
           </Button>,
         ]}
       >
-        <div className="p-6 bg-white rounded-lg container mx-auto border border-gray-300">
+        <div className="bg-white rounded-lg container mx-auto">
+          <div className="my-4">
+            <label className="block text-sm font-medium mb-2">Name</label>
+            <Input
+              type="text"
+              placeholder="Ran Selorm"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="focus-visible:ring-0"
+            />
+          </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium">Email</label>
+            <label className="block text-sm font-medium mb-2">Email</label>
             <Input
               type="email"
               placeholder="user@example.com"
@@ -179,7 +190,7 @@ const RBACForm = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm font-medium">Password</label>
+            <label className="block text-sm font-medium mb-2">Password</label>
             <Input
               type="password"
               placeholder="Enter password"
@@ -190,7 +201,9 @@ const RBACForm = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm font-medium">Select Role</label>
+            <label className="block text-sm font-medium mb-2">
+              Select Role
+            </label>
             <Select onValueChange={(value) => setRole(value)}>
               <SelectTrigger>
                 <SelectValue placeholder="Choose a role" />
